@@ -1,0 +1,7 @@
+pyTsetlinMachine.egg-info
+build/*
+dist/*
+
+*.o
+*.so
+*.pyc
