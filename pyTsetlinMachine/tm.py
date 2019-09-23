@@ -90,11 +90,12 @@ _lib.tm_encode.restype = None
 _lib.tm_encode.argtypes = [array_1d_uint, array_1d_uint, C.c_int, C.c_int, C.c_int, C.c_int, C.c_int] 
 
 class MultiClassConvolutionalTsetlinMachine2D():
-	def __init__(self, number_of_clauses, T, s, patch_dim, boost_true_positive_feedback=1, number_of_state_bits=8):
+	def __init__(self, number_of_clauses, T, s, patch_dim, boost_true_positive_feedback=1, number_of_state_bits=8, stepsize=(1,1)):
 		self.number_of_clauses = number_of_clauses
 		self.number_of_clause_chunks = (number_of_clauses-1)/32 + 1
 		self.number_of_state_bits = number_of_state_bits
-		self.patch_dim = patch_dim
+		self.patch_dim = patch_dim  #window dim (x1,y1)
+		self.step_size= stepsize
 		self.T = int(T)
 		self.s = s
 		self.boost_true_positive_feedback = boost_true_positive_feedback
@@ -117,8 +118,9 @@ class MultiClassConvolutionalTsetlinMachine2D():
 			elif len(X.shape) == 4:
 				self.dim_z = X.shape[3]
 
-			self.number_of_features = int(self.patch_dim[0]*self.patch_dim[1]*self.dim_z + (self.dim_x - self.patch_dim[0]) + (self.dim_y - self.patch_dim[1]))
+			self.number_of_features = int(self.patch_dim[0]*self.patch_dim[1]*self.dim_z + (self.dim_x - self.patch_dim[0]) + (self.dim_y - self.patch_dim[1])) #total features in each patch = features in a patch + num patches in x direction + num patches in y direction. last 2 are in order to encode position of the patch
 			self.number_of_patches = int((self.dim_x - self.patch_dim[0] + 1)*(self.dim_y - self.patch_dim[1] + 1))
+			self.number_of_patches= int(((self.dim_x - self.patch_dim[0])/self.step_size[0] + 1)*((self.dim_y - self.patch_dim[1])/self.step_size[1] + 1))
 			self.number_of_ta_chunks = int((2*self.number_of_features-1)/32 + 1)
 			self.mc_ctm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, self.number_of_patches, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.boost_true_positive_feedback)
 		elif incremental == False:
