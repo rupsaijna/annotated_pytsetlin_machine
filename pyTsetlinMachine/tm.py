@@ -100,12 +100,14 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		self.s = s
 		self.boost_true_positive_feedback = boost_true_positive_feedback
 		self.mc_ctm = None
+		print('init done')
 
 	def __del__(self):
 		if self.mc_ctm != None:
 			_lib.mc_tm_destroy(self.mc_ctm)
 
 	def fit(self, X, Y, epochs=100, incremental=False):
+		print('in fit')
 		number_of_examples = X.shape[0]
 
 		if self.mc_ctm == None:
