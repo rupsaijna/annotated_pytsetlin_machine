@@ -133,7 +133,7 @@ static inline void tm_inc(struct TsetlinMachine *tm, int clause, int chunk, unsi
 
 	unsigned int *ta_state = &tm->ta_state[clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits];
 	
-	printf("\ninc:: clause= %d | chunk=%d | add=%d",clause,chunk, clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits );
+	printf("\ninc:: clause= %d | chunk=%d | addr=%d | state_bits=%d",clause,chunk, clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits, tm->number_of_state_bits);
 	carry = active;
 	for (int b = 0; b < tm->number_of_state_bits; ++b) {
 		if (carry == 0)
