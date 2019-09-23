@@ -25,7 +25,7 @@ Y_test = test_data[:,-1]  #last column is class labels
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 
 #Fit TM on training data
-tm.fit(X_train, Y_train, epochs=200)
+tm.fit(X_train, Y_train, epochs=1)
 
 #Predict on test data, compare to ground truth, calculate accuracy0
 print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
