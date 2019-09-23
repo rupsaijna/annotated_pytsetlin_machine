@@ -1,6 +1,6 @@
 import sys
 sys.path.append('../pyTsetlinMachine/')
-from tm import MultiClassTsetlinMachine2D
+from tm import MultiClassConvolutionalTsetlinMachine2D
 #from pyTsetlinMachine.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
 from time import time
