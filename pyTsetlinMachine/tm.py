@@ -123,7 +123,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 			self.number_of_features = int(self.patch_dim[0]*self.patch_dim[1]*self.dim_z + (self.dim_x - self.patch_dim[0]) + (self.dim_y - self.patch_dim[1])) #total features in each patch = features in a patch + num patches in x direction + num patches in y direction. last 2 are in order to encode position of the patch
 			self.number_of_patches = int((self.dim_x - self.patch_dim[0] + 1)*(self.dim_y - self.patch_dim[1] + 1))
 			self.number_of_patches= int(((self.dim_x - self.patch_dim[0])/self.step_size[0] + 1)*((self.dim_y - self.patch_dim[1])/self.step_size[1] + 1))
-			print('Num patches:'self.number_of_patches)
+			print('Num patches:',self.number_of_patches)
 			self.number_of_ta_chunks = int((2*self.number_of_features-1)/32 + 1)
 			self.mc_ctm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, self.number_of_patches, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.boost_true_positive_feedback)
 		elif incremental == False:
