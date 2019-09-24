@@ -304,7 +304,7 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target)
 				for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 					int patch = tm->clause_patch[j];
 					unsigned int pos = j*tm->number_of_ta_chunks*tm->number_of_state_bits + k*tm->number_of_state_bits + tm->number_of_state_bits-1;
-					tm->typeII_feedback_clauses[j]+=1
+					tm->typeII_feedback_clauses[j]+=1;
 					tm_inc(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & (~ta_state[pos]));
 				}
 			}
