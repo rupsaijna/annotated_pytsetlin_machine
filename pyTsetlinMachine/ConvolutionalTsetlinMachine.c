@@ -376,7 +376,7 @@ int tm_ta_action(struct TsetlinMachine *tm, int clause, int ta)
 
 int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause)
 {
-	return (tm->typeII_feedback_clauses[clause];
+	return (tm->typeII_feedback_clauses[clause]);
 }
 /*****************************************************/
 /*** Storing and Loading of Tsetlin Machine State ****/
