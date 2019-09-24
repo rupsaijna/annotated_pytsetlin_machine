@@ -40,6 +40,7 @@ struct TsetlinMachine {
 	unsigned int *feedback_to_la;
 	int *feedback_to_clauses;
 	unsigned int *clause_patch;
+	unsigned int *typeII_feedback_clauses; //clauses that get type II feedback
 
 	int *output_one_patches;
 
