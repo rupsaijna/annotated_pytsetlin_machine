@@ -82,3 +82,5 @@ void tm_predict_regression(struct TsetlinMachine *tm, unsigned int *X, int *y, i
 void tm_get_state(struct TsetlinMachine *tm, unsigned int *ta_state);
 
 void tm_set_state(struct TsetlinMachine *tm, unsigned int *ta_state);
+
+int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause);
