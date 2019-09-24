@@ -201,6 +201,7 @@ class MultiClassTsetlinMachine():
 			self.number_of_features = X.shape[1]
 			self.number_of_patches = 1
 			self.number_of_ta_chunks = int((2*self.number_of_features-1)/32 + 1)
+			self.typeII_feedback_clauses =np.zeros(self.number_of_clauses) #type II feedback to clauses
 			self.mc_tm = _lib.CreateMultiClassTsetlinMachine(self.number_of_classes, self.number_of_clauses, self.number_of_features, 1, self.number_of_ta_chunks, self.number_of_state_bits, self.T, self.s, self.boost_true_positive_feedback)
 		elif incremental == False:
 			_lib.mc_tm_destroy(self.mc_tm)
@@ -216,7 +217,10 @@ class MultiClassTsetlinMachine():
 		_lib.mc_tm_fit(self.mc_tm, self.encoded_X, Ym, number_of_examples, epochs)
 
 		return
-
+	
+	def get_typeII_clauses(self):
+		return _lib.mc_tm_typeII_clauses(self.mc_tm)
+	
 	def predict(self, X):
 		number_of_examples = X.shape[0]
 		
