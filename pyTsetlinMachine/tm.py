@@ -161,6 +161,9 @@ class MultiClassConvolutionalTsetlinMachine2D():
 
 	def ta_action(self, mc_tm_class, clause, ta):
 		return _lib.mc_tm_ta_action(self.mc_ctm, mc_tm_class, clause, ta)
+	
+	def get_typeII_clauses(self, mc_tm_class, clause):
+		return _lib.mc_tm_typeII_clause(self.mc_tm, mc_tm_class, clause)
 
 	def get_state(self):
 		state_list = []
