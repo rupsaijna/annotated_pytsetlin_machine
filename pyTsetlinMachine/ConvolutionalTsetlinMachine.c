@@ -41,6 +41,8 @@ struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of
 	struct TsetlinMachine *tm = (void *)malloc(sizeof(struct TsetlinMachine));
 
 	tm->number_of_clauses = number_of_clauses;
+	
+	tm->typeII_feedback_clauses = (unsigned int *)malloc(sizeof(unsigned int) * tm->number_of_clauses; //clauses that get type II feedback
 
 	tm->number_of_features = number_of_features;
 
@@ -87,6 +89,7 @@ void tm_initialize(struct TsetlinMachine *tm)
 
 	unsigned int pos = 0;
 	for (int j = 0; j < tm->number_of_clauses; ++j) {
+		tm->typeII_feedback_clauses[j]=0;
 		for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 			for (int b = 0; b < tm->number_of_state_bits-1; ++b) {											
 				tm->ta_state[pos] = ~0;
