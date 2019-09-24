@@ -157,7 +157,7 @@ int mc_tm_ta_action(struct MultiClassTsetlinMachine *mc_tm, int class, int claus
 
 int mc_tm_typeII_clause(struct MultiClassTsetlinMachine *mc_tm, int class, int clause)
 {
-	return tm_ta_typeII_clause(mc_tm->tsetlin_machines[class], clause)
+	return tm_ta_typeII_clause(mc_tm->tsetlin_machines[class], clause);
 }
 
 /*****************************************************/
