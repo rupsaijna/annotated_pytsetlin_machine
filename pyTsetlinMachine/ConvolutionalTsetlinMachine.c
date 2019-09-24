@@ -43,7 +43,7 @@ struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of
 	tm->number_of_clauses = number_of_clauses;
 	
 	/*clauses that get type II feedback*/
-	tm->typeII_feedback_clauses = (unsigned int *)malloc(sizeof(unsigned int) * tm->number_of_clauses; 
+	tm->typeII_feedback_clauses = (unsigned int *)malloc(sizeof(unsigned int) * tm->number_of_clauses); 
 
 	tm->number_of_features = number_of_features;
 
