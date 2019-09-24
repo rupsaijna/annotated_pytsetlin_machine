@@ -64,6 +64,7 @@ void mc_tm_initialize(struct MultiClassTsetlinMachine *mc_tm)
 	}
 }
 
+
 void mc_tm_destroy(struct MultiClassTsetlinMachine *mc_tm)
 {
 	for (int i = 0; i < mc_tm->number_of_classes; i++) {
@@ -152,6 +153,11 @@ int mc_tm_ta_state(struct MultiClassTsetlinMachine *mc_tm, int class, int clause
 int mc_tm_ta_action(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, int ta)
 {
 	return tm_ta_action(mc_tm->tsetlin_machines[class], clause, ta);
+}
+
+int mc_tm_typeII_clause(struct MultiClassTsetlinMachine *mc_tm, int class, int clause)
+{
+	return tm_ta_typeII_clause(mc_tm->tsetlin_machines[class], clause)
 }
 
 /*****************************************************/
