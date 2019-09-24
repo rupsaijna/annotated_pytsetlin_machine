@@ -30,7 +30,7 @@ tm.fit(X_train, Y_train, epochs=1)
 #Predict on test data, compare to ground truth, calculate accuracy0
 print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 
-
+print('Type II feedbacks on clauses: ', tm.typeII_feedback_clauses)
 #Prediction on some random data
 print("Prediction: x1 = 1, x2 = 0, ... -> y = %d" % (tm.predict(np.array([[1,0,1,0,1,0,1,1,1,1,0,0]]))))
 print("Prediction: x1 = 0, x2 = 1, ... -> y = %d" % (tm.predict(np.array([[0,1,1,0,1,0,1,1,1,1,0,0]]))))
