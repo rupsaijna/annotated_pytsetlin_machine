@@ -19,9 +19,9 @@ X_test = np.where(X_test >= 75, 1, 0)
 tm = MultiClassConvolutionalTsetlinMachine2D(NUM_CLAUSES, 27, 15.0, (10, 10))
 
 print(X_train.shape)
-ghsjdfa
 NUM_FEATURES=len(X_train[0])
-
+print(NUM_FEATURES)
+gdfg
 print("\nAccuracy over 1 epochs:\n")
 for i in range(1):
 	start = time()
