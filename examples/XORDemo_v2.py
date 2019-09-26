@@ -49,4 +49,4 @@ for cur_clause in range(NUM_CLAUSES):
 for cur_cls in CLASSES:
 	print('Class ',cur_cls)
 	for cur_clause in range(NUM_CLAUSES):
-		print (cur_clause,':',tm.get_typeII_clauses(int(cur_cls), cur_clause))
+		print (cur_clause,':',tm.get_typeII_clause(int(cur_cls), cur_clause))
