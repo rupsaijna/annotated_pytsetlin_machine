@@ -8,7 +8,7 @@ S=3.9
 
 data=np.loadtxt("NoisyXORTestData.txt")
 
-numpy.random.shuffle(data)
+np.random.shuffle(data)
 training, test = data[:80,:], data[80:,:]
 
 
