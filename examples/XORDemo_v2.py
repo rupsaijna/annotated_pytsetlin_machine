@@ -14,11 +14,12 @@ np.random.shuffle(data)
 training, test = data[:80,:], data[80:,:]
 
 
-X_train=training[0:2,0:-1]
+X_train=training[:,0:2]
 Y_train = training[:,-1]
 
-X_test=test[0:2,0:-1]
+X_test=test[:,0:2]
 Y_test = test[:,-1]
+
 
 CLASSES=list(set(Y_train)) #list of classes
 NUM_FEATURES=len(X_train[0]) #number of features
