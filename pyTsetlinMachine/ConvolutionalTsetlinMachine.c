@@ -41,9 +41,6 @@ struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of
 	struct TsetlinMachine *tm = (void *)malloc(sizeof(struct TsetlinMachine));
 
 	tm->number_of_clauses = number_of_clauses;
-	
-	/*clauses that get type II feedback*/
-	tm->typeII_feedback_clauses = (unsigned int *)malloc(sizeof(unsigned int) * tm->number_of_clauses); 
 
 	tm->number_of_features = number_of_features;
 
@@ -62,6 +59,9 @@ struct TsetlinMachine *CreateTsetlinMachine(int number_of_clauses, int number_of
 	tm->number_of_state_bits = number_of_state_bits;
 
 	tm->ta_state = (unsigned int *)malloc(sizeof(unsigned int) * number_of_clauses * number_of_ta_chunks * number_of_state_bits);
+	
+	/*feedback type 2 recording*/
+	tm->ta_fb2 = (unsigned int *)malloc(sizeof(unsigned int) * number_of_clauses * number_of_ta_chunks * number_of_state_bits);
 
 	tm->T = T;
 
@@ -90,13 +90,14 @@ void tm_initialize(struct TsetlinMachine *tm)
 
 	unsigned int pos = 0;
 	for (int j = 0; j < tm->number_of_clauses; ++j) {
-		tm->typeII_feedback_clauses[j]=0;
 		for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 			for (int b = 0; b < tm->number_of_state_bits-1; ++b) {											
 				tm->ta_state[pos] = ~0;
+				tm->ta_fb2[pos] = 0;
 				pos++;
 			}
 			tm->ta_state[pos] = 0;
+			tm->ta_fb2[pos] = 0;
 			pos++;
 		}
 	}
@@ -108,6 +109,7 @@ void tm_destroy(struct TsetlinMachine *tm)
 	free(tm->output_one_patches);
 	free(tm->feedback_to_la);
 	free(tm->ta_state);
+	free(tm->ta_fb2);
 	free(tm->feedback_to_clauses);
 }
 
@@ -131,13 +133,14 @@ static inline void tm_initialize_random_streams(struct TsetlinMachine *tm)
 }
 
 // Increment the states of each of those 32 Tsetlin Automata flagged in the active bit vector.
-static inline void tm_inc(struct TsetlinMachine *tm, int clause, int chunk, unsigned int active)
+static inline void tm_inc(struct TsetlinMachine *tm, int clause, int chunk, unsigned int active, int fb_type)
 {
+	//fb_type :: 11=Type I a, 12=Type I b, 2 = Type II
 	unsigned int carry, carry_next;
 
 	unsigned int *ta_state = &tm->ta_state[clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits];
 	
-	printf("\ninc:: clause= %d | chunk=%d | addr=%d | state_bits=%d",clause,chunk, clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits, tm->number_of_state_bits);
+	//printf("\ninc:: clause= %d | chunk=%d | addr=%d | state_bits=%d",clause,chunk, clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits, tm->number_of_state_bits);
 	carry = active;
 	for (int b = 0; b < tm->number_of_state_bits; ++b) {
 		if (carry == 0)
@@ -152,7 +155,27 @@ static inline void tm_inc(struct TsetlinMachine *tm, int clause, int chunk, unsi
 		for (int b = 0; b < tm->number_of_state_bits; ++b) {
 			ta_state[b] |= carry;
 		}
-	} 	
+	} 
+	
+	if(fb_type==2){
+		unsigned int *ta_fb2 = &tm->ta_fb2[clause*tm->number_of_ta_chunks*tm->number_of_state_bits + chunk*tm->number_of_state_bits];	
+		carry = active;
+		for (int b = 0; b < tm->number_of_state_bits; ++b) {
+			if (carry == 0)
+				break;
+
+			carry_next = ta_state[b] & carry; // Sets carry bits (overflow) passing on to next bit
+			ta_state[b] = ta_state[b] ^ carry; // Performs increments with XOR
+			carry = carry_next;
+		}
+
+		if (carry > 0) {
+			for (int b = 0; b < tm->number_of_state_bits; ++b) {
+				ta_state[b] |= carry;
+			}
+		}
+	
+	}
 }
 
 // Decrement the states of each of those 32 Tsetlin Automata flagged in the active bit vector.
@@ -304,8 +327,7 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target)
 				for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 					int patch = tm->clause_patch[j];
 					unsigned int pos = j*tm->number_of_ta_chunks*tm->number_of_state_bits + k*tm->number_of_state_bits + tm->number_of_state_bits-1;
-					tm->typeII_feedback_clauses[j]+=1;
-					tm_inc(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & (~ta_state[pos]));
+					tm_inc(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & (~ta_state[pos]), 2);
 				}
 			}
 		} else if ((2*target-1) * (1 - 2 * (j & 1)) == 1) {
@@ -317,9 +339,9 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target)
 				for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 					int patch = tm->clause_patch[j];
 					if (tm->boost_true_positive_feedback == 1) {
-		 				tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k]);
+		 				tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k], 11);
 					} else {
-						tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k] & (~tm->feedback_to_la[k]));
+						tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k] & (~tm->feedback_to_la[k]),12);
 					}
 		 			
 		 			tm_dec(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & tm->feedback_to_la[k]);
@@ -374,9 +396,21 @@ int tm_ta_action(struct TsetlinMachine *tm, int clause, int ta)
 	return (tm->ta_state[pos] & (1 << chunk_pos)) > 0;
 }
 
-int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause)
+int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause, int ta)
 {
-	return (tm->typeII_feedback_clauses[clause]);
+	int ta_chunk = ta / 32;
+	int chunk_pos = ta % 32;
+
+	unsigned int pos = clause * tm->number_of_ta_chunks * tm->number_of_state_bits + ta_chunk * tm->number_of_state_bits;
+
+	int fb_cnt = 0;
+	for (int b = 0; b < tm->number_of_state_bits; ++b) {
+		if (tm->ta_fb2[pos + b] & (1 << chunk_pos)) {
+			fb_cnt |= 1 << b; 
+		}
+	}
+
+	return fb_cnt;
 }
 /*****************************************************/
 /*** Storing and Loading of Tsetlin Machine State ****/
