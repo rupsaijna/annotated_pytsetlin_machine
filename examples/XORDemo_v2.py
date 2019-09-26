@@ -1,4 +1,6 @@
-from pyTsetlinMachine.tm import MultiClassTsetlinMachine
+import sys
+sys.path.append('../pyTsetlinMachine/')
+from tm import MultiClassTsetlinMachine
 import numpy as np 
 
 #Parameters for the TM
