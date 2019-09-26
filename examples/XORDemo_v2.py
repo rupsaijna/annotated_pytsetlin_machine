@@ -26,7 +26,7 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 
 tm.fit(X_train, Y_train, epochs=200)
 
-print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
+print("Accuracy:", 100*(tm.predict(X_test) == Y_test))
 
 
 for cur_clause in range(NUM_CLAUSES):
