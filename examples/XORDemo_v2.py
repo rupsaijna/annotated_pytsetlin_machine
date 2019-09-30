@@ -54,7 +54,7 @@ for cur_clause in range(NUM_CLAUSES):
 for cur_clause in range(NUM_CLAUSES):
 	for cur_cls in CLASSES:
 		for f in range(NUM_FEATURES*2):
-			print_str='Clause '+ cur_clause +' class '+ cur_cls
+			print_str='Clause '+ str(cur_clause) +' class '+ str(cur_cls)
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
 			if action==1:
 				print_str+= ' Include '
@@ -67,7 +67,7 @@ for cur_clause in range(NUM_CLAUSES):
 				print_str+='-|F'+str(f-NUM_FEATURES)+' '
 					
 			fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause, f)
-			print_str+='T2 cnt:'+fb2_cnt
+			print_str+='T2 cnt:'+str(fb2_cnt)
 			print(print_str)
 			
 
