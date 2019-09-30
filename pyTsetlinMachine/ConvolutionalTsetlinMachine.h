@@ -36,11 +36,11 @@ struct TsetlinMachine {
 	int number_of_clause_chunks;
 
 	unsigned int *ta_state;
+	unsigned int *ta_fb2;
 	unsigned int *clause_output;
 	unsigned int *feedback_to_la;
 	int *feedback_to_clauses;
 	unsigned int *clause_patch;
-	unsigned int *typeII_feedback_clauses; //clauses that get type II feedback
 
 	int *output_one_patches;
 
@@ -83,4 +83,4 @@ void tm_get_state(struct TsetlinMachine *tm, unsigned int *ta_state);
 
 void tm_set_state(struct TsetlinMachine *tm, unsigned int *ta_state);
 
-int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause);
+int tm_ta_typeII_clause(struct TsetlinMachine *tm, int clause, int ta);
