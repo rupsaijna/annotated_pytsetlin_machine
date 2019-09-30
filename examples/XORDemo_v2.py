@@ -4,7 +4,7 @@ from tm import MultiClassTsetlinMachine
 import numpy as np 
 
 #Parameters for the TM
-NUM_CLAUSES=10
+NUM_CLAUSES=5
 THRESHOLD=15
 S=3.9
 
@@ -24,6 +24,9 @@ Y_test = test[:,-1]
 CLASSES=list(set(Y_train)) #list of classes
 NUM_FEATURES=len(X_train[0]) #number of features
 
+print('Num Clauses:', NUM_CLAUSES)
+print('Num Classes: ', len(CLASSES),' : ', CLASSES)
+print('Num Features: ', NUM_FEATURES)
 
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 
@@ -48,8 +51,28 @@ for cur_clause in range(NUM_CLAUSES):
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
 
+for cur_clause in range(NUM_CLAUSES):
+	for cur_cls in CLASSES:
+		for f in range(NUM_FEATURES*2):
+			print_str='Clause '+ cur_clause +' class '+ cur_cls
+			action = tm.ta_action(int(cur_cls), cur_clause, f)
+			if action==1:
+				print_str+= ' Include '
+			else:
+				print_str+= ' Exclude '
+			
+			if f<NUM_FEATURES:
+					print_str+='F'+str(f)+' '
+				else:
+					print_str+='-|F'+str(f-NUM_FEATURES)+' '
+					
+			fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause), f)
+			print_str+='T2 cnt:'+fb2_cnt
+			print(print_str)
+			
 
-for cur_cls in CLASSES:
+	
+'''for cur_cls in CLASSES:
 	print('Class ',cur_cls)
 	for cur_clause in range(NUM_CLAUSES):
-		print (cur_clause,':',tm.get_typeII_clauses(int(cur_cls), cur_clause))
+		print (cur_clause,':',tm.get_typeII_clauses(int(cur_cls), cur_clause))'''
