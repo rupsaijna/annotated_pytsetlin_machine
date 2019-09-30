@@ -34,6 +34,7 @@ tm.fit(X_train, Y_train, epochs=200)
 
 print("Accuracy:", 100*(tm.predict(X_test) == Y_test))
 
+all_clauses=[[] for i in range (NUM_CLAUSES)]
 
 for cur_clause in range(NUM_CLAUSES):
 	for cur_cls in CLASSES:
@@ -47,7 +48,7 @@ for cur_clause in range(NUM_CLAUSES):
 					this_clause+='F'+str(f)+' '
 				else:
 					this_clause+='-|F'+str(f-NUM_FEATURES)+' '
-
+		all_clauses[cur_clause].append(this_clause) #all_clauses[cur_clause][cur_cls] = this_clause
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
 
