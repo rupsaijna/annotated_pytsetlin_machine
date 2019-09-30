@@ -36,7 +36,7 @@ struct TsetlinMachine {
 	int number_of_clause_chunks;
 
 	unsigned int *ta_state;
-	//unsigned int *ta_fb2;
+	unsigned int *ta_fb2;
 	unsigned int *clause_output;
 	unsigned int *feedback_to_la;
 	int *feedback_to_clauses;
