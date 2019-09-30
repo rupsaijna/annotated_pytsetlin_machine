@@ -70,5 +70,5 @@ for cur_clause in range(NUM_CLAUSES):
 				print_str+= 'Exclude\t'
 					
 			fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause, f)
-			print_str+=str(fb2_cnt)+'\n'
+			print_str+=str(fb2_cnt)
 			print(print_str)
