@@ -56,7 +56,7 @@ print('Class\tClause Number\tClause\tFeature\tAction\tType II fb cnt\n')
 for cur_clause in range(NUM_CLAUSES):
 	for cur_cls in CLASSES:
 		for f in range(NUM_FEATURES*2):
-			print_str=str(cur_cls) +'\t'+ str(cur_clause)+'\t'+ all_clauses[cur_clause][cur_cls]
+			print_str=str(cur_cls) +'\t'+ str(cur_clause)+'\t'+ all_clauses[cur_clause][int(cur_cls)]
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
 			
 			if f<NUM_FEATURES:
