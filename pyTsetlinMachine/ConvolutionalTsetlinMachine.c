@@ -514,7 +514,7 @@ void tm_update_regression(struct TsetlinMachine *tm, unsigned int *Xi, int targe
 					int patch = tm->clause_patch[j];
 					unsigned int pos = j*tm->number_of_ta_chunks*tm->number_of_state_bits + k*tm->number_of_state_bits + tm->number_of_state_bits-1;
 
-					tm_inc(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & (~ta_state[pos]));
+					tm_inc(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & (~ta_state[pos]),2);
 				}
 			}
 		} else if (prediction_error < 0) {
@@ -526,9 +526,9 @@ void tm_update_regression(struct TsetlinMachine *tm, unsigned int *Xi, int targe
 				for (int k = 0; k < tm->number_of_ta_chunks; ++k) {
 					int patch = tm->clause_patch[j];
 					if (tm->boost_true_positive_feedback == 1) {
-		 				tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k]);
+		 				tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k],11);
 					} else {
-						tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k] & (~tm->feedback_to_la[k]));
+						tm_inc(tm, j, k, Xi[patch*tm->number_of_ta_chunks + k] & (~tm->feedback_to_la[k]),12);
 					}
 		 			
 		 			tm_dec(tm, j, k, (~Xi[patch*tm->number_of_ta_chunks + k]) & tm->feedback_to_la[k]);
