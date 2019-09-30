@@ -66,7 +66,7 @@ for cur_clause in range(NUM_CLAUSES):
 			else:
 				print_str+='-|F'+str(f-NUM_FEATURES)+' '
 					
-			fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause), f)
+			fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause, f)
 			print_str+='T2 cnt:'+fb2_cnt
 			print(print_str)
 			
