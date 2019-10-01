@@ -60,9 +60,3 @@ for cur_clause in range(NUM_CLAUSES):
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
-
-
-for cur_cls in CLASSES:
-	print('Class ',cur_cls)
-	for cur_clause in range(NUM_CLAUSES):
-		print (cur_clause,':',tm.get_typeII_clauses(int(cur_cls), cur_clause))
