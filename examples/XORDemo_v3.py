@@ -33,7 +33,7 @@ print('\nNum Features: ', NUM_FEATURES)
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 EPOCHS=1
 
-print('Epoch\tClass\tClause Number\tClause\tFeature\tAction\tType II fb cnt\n')
+#print('Epoch\tClass\tClause Number\tClause\tFeature\tAction\tType II fb cnt\n')
 for (ep in range(EPOCHS)):
 	np.random.shuffle(data)
 	training, test = data[:4000,:], data[4000:,:]
