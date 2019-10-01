@@ -24,6 +24,7 @@ Y_test = test[:,-1]
 CLASSES=list(set(Y_train)) #list of classes
 NUM_FEATURES=len(X_train[0]) #number of features
 
+print('Train: ',len(X_train), '\nTest: ', len(X_test))
 print('\nNum Clauses:', NUM_CLAUSES)
 print('\nNum Classes: ', len(CLASSES),' : ', CLASSES)
 print('\nNum Features: ', NUM_FEATURES)
@@ -32,7 +33,7 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 
 tm.fit(X_train, Y_train, epochs=200)
 
-print("Accuracy:", tm.predict(X_test) == Y_test)
+print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 
 all_clauses=[[] for i in range (NUM_CLAUSES)]
 
