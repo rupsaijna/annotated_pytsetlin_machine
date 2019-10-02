@@ -3,6 +3,7 @@ sys.path.append('../pyTsetlinMachine/')
 from tm import MultiClassConvolutionalTsetlinMachine2D
 #from pyTsetlinMachine.tm import MultiClassConvolutionalTsetlinMachine2D
 import numpy as np
+from numpy import empty
 from time import time
 X = np.random.random_integers(0, 1, size=(10000, 3, 3))
 Y = empty([10000])
