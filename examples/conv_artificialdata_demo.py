@@ -44,9 +44,9 @@ for i in range(RUN_EPOCHS):
 print('Num Clauses:', NUM_CLAUSES)
 print('Num Classes: ', len(CLASSES),' : ', CLASSES)
 print('Num Features: ', NUM_FEATURES)
-	
-for cur_clause in range(NUM_CLAUSES):
-	for cur_cls in CLASSES:
+
+for cur_cls in CLASSES:
+	for cur_clause in range(NUM_CLAUSES):
 		this_clause=''
 		for f in range(NUM_FEATURES*2):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
