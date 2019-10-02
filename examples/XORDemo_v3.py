@@ -14,10 +14,10 @@ np.random.shuffle(data)
 training, test = data[:4000,:], data[4000:,:]
 
 
-X_train=training[:,0:2]
+X_train=training[:,0:3]
 Y_train = training[:,-1]
 
-X_test=test[:,0:2]
+X_test=test[:,0:3]
 Y_test = test[:,-1]
 
 
