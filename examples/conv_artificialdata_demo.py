@@ -25,7 +25,7 @@ Y_test = Y[NOofTrainingSamples:NOofTrainingSamples+NOofTestingSamples].astype(dt
 
 NUM_CLAUSES=15
 CLASSES=list(set(Y_train)) #list of classes
-THRESHOLD= 15
+THRESHOLD= 2
 SP=2.0
 RUN_EPOCHS=1
 tm = MultiClassConvolutionalTsetlinMachine2D(NUM_CLAUSES, THRESHOLD, SP, (2, 2))
