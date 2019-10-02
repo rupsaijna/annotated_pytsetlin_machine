@@ -5,7 +5,7 @@ import numpy as np
 
 #Parameters for the TM
 NUM_CLAUSES=4
-THRESHOLD=15
+THRESHOLD=2
 S=3.9
 
 data=np.loadtxt("NoisyXORTestData.txt")
