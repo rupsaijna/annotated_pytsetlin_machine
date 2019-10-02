@@ -29,6 +29,13 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 #Fit TM on training data
 tm.fit(X_train, Y_train, epochs=1)
 
+'''
+print('Train: ',len(X_train))
+print('\nTest: ', len(X_test))
+print('\nNum Clauses:', NUM_CLAUSES)
+print('\nNum Classes: ', len(CLASSES),' : ', CLASSES)
+print('\nNum Features: ', NUM_FEATURES)
+
 print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 
 for cur_cls in CLASSES:
@@ -48,11 +55,6 @@ for cur_cls in CLASSES:
 	print('\n\n')
 
 '''
-print('Train: ',len(X_train))
-print('\nTest: ', len(X_test))
-print('\nNum Clauses:', NUM_CLAUSES)
-print('\nNum Classes: ', len(CLASSES),' : ', CLASSES)
-print('\nNum Features: ', NUM_FEATURES)
 
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 EPOCHS=1000
@@ -111,4 +113,3 @@ for ep in range(EPOCHS):
 				fb2_cnt=tm.get_typeII_clauses(int(cur_cls), cur_clause, f)
 				print_str+=str(fb2_cnt)
 				print(print_str)
-'''
