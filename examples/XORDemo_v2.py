@@ -4,7 +4,7 @@ from tm import MultiClassTsetlinMachine
 import numpy as np 
 
 #Parameters for the TM
-NUM_CLAUSES=5
+NUM_CLAUSES=4
 THRESHOLD=15
 S=3.9
 
@@ -36,8 +36,8 @@ print("Accuracy:", 100*(tm.predict(X_test) == Y_test))
 
 all_clauses=[[] for i in range (NUM_CLAUSES)]
 
-for cur_clause in range(NUM_CLAUSES):
-	for cur_cls in CLASSES:
+for cur_cls in CLASSES:
+	for cur_clause in range(NUM_CLAUSES):
 		this_clause=''
 		for f in range(NUM_FEATURES*2):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
@@ -52,8 +52,8 @@ for cur_clause in range(NUM_CLAUSES):
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
 
-for cur_clause in range(NUM_CLAUSES):
-	for cur_cls in CLASSES:
+for cur_cls in CLASSES:
+	for cur_clause in range(NUM_CLAUSES):
 		for f in range(NUM_FEATURES*2):
 			print_str='Clause '+ str(cur_clause) +' class '+ str(cur_cls)
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
