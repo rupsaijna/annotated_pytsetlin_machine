@@ -11,7 +11,7 @@ S=3.9
 data=np.loadtxt("NoisyXORTestData.txt")
 
 np.random.shuffle(data)
-training, test = data[:80,:], data[80:,:]
+training, test = data[:4000,:], data[1000:,:]
 
 
 X_train=training[:,0:2]
