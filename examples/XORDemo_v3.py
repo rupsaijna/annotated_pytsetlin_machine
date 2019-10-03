@@ -59,7 +59,7 @@ for cur_cls in CLASSES:
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 EPOCHS=1
 
-print('Epoch\tClass\tClause Number\tClause\tFeature\tAction\tType II fb cnt\n')
+#print('Epoch\tClass\tClause Number\tClause\tFeature\tAction\tType II fb cnt\n')
 for ep in range(EPOCHS):
 	np.random.shuffle(data)
 	training, test = data[:4000,:], data[4000:,:]
@@ -78,10 +78,11 @@ for ep in range(EPOCHS):
 	
 	all_clauses=tm.get_all_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
 	
-	print('all_clauses', all_clauses)
+	print('all_clauses')
 	for cur_cls in CLASSES:
 		for cur_clause in range(NUM_CLAUSES):
 			print_str=str(cur_cls) +':'+ str(cur_clause)+':'+ all_clauses[cur_clause][int(cur_cls)]
+			print(print_str)
 
 	'''for cur_clause in range(NUM_CLAUSES):
 		for cur_cls in CLASSES:
