@@ -247,7 +247,7 @@ class MultiClassTsetlinMachine():
 			for cur_cls in list_of_classes:
 				this_clause=''
 				for f in range(num_of_features*2):
-					action = ta_action(int(cur_cls), cur_clause, f)
+					action = self.ta_action(int(cur_cls), cur_clause, f)
 					if action==1:
 						if this_clause!='':
 							this_clause+='AND '
