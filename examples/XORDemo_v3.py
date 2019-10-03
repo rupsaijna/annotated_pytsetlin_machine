@@ -76,7 +76,7 @@ for ep in range(EPOCHS):
 	accur=100*(tm.predict(X_test) == Y_test).mean()
 	#print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 	
-	all_clauses=tm.get_typeII_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
+	all_clauses=tm.get_all_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
 
 	'''all_clauses=[[] for i in range (NUM_CLAUSES)]
 
