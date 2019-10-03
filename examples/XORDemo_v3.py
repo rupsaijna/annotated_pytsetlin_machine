@@ -4,7 +4,7 @@ from tm import MultiClassTsetlinMachine
 import numpy as np 
 
 #Parameters for the TM
-NUM_CLAUSES=6
+NUM_CLAUSES=4
 THRESHOLD=2 #15
 S=2 #3.9
 
