@@ -14,10 +14,10 @@ np.random.shuffle(data)
 training, test = data[:4000,:], data[4000:,:]
 
 
-X_train=training[:,0:3]
+X_train=training[:,0:2]
 Y_train = training[:,-1]
 
-X_test=test[:,0:3]
+X_test=test[:,0:2]
 Y_test = test[:,-1]
 
 
@@ -79,6 +79,9 @@ for ep in range(EPOCHS):
 	all_clauses=tm.get_all_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
 	
 	print('all_clauses', all_clauses)
+	for cur_cls in CLASSES:
+		for cur_clause in range(NUM_CLAUSES):
+			print_str=str(cur_cls) +':'+ str(cur_clause)+':'+ all_clauses[cur_clause][int(cur_cls)]
 
 	'''for cur_clause in range(NUM_CLAUSES):
 		for cur_cls in CLASSES:
