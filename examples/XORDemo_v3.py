@@ -75,8 +75,10 @@ for ep in range(EPOCHS):
 	
 	accur=100*(tm.predict(X_test) == Y_test).mean()
 	#print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
+	
+	all_clauses=tm.get_typeII_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
 
-	all_clauses=[[] for i in range (NUM_CLAUSES)]
+	'''all_clauses=[[] for i in range (NUM_CLAUSES)]
 
 	for cur_clause in range(NUM_CLAUSES):
 		for cur_cls in CLASSES:
@@ -92,7 +94,7 @@ for ep in range(EPOCHS):
 						this_clause+='-|F'+str(f-NUM_FEATURES)+' '
 			all_clauses[cur_clause].append(this_clause) #all_clauses[cur_clause][cur_cls] = this_clause
 			#print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
-		#print('\n\n')
+		#print('\n\n')'''
 
 	for cur_clause in range(NUM_CLAUSES):
 		for cur_cls in CLASSES:
