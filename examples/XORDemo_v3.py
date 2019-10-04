@@ -78,10 +78,11 @@ for ep in range(EPOCHS):
 	
 	all_clauses=tm.get_all_clauses(CLASSES,NUM_CLAUSES, NUM_FEATURES)
 	
-	print('all_clauses')
+	print('all_clauses:')
+	print('Class\tClause#\tClause\t')
 	for cur_cls in CLASSES:
 		for cur_clause in range(NUM_CLAUSES):
-			print_str=str(cur_cls) +':'+ str(cur_clause)+':'+ all_clauses[cur_clause][int(cur_cls)]
+			print_str=str(cur_cls) +'\t'+ str(cur_clause)+'\t'+ all_clauses[cur_clause][int(cur_cls)]
 			print(print_str)
 
 	'''for cur_clause in range(NUM_CLAUSES):
