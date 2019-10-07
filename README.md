@@ -9,7 +9,7 @@ make
 ~~~~
 
 ## To note as different from CAIR version:
-####  ../pyTsetlinMachine/tm.py 
+####  in ../pyTsetlinMachine/tm.py 
 ~~~~ 
 _lib = np.ctypeslib.load_library('libTM', os.path.join(this_dir, "."))
 ~~~~ 
@@ -24,7 +24,7 @@ _note the single dot in os.path.join
 cd ../examples
 ~~~~
 
-#### ../examples/*.py
+#### in ../examples/*.py
 ~~~~ 
 import sys
 sys.path.append('../pyTsetlinMachine/')
