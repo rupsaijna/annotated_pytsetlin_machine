@@ -5,7 +5,7 @@ sents=[]
 labels=[]
 
 for line in open(inp).readlines():
-  line=line.replace('\n','')line.split('\t')
+  line=line.replace('\n','').split('\t')
   words=line[0].split(' ')
   sents.append(words)
   labels.append(line[1])
