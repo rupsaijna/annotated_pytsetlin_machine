@@ -12,5 +12,5 @@ for line in open(inp).readlines():
   labels.append(int(line[1]))
   
 print(sents)
-print(set(sents))
+print(set(tuple(row) for row in sents))
 print(labels)
