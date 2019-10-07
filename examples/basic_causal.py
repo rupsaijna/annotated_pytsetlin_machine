@@ -9,7 +9,7 @@ for line in open(inp).readlines():
   print(line)
   words=line[0].split(' ')
   sents.append(words)
-  labels.append(line[1])
+  labels.append(int(line[1]))
   
 print(sent)
 print(labels)
