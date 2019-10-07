@@ -1,4 +1,5 @@
 #identify if a sentence is causal or not (presence of causal connective)
+from keras.preprocessing.text import text_to_word_sequence
 inp='is_causal_data.txt'
 
 sents=[]
@@ -11,4 +12,5 @@ for line in open(inp).readlines():
   labels.append(int(line[1]))
   
 print(sents)
+print(set(sents))
 print(labels)
