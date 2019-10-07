@@ -1,29 +1,29 @@
-He cried because he was sad\t1
-Since he was sad, he cried\t1
-He cried because of the fall\t1
-The car crashed due to the rain\t1
-The car crashed because of the rain\t1
-The rain caused the crash\t1
-Rains caused floods\t1
-Floods are caused by rains\t1
-Floods are due to rains\t1
-Floods are because of rains\t1
-In September, rains cause floods\t1
-September floods caused the crash\t1
-The vase broke because it fell\t1
-The fall caused the vase to break\t1
-The vase broke due to the fall\t1
-The vase broke because of the fall\t1
-The vase broke in his car\t1
-He fell in the rain\t0
-It rains in September\t0
-September has rains and floods\t0
-He was sad in September\t0
-He cried in the rain\t0
-The vase was in the car\t0
-The car crashed in September\t0
-The car crashed in the fall\t0
-He was in the car\t0
-The car broke in the rain\t0
-He broke the car\t0
-He broke the vase in the car\t0
+He cried because he was sad	1
+Since he was sad, he cried	1
+He cried because of the fall	1
+The car crashed due to the rain	1
+The car crashed because of the rain	1
+The rain caused the crash	1
+Rains caused floods	1
+Floods are caused by rains	1
+Floods are due to rains	1
+Floods are because of rains	1
+In September, rains cause floods	1
+September floods caused the crash	1
+The vase broke because it fell	1
+The fall caused the vase to break	1
+The vase broke due to the fall	1
+The vase broke because of the fall	1
+The vase broke in his car	1
+He fell in the rain	0
+It rains in September	0
+September has rains and floods	0
+He was sad in September	0
+He cried in the rain	0
+The vase was in the car	0
+The car crashed in September	0
+The car crashed in the fall	0
+He was in the car	0
+The car broke in the rain	0
+He broke the car	0
+He broke the vase in the car	0
