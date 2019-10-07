@@ -84,6 +84,7 @@ for ep in range(EPOCHS):
 		for cur_clause in range(NUM_CLAUSES):
 			print_str=str(cur_cls) +'\t'+ str(cur_clause)+'\t'+ all_clauses[cur_clause][int(cur_cls)]
 			print(print_str)
+		print()
 
 	'''for cur_clause in range(NUM_CLAUSES):
 		for cur_cls in CLASSES:
