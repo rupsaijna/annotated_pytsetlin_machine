@@ -35,10 +35,6 @@ _lib = np.ctypeslib.load_library('libTM', os.path.join(this_dir, ".."))
 ~~~~ 
 _note the single dot in os.path.join
 
-~~~~bash
-
-~~~~
-
 #### in ../examples/*.py
 ~~~~ 
 import sys
