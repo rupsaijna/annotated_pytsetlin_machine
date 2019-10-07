@@ -8,11 +8,11 @@ all_words=[]
 
 for line in open(inp).readlines():
   line=line.replace('\n','').split('\t')
-  words=line[0].split(' ')
+  words=line[0].lower().split(' ')
   all_words+=words
   sents.append(words)
   labels.append(int(line[1]))
   
 print(sents)
-print(all_words)
+print(set(all_words))
 print(labels)
