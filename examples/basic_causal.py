@@ -6,10 +6,9 @@ labels=[]
 
 for line in open(inp).readlines():
   line=line.replace('\n','').split('\t')
-  print(line)
   words=line[0].split(' ')
   sents.append(words)
   labels.append(int(line[1]))
   
-print(sent)
+print(sents)
 print(labels)
