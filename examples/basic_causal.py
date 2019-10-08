@@ -42,7 +42,7 @@ reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
 #print(word_idx)
-#print(sents[0], data[0])
+print(sents[10], data[10])
 
 x_train, x_test, y_train, y_test = train_test_split(data, labels)
 x_train_ids=[xt[-1] for xt in x_train]
