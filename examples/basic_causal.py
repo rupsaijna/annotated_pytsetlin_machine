@@ -32,7 +32,7 @@ for line in open(inp).readlines():
   for s in stop:
 	line[0]=line[0].replace(' '+s+' ',' ')
   words=line[0].split(' ')
-  bl=list(set(list(everygrams(words, max_len=2))))
+  bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
   all_words+=words+bl
   words.insert(0,lcnt)
   lcnt+=1
