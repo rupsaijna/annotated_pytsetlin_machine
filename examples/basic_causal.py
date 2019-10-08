@@ -55,9 +55,12 @@ x_test_ids=x_test[:,-1]
 x_train=x_train[:,:-1]
 x_test=x_test[:,:-1]
 
+NUM_CLAUSES=15
+T=10
+s=2.0
 
 print('\nsplits ready:',x_train.shape, x_test.shape)
-tm = MultiClassTsetlinMachine(15, 10, 3.9)
+tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 tm.fit(x_train, y_train, epochs=200, incremental=True)
 print('\nfit done')
 result = 100*(tm.predict(x_test) == y_test).mean()
