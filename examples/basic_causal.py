@@ -1,5 +1,4 @@
 #identify if a sentence is causal or not (presence of causal connective)
-from keras.preprocessing.text import text_to_word_sequence
 inp='is_causal_data.txt'
 	
 def vectorize_stories(txts, ml):
@@ -23,8 +22,8 @@ for line in open(inp).readlines():
   sents.append(words)
   labels.append(int(line[1]))
   
-
-word_idx = dict((c, i + 1) for i, c in enumerate(bigram_set))
+word_set=set(all_words)
+word_idx = dict((c, i + 1) for i, c in enumerate(word_set))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 vs=vectorize_sentences(sents)
 
