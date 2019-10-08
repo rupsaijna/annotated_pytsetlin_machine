@@ -2,16 +2,19 @@
 from keras.preprocessing.sequence import pad_sequences
 inp='is_causal_data.txt'
 	
-def vectorize_sentences(txts, ml):
-	vectors=[]
-	for t in txts:
-		v=[word_idx[w] for w in t]
-		vectors.append(v)
-	return pad_sequences(vectors,maxlen=ml,padding='post')
-
 sents=[]
 labels=[]
 all_words=[]
+
+def encode_sentences(txt):
+	feature_set=np.zeros((len(txt), len(word_set)))
+	tnum=0
+	for t in txt:
+		for w in t:
+			idx=word_idx(w)
+			feature_set[tnum][idx]=1
+		tnum+=1
+	return feature_set
 
 maxlen=0
 for line in open(inp).readlines():
@@ -26,7 +29,7 @@ for line in open(inp).readlines():
 word_set=set(all_words)
 word_idx = dict((c, i + 1) for i, c in enumerate(word_set))
 reverse_word_map = dict(map(reversed, word_idx.items()))
-vs=vectorize_sentences(sents,maxlen )
+vs=encode_sentences(sents)
 
 print(word_idx)
 print(sents[0], vs[0])
