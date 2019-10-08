@@ -31,7 +31,7 @@ for line in open(inp).readlines():
   if len(words)>maxlen:
     maxlen=len(words)
   all_words+=words
-  words=words.insert(0,str(lcnt))
+  words.insert(0,str(lcnt))
   print (words)
   lcnt+=1
   sents.append(words)
