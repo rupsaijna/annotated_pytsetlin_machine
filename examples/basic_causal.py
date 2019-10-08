@@ -30,7 +30,7 @@ for line in open(inp).readlines():
   line[0]=line[0].lower()
   for s in stop:
 	line[0]=line[0].replace(' '+s+' ','')
-  words=line.split(' ')
+  words=line[0].split(' ')
   if len(words)>maxlen:
     maxlen=len(words)
   all_words+=words
