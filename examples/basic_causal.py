@@ -24,15 +24,14 @@ def encode_sentences(txt):
 	return feature_set
 
 maxlen=0
+lcnt=0
 for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
-  lcnt=0
   words=line[0].lower().split(' ')
   if len(words)>maxlen:
     maxlen=len(words)
   all_words+=words
-  words.insert(0,str(lcnt))
-  print (words)
+  words.insert(0,lcnt)
   lcnt+=1
   sents.append(words)
   labels.append(int(line[1]))
