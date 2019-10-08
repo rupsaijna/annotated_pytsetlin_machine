@@ -27,9 +27,10 @@ maxlen=0
 lcnt=0
 for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
+  line[0]=line[0].lower()
   for s in stop:
-	line=line.replace(' '+s+' ','')
-  words=line[0].lower().split(' ')
+	line[0]=line[0].replace(' '+s+' ','')
+  words=line.split(' ')
   if len(words)>maxlen:
     maxlen=len(words)
   all_words+=words
