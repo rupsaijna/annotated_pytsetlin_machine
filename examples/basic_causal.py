@@ -30,7 +30,7 @@ for line in open(inp).readlines():
   if len(words)>maxlen:
     maxlen=len(words)
   all_words+=words
-  words=str(lcnt)+ words
+  words=words.insert(0,str(lcnt))
   lcnt+=1
   sents.append(words)
   labels.append(int(line[1]))
