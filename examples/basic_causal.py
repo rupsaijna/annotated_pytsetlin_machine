@@ -1,6 +1,6 @@
 #identify if a sentence is causal or not (presence of causal connective)
 from keras.preprocessing.sequence import pad_sequences
-from sklearn.model_selection import train_test_split
+from sklearn.cross_validation import train_test_split
 import numpy as np
 inp='is_causal_data.txt'
 	
