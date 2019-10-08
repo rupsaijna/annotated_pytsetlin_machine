@@ -1,5 +1,6 @@
 #identify if a sentence is causal or not (presence of causal connective)
 from keras.preprocessing.sequence import pad_sequences
+from sklearn.model_selection import train_test_split
 import numpy as np
 inp='is_causal_data.txt'
 	
@@ -30,7 +31,19 @@ for line in open(inp).readlines():
 word_set=set(all_words)
 word_idx = dict((c, i + 1) for i, c in enumerate(word_set))
 reverse_word_map = dict(map(reversed, word_idx.items()))
-vs=encode_sentences(sents)
+data=encode_sentences(sents)
 
-print(word_idx)
-print(sents[0], vs[0])
+#print(word_idx)
+#print(sents[0], data[0])
+
+x_train, x_test, y_train, y_test = train_test_split(data, labels)
+
+
+print('\nsplits ready:',x_train.shape, x_test.shape)
+tm = MultiClassTsetlinMachine(20, 10, 2.9)
+tm.fit(x_train, y_train, epochs=1, incremental=True)
+print('\nfit done')
+result = 100*(tm.predict(x_test) == y_test).mean()
+print(result)
+
+
