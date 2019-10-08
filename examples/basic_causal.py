@@ -59,6 +59,6 @@ result = 100*(tm.predict(x_test) == y_test).mean()
 print(result)
 
 res=tm.predict(x_test)
-for i in range(x_test_ids):
+for i in range(len(x_test_ids)):
 	sidx=x_test_idx[i]
 	print(sents[sidx], res[i])
