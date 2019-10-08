@@ -1,7 +1,7 @@
 #identify if a sentence is causal or not (presence of causal connective)
 inp='is_causal_data.txt'
 	
-def vectorize_stories(txts, ml):
+def vectorize_sentences(txts, ml):
 	vectors=[]
 	for t in txts:
 		v=[word_idx[w] for w in t]
