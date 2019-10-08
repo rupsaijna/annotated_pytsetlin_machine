@@ -53,7 +53,7 @@ x_test=x_test[:,:-1]
 
 
 print('\nsplits ready:',x_train.shape, x_test.shape)
-tm = MultiClassTsetlinMachine(20, 10, 2.9)
+tm = MultiClassTsetlinMachine(10, 10, 2.9)
 tm.fit(x_train, y_train, epochs=45, incremental=True)
 print('\nfit done')
 result = 100*(tm.predict(x_test) == y_test).mean()
@@ -64,7 +64,7 @@ for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
 
-NUM_CLAUSES=40	
+NUM_CLAUSES=10	
 NUM_FEATURES=len(x_train[0])
 CLASSES=list(set(y_train))
 
