@@ -1,4 +1,7 @@
 #identify if a sentence is causal or not (presence of causal connective)
+import sys
+sys.path.append('../pyTsetlinMachine/')
+from tm import MultiClassTsetlinMachine
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.cross_validation import train_test_split
 import numpy as np
