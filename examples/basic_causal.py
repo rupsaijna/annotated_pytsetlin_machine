@@ -25,7 +25,7 @@ for line in open(inp).readlines():
 word_set=set(all_words)
 word_idx = dict((c, i + 1) for i, c in enumerate(word_set))
 reverse_word_map = dict(map(reversed, word_idx.items()))
-vs=vectorize_sentences(sents)
+vs=vectorize_sentences(sents,maxlen )
 
 print(word_idx)
 print(sents[0], vs[0])
