@@ -1,4 +1,5 @@
 #identify if a sentence is causal or not (presence of causal connective)
+from keras.preprocessing.sequence import pad_sequences
 inp='is_causal_data.txt'
 	
 def vectorize_sentences(txts, ml):
