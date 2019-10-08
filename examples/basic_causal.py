@@ -51,7 +51,7 @@ x_train=[xt[:-1] for xt in x_train]
 x_test=[xt[:-1] for xt in x_test]
 
 
-print('\nsplits ready:',x_train.shape, x_test.shape)
+#print('\nsplits ready:',x_train.shape, x_test.shape)
 tm = MultiClassTsetlinMachine(20, 10, 2.9)
 tm.fit(x_train, y_train, epochs=1, incremental=True)
 print('\nfit done')
