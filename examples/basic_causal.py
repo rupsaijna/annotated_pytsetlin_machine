@@ -11,6 +11,7 @@ sents=[]
 labels=[]
 all_words=[]
 
+stop=['and','are','the']
 def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
@@ -26,6 +27,8 @@ maxlen=0
 lcnt=0
 for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
+  for s in stop:
+	line=line.replace(' '+s+' ','')
   words=line[0].lower().split(' ')
   if len(words)>maxlen:
     maxlen=len(words)
