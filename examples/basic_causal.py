@@ -80,7 +80,7 @@ for cur_clause in range(NUM_CLAUSES):
 			if action==1:
 				if this_clause!='':
 					this_clause+='AND '
-				if f<NUM_FEATURES:
+				if f<=NUM_FEATURES:
 					this_clause+=''+reverse_word_map[f]+' '
 				else:
 					this_clause+='-|'+reverse_word_map[f-NUM_FEATURES]+' '
