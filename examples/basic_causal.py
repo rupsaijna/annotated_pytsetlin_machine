@@ -60,5 +60,5 @@ print(result)
 
 res=tm.predict(x_test)
 for i in range(len(x_test_ids)):
-	sidx=x_test_idx[i]
+	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
