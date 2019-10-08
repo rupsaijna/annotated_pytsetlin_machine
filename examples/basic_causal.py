@@ -74,6 +74,7 @@ for cur_clause in range(NUM_CLAUSES):
 	for cur_cls in CLASSES:
 		this_clause=''
 		for f in range(1,NUM_FEATURES*2+1):
+			print(f, NUM_FEATURES,f-NUM_FEATURES+1 )
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
 			if action==1:
 				if this_clause!='':
