@@ -71,9 +71,9 @@ CLASSES=list(set(y_train))
 print('Num Clauses:', NUM_CLAUSES)
 print('Num Classes: ', len(CLASSES),' : ', CLASSES)
 print('Num Features: ', NUM_FEATURES)
-	
-for cur_clause in range(NUM_CLAUSES):
-	for cur_cls in CLASSES:
+
+for cur_cls in CLASSES:
+	for cur_clause in range(NUM_CLAUSES):
 		this_clause=''
 		for f in range(1,NUM_FEATURES*2+1):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
