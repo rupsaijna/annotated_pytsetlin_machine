@@ -31,8 +31,8 @@ for line in open(inp).readlines():
   for s in stop:
 	line[0]=line[0].replace(' '+s+' ',' ')
   words=line[0].split(' ')
-  if len(words)>maxlen:
-    maxlen=len(words)
+  bl=list(set(list(everygrams(words, max_len=2))))
+  words+=bl
   all_words+=words
   words.insert(0,lcnt)
   lcnt+=1
@@ -45,7 +45,7 @@ reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
 print(reverse_word_map)
-
+gfds
 #print(word_idx)
 #print(sents[10], data[10])
 
