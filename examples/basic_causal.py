@@ -68,7 +68,7 @@ NUM_CLAUSES=20
 NUM_FEATURES=len(x_train[0])
 CLASSES=list(set(y_train))
 
-print('Num Clauses:', NUM_CLAUSES)
+'''print('Num Clauses:', NUM_CLAUSES)
 print('Num Classes: ', len(CLASSES),' : ', CLASSES)
 print('Num Features: ', NUM_FEATURES)
 	
@@ -86,4 +86,4 @@ for cur_clause in range(NUM_CLAUSES):
 					this_clause+='-|'+reverse_word_map[f-NUM_FEATURES]+' '
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
-	print('\n\n')
+	print('\n\n')'''
