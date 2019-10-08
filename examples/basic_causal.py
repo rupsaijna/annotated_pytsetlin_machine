@@ -2,8 +2,8 @@
 import sys
 sys.path.append('../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
-from keras.preprocessing.sequence import pad_sequences
 from sklearn.cross_validation import train_test_split
+from sklearn.feature_extraction import stop_words
 import numpy as np
 inp='is_causal_data.txt'
 	
@@ -11,7 +11,7 @@ sents=[]
 labels=[]
 all_words=[]
 
-stop=['and','are','the']
+stop=stop_words.ENGLISH_STOP_WORDS
 def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
