@@ -8,7 +8,7 @@ labels=[]
 all_words=[]
 
 def encode_sentences(txt):
-	feature_set=np.zeros((len(txt), len(word_set)))
+	feature_set=np.zeros((len(txt), len(word_set)+1))
 	tnum=0
 	for t in txt:
 		for w in t:
