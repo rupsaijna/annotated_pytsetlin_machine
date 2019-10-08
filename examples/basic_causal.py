@@ -15,7 +15,6 @@ def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+2),dtype=int)
 	tnum=0
 	for t in txt:
-		print(t)
 		for w in t[1:]:
 			idx=word_idx[w]
 			feature_set[tnum][idx]=1
@@ -42,7 +41,7 @@ reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
 #print(word_idx)
-print(sents[10], data[10])
+#print(sents[10], data[10])
 
 x_train, x_test, y_train, y_test = train_test_split(data, labels)
 x_train_ids=x_train[:,-1]
