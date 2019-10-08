@@ -40,7 +40,7 @@ print('Num Features: ', NUM_FEATURES)
 for cur_clause in range(NUM_CLAUSES):
 	for cur_cls in CLASSES:
 		this_clause=''
-		for f in range(1,NUM_FEATURES*2+1):
+		for f in range(NUM_FEATURES*2):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
 			if action==1:
 				if this_clause!='':
@@ -48,7 +48,7 @@ for cur_clause in range(NUM_CLAUSES):
 				if f<NUM_FEATURES:
 					this_clause+='F'+str(f)+' '
 				else:
-					this_clause+='-|F'+str(f-NUM_FEATURES+1)+' '
+					this_clause+='-|F'+str(f-NUM_FEATURES)+' '
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
