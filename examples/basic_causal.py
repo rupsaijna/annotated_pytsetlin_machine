@@ -29,7 +29,7 @@ for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
   line[0]=line[0].lower()
   for s in stop:
-	line[0]=line[0].replace(' '+s+' ','')
+	line[0]=line[0].replace(' '+s+' ',' ')
   words=line[0].split(' ')
   if len(words)>maxlen:
     maxlen=len(words)
