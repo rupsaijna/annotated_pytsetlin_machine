@@ -41,7 +41,7 @@ reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
 print(reverse_word_map)
-vgvh
+
 #print(word_idx)
 #print(sents[10], data[10])
 
