@@ -61,7 +61,8 @@ res=tm.predict(x_test)
 for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
-	
+
+NUM_CLAUSES=20	
 NUM_FEATURES=len(x_train[0])
 CLASSES=list(set(y_train))
 
