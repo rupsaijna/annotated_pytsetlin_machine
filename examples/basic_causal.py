@@ -45,13 +45,13 @@ data=encode_sentences(sents)
 print(sents[10], data[10])
 
 x_train, x_test, y_train, y_test = train_test_split(data, labels)
-x_train_ids=[xt[-1] for xt in x_train]
-x_test_ids=[xt[-1] for xt in x_test]
-x_train=[xt[:-1] for xt in x_train]
-x_test=[xt[:-1] for xt in x_test]
+x_train_ids=x_train[:,-1]
+x_test_ids=x_test[:,-1]
+x_train=x_train[:,:-1]
+x_test=x_test[:,:-1]
 
 
-#print('\nsplits ready:',x_train.shape, x_test.shape)
+print('\nsplits ready:',x_train.shape, x_test.shape)
 tm = MultiClassTsetlinMachine(20, 10, 2.9)
 tm.fit(x_train, y_train, epochs=1, incremental=True)
 print('\nfit done')
