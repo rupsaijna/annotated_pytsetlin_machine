@@ -79,9 +79,9 @@ for cur_clause in range(NUM_CLAUSES):
 				if this_clause!='':
 					this_clause+='AND '
 				if f<NUM_FEATURES:
-					this_clause+='F'+reverse_word_map(f)+' '
+					this_clause+='F'+reverse_word_map[f]+' '
 				else:
-					this_clause+='-|F'+reverse_word_map(f-NUM_FEATURES)+' '
+					this_clause+='-|F'+reverse_word_map[f-NUM_FEATURES]+' '
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
