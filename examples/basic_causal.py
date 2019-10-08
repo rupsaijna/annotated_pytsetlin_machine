@@ -15,6 +15,7 @@ def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+2),dtype=int)
 	tnum=0
 	for t in txt:
+		print(t)
 		for w in t[1:]:
 			idx=word_idx[w]
 			feature_set[tnum][idx]=1
