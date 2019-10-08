@@ -12,7 +12,7 @@ def encode_sentences(txt):
 	tnum=0
 	for t in txt:
 		for w in t:
-			idx=word_idx(w)
+			idx=word_idx[w]
 			feature_set[tnum][idx]=1
 		tnum+=1
 	return feature_set
