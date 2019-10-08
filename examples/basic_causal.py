@@ -61,3 +61,26 @@ res=tm.predict(x_test)
 for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
+	
+NUM_FEATURES=len(x_train[0])
+CLASSES=list(set(y_train))
+
+print('Num Clauses:', NUM_CLAUSES)
+print('Num Classes: ', len(CLASSES),' : ', CLASSES)
+print('Num Features: ', NUM_FEATURES)
+	
+for cur_clause in range(NUM_CLAUSES):
+	for cur_cls in CLASSES:
+		this_clause=''
+		for f in range(NUM_FEATURES*2):
+			action = tm.ta_action(int(cur_cls), cur_clause, f)
+			if action==1:
+				if this_clause!='':
+					this_clause+='AND '
+				if f<NUM_FEATURES:
+					this_clause+='F'+str(f)+' '
+				else:
+					this_clause+='-|F'+str(f-NUM_FEATURES)+' '
+
+		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
+	print('\n\n')
