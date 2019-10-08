@@ -33,8 +33,7 @@ for line in open(inp).readlines():
 	line[0]=line[0].replace(' '+s+' ',' ')
   words=line[0].split(' ')
   bl=list(set(list(everygrams(words, max_len=2))))
-  words+=bl
-  all_words+=words
+  all_words+=words+bl
   words.insert(0,lcnt)
   lcnt+=1
   sents.append(words)
