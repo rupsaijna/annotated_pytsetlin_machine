@@ -17,7 +17,8 @@ def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
 	for t in txt:
-		for w in t[1:]:
+		s_words=t[1:]+list(set(list(everygrams(t, min_len=2,max_len=2))))
+		for w in s_words:
 			idx=word_idx[w]
 			feature_set[tnum][idx-1]=1
 		feature_set[tnum][-1]=t[0]
