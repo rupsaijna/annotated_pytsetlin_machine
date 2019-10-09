@@ -15,13 +15,12 @@ labels=[]
 all_words=[]
 
 stop=stop_words.ENGLISH_STOP_WORDS
-print 'because' in stop
+
 def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
 	for t in txt:
 		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=2,max_len=2))))
-		print s_words
 		for w in s_words:
 			idx=word_idx[w]
 			feature_set[tnum][idx-1]=1
@@ -35,9 +34,10 @@ for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
   line[0]=line[0].lower()
   for s in stop:
-	regex = r"( |^)"+re.escape(s)+r"( |$)"
-	subst = " "
-	line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
+	if s not in ['because','caused','cause','due','by','to','of']:
+		regex = r"( |^)"+re.escape(s)+r"( |$)"
+		subst = " "
+		line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
   words=line[0].split(' ')
   bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
   all_words+=words+bl
