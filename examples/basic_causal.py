@@ -53,7 +53,7 @@ reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
 print(reverse_word_map)
-#print(word_idx)
+print(word_idx)
 print(sents[10], data[10])
 hkj
 x_train, x_test, y_train, y_test = train_test_split(data, labels)
