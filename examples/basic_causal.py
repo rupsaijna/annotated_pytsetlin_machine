@@ -35,7 +35,7 @@ for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
   line[0]=line[0].lower()
   for s in stop:
-	regex = r"( |^)"+re.escape(he)+r"( |$)"
+	regex = r"( |^)"+re.escape(s)+r"( |$)"
 	subst = " "
 	line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE)
   words=line[0].split(' ')
