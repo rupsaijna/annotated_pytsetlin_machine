@@ -65,8 +65,8 @@ x_train=x_train[:,:-1]
 x_test=x_test[:,:-1]
 
 NUM_CLAUSES=15
-T=10
-s=2.0
+T=20
+s=3.9
 
 print('\nsplits ready:',x_train.shape, x_test.shape)
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
