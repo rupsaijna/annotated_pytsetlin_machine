@@ -13,11 +13,12 @@ labels=[]
 all_words=[]
 
 stop=stop_words.ENGLISH_STOP_WORDS
+print 'because' in stop
 def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
 	for t in txt:
-		s_words=t[1:]+list(set(list(everygrams(t, min_len=2,max_len=2))))
+		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=2,max_len=2))))
 		print s_words
 		for w in s_words:
 			idx=word_idx[w]
