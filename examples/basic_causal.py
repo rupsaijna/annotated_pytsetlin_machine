@@ -97,9 +97,9 @@ for cur_cls in CLASSES:
 				if this_clause!='':
 					this_clause+='AND '
 				if f<NUM_FEATURES:
-					this_clause+=''+reverse_word_map[f]+' '
+					this_clause+=''+str(reverse_word_map[f])+' '
 				else:
-					this_clause+='-|'+reverse_word_map[f-NUM_FEATURES]+' '
+					this_clause+='-|'+str(reverse_word_map[f-NUM_FEATURES])+' '
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
