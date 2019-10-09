@@ -6,8 +6,10 @@ from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction import stop_words
 import numpy as np
 from nltk.util import ngrams,everygrams
+import re
+
 inp='is_causal_data.txt'
-	
+
 sents=[]
 labels=[]
 all_words=[]
@@ -33,7 +35,9 @@ for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
   line[0]=line[0].lower()
   for s in stop:
-	line[0]=line[0].replace(' '+s+' ',' ')
+	regex = r"( |^)"+re.escape(he)+r"( |$)"
+	subst = " "
+	line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE)
   words=line[0].split(' ')
   bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
   all_words+=words+bl
