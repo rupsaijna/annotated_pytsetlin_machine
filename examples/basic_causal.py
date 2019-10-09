@@ -91,12 +91,12 @@ print('Num Features: ', NUM_FEATURES)
 for cur_cls in CLASSES:
 	for cur_clause in range(NUM_CLAUSES):
 		this_clause=''
-		for f in range(1,NUM_FEATURES*2+1):
+		for f in range(0,NUM_FEATURES*2):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
 			if action==1:
 				if this_clause!='':
 					this_clause+='AND '
-				if f<=NUM_FEATURES:
+				if f<NUM_FEATURES:
 					this_clause+=''+reverse_word_map[f]+' '
 				else:
 					this_clause+='-|'+reverse_word_map[f-NUM_FEATURES]+' '
