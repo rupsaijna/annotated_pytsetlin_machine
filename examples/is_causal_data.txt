@@ -14,7 +14,7 @@ The vase broke because it fell	1
 The fall caused the vase to break	1
 The vase broke due to the fall	1
 The vase broke because of the fall	1
-The vase broke in his car	1
+The vase broke in his car	0
 He fell in the rain	0
 It rains in September	0
 September has rains and floods	0
