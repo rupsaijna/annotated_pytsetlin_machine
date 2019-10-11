@@ -1,0 +1,20 @@
+inp_file='training_full.txt'
+out_file='training.csv'
+
+fo=open(out_file,'w')
+
+fo.write('sent\tlabel\n')
+
+line_num=0
+for ln in open(inp_file,'r').readlines():
+    if line_num%4==0:
+        sent=ln.replace('\n','').split('\t')
+        sent=sent[1].strip()
+    if line_num%4==1:
+        if 'Cause-Effect' in ln:
+            label='1'
+        else:
+            label='0'
+        fo.write(sent+'\t'+label+'\n')
+fo.close()
+    
