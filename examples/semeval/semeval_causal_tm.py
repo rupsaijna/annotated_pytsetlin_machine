@@ -8,7 +8,7 @@ import numpy as np
 from nltk.util import ngrams,everygrams
 import re
 
-inp='is_causal_data.txt'
+inp='training.csv'
 
 sents=[]
 labels=[]
@@ -35,11 +35,11 @@ lcnt=0
 for line in open(inp).readlines():
   line=line.replace('\n','').replace(',','').split('\t')
   line[0]=line[0].lower()
-  for s in stop:
+  '''for s in stop:
 	if s not in ['because','caused','cause','due','by','to','of','since','he','in']:
 		regex = r"( |^)"+re.escape(s)+r"( |$)"
 		subst = " "
-		line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
+		line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
   words=line[0].split(' ')
   bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
   all_words+=words+bl
