@@ -33,20 +33,21 @@ def encode_sentences(txt):
 maxlen=0
 lcnt=0
 for line in open(inp).readlines():
-  line=line.replace('\n','').replace(',','').split('\t')
-  line[0]=line[0].lower()
-  '''for s in stop:
-	if s not in ['because','caused','cause','due','by','to','of','since','he','in']:
-		regex = r"( |^)"+re.escape(s)+r"( |$)"
-		subst = " "
-		line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
-  words=line[0].split(' ')
-  bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
-  all_words+=words+bl
-  words.insert(0,lcnt)
-  lcnt+=1
-  sents.append(words)
-  labels.append(int(line[1]))
+  if lcnt>0:
+		line=line.replace('\n','').replace(',','').split('\t')
+		line[0]=line[0].lower()
+		'''for s in stop:
+		if s not in ['because','caused','cause','due','by','to','of','since','he','in']:
+			regex = r"( |^)"+re.escape(s)+r"( |$)"
+			subst = " "
+			line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
+		words=line[0].split(' ')
+		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+		all_words+=words+bl
+		words.insert(0,lcnt)
+		lcnt+=1
+		sents.append(words)
+		labels.append(int(line[1]))
   
 word_set=set(all_words)
 i=0
