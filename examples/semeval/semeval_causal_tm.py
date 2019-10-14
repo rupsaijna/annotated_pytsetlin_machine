@@ -45,9 +45,10 @@ for line in open(inp).readlines():
 		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 		all_words+=words+bl
 		words.insert(0,lcnt)
-		lcnt+=1
 		sents.append(words)
 		labels.append(int(line[1]))
+  lcnt+=1
+
   
 word_set=set(all_words)
 i=0
