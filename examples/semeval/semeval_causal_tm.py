@@ -1,6 +1,6 @@
 #identify if a sentence is causal or not (presence of causal connective)
 import sys
-sys.path.append('../pyTsetlinMachine/')
+sys.path.append('../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
 from sklearn.cross_validation import train_test_split
 from sklearn.feature_extraction import stop_words
