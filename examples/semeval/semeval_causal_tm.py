@@ -77,7 +77,7 @@ print(result)
 for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
-
+'''
 NUM_CLAUSES=10	
 NUM_FEATURES=len(x_train[0])
 CLASSES=list(set(y_train))
@@ -101,5 +101,3 @@ for cur_cls in CLASSES:
 
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
-print(result)
-'''
