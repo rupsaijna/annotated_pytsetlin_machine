@@ -7,6 +7,7 @@ fo.write('sent\tlabel\n')
 
 line_num=0
 for ln in open(inp_file,'r').readlines():
+    print(ln)
     if line_num%4==0:
         sent=ln.replace('\n','').split('\t')
         sent=sent[1].strip()
