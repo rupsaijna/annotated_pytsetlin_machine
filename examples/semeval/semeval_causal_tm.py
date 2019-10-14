@@ -56,10 +56,6 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-print(reverse_word_map)
-print(word_idx)
-print(sents[10], data[10])
-
 x_train, x_test, y_train, y_test = train_test_split(data, labels)
 x_train_ids=x_train[:,-1]
 x_test_ids=x_test[:,-1]
