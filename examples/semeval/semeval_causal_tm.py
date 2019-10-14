@@ -75,7 +75,7 @@ print('\nfit done')
 result = 100*(tm.predict(x_test) == y_test).mean()
 print(result)
 
-res=tm.predict(x_test)
+'''res=tm.predict(x_test)
 for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
@@ -104,3 +104,4 @@ for cur_cls in CLASSES:
 		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
 	print('\n\n')
 print(result)
+'''
