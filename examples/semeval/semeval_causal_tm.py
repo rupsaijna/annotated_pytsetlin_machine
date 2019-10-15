@@ -8,7 +8,7 @@ import numpy as np
 from nltk.util import ngrams,everygrams
 import re
 
-print('unigrams. stopwords removed.')
+print('bigrams only. stopwords removed.')
 
 inp='training.csv'
 
@@ -45,7 +45,7 @@ for line in open(inp).readlines():
 				subst = " "
 				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
 		words=line[0].split(' ')
-		bl=list(set(list(everygrams(words, min_len=1,max_len=1))))
+		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 		all_words+=words+bl
 		words.insert(0,lcnt)
 		sents.append(words)
