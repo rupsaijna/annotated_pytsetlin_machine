@@ -8,7 +8,7 @@ import numpy as np
 from nltk.util import ngrams,everygrams
 import re
 
-print('bigrams only. stopwords removed.')
+print('bigrams and unigrams. stopwords removed.')
 
 inp='training.csv'
 
@@ -24,7 +24,7 @@ def encode_sentences(txt):
 	for t in txt:
 		if t[0]==10:
 			print (t)
-		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=2,max_len=2))))
+		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=1,max_len=2))))
 		for w in s_words:
 			idx=word_idx[w]
 			feature_set[tnum][idx]=1
@@ -45,7 +45,7 @@ for line in open(inp).readlines():
 				subst = " "
 				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
 		words=line[0].split(' ')
-		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+		bl=list(set(list(everygrams(words, min_len=1,max_len=2))))
 		all_words+=words+bl
 		words.insert(0,lcnt)
 		sents.append(words)
