@@ -8,6 +8,8 @@ import numpy as np
 from nltk.util import ngrams,everygrams
 import re
 
+print('unigrams. stopwords removed.')
+
 inp='training.csv'
 
 sents=[]
@@ -32,15 +34,16 @@ def encode_sentences(txt):
 
 maxlen=0
 lcnt=0
+
 for line in open(inp).readlines():
   if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
-		'''for s in stop:
-		if s not in ['because','caused','cause','due','by','to','of','since','he','in']:
+		for s in stop:
+		if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 			regex = r"( |^)"+re.escape(s)+r"( |$)"
 			subst = " "
-			line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
+			line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
 		words=line[0].split(' ')
 		bl=list(set(list(everygrams(words, min_len=1,max_len=1))))
 		all_words+=words+bl
@@ -78,7 +81,7 @@ for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], res[i])
 '''
-NUM_CLAUSES=10	
+
 NUM_FEATURES=len(x_train[0])
 CLASSES=list(set(y_train))
 
