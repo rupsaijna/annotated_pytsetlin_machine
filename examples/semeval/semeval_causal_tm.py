@@ -24,7 +24,7 @@ def encode_sentences(txt):
 	for t in txt:
 		if t[0]==10:
 			print (t)
-		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=1,max_len=1))))
+		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=2,max_len=2))))
 		for w in s_words:
 			idx=word_idx[w]
 			feature_set[tnum][idx]=1
