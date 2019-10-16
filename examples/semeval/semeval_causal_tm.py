@@ -9,7 +9,7 @@ from nltk.util import ngrams,everygrams
 import re
 import string
 
-print('bigrams and unigrams. stopwords not removed. punctuation not removed')
+print('bigrams and unigrams. stopwords removed. punctuation not removed')
 
 inp='training.csv'
 
@@ -41,11 +41,11 @@ for line in open(inp).readlines():
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
 		#line[0]=line[0].translate(None, string.punctuation)
-		'''for s in stop:
+		for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
 				subst = " "
-				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
+				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
 		words=line[0].split(' ')
 		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 		all_words+=words+bl
