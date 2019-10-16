@@ -67,8 +67,8 @@ x_test_ids=x_test[:,-1]
 x_train=x_train[:,:-1]
 x_test=x_test[:,:-1]
 
-NUM_CLAUSES=20
-T=15
+NUM_CLAUSES=200
+T=5
 s=3.9
 
 print('\nsplits ready:',x_train.shape, x_test.shape)
