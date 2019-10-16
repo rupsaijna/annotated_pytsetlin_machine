@@ -7,8 +7,9 @@ from sklearn.feature_extraction import stop_words
 import numpy as np
 from nltk.util import ngrams,everygrams
 import re
+import string
 
-print('bigrams and unigrams. stopwords not removed.')
+print('bigrams and unigrams. stopwords not removed. punctuation removed')
 
 inp='training.csv'
 
@@ -39,6 +40,7 @@ for line in open(inp).readlines():
   if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
+		line[0]=line[0].translate(line[0].maketrans('', '', string.punctuation))
 		'''for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
