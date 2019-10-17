@@ -9,7 +9,8 @@ from nltk.util import ngrams,everygrams
 import re
 import string
 
-print('bigrams and unigrams. stopwords removed. punctuation not removed')
+print('bigrams and unigrams. stopwords not removed. punctuation not removed')
+RUNS=1
 
 inp='training.csv'
 
@@ -41,11 +42,11 @@ for line in open(inp).readlines():
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
 		#line[0]=line[0].translate(None, string.punctuation)
-		for s in stop:
+		'''for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
 				subst = " "
-				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()
+				line[0]=re.sub(regex, subst, line[0], 0, re.MULTILINE).strip()'''
 		words=line[0].split(' ')
 		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 		all_words+=words+bl
@@ -61,50 +62,62 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-x_train, x_test, y_train, y_test = train_test_split(data, labels)
-x_train_ids=x_train[:,-1]
-x_test_ids=x_test[:,-1]
-x_train=x_train[:,:-1]
-x_test=x_test[:,:-1]
-
 NUM_CLAUSES=200
 T=15
 s=3.9
+CLASSES=list(set(labels))
+NUM_FEATURES=len(data[0])-1
 
-print('\nsplits ready:',x_train.shape, x_test.shape)
-tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
-tm.fit(x_train, y_train, epochs=200, incremental=True)
-print('\nfit done')
-result = 100*(tm.predict(x_test) == y_test).mean()
-print(result)
 
-'''res=tm.predict(x_test)
-for i in range(len(x_test_ids)):
-	sidx=x_test_ids[i]
-	print(sents[sidx], res[i])
-'''
 
-NUM_FEATURES=len(x_train[0])
-CLASSES=list(set(y_train))
+result=np.zeros(RUNS)
+feature_count_plain=np.zeros((RUNS,NUM_FEATURES))
+feature_count_negated=np.zeros((RUNS,NUM_FEATURES))
+for r in range(RUNS):
+	x_train, x_test, y_train, y_test = train_test_split(data, labels)
+	x_train_ids=x_train[:,-1]
+	x_test_ids=x_test[:,-1]
+	x_train=x_train[:,:-1]
+	x_test=x_test[:,:-1]
 
-print('Num Clauses:', NUM_CLAUSES)
-print('Num Classes: ', len(CLASSES),' : ', CLASSES)
-print('Num Features: ', NUM_FEATURES)
-print('T: ',T)
-print('s: ',s)
+	#print('\nsplits ready:',x_train.shape, x_test.shape)
+	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
+	tm.fit(x_train, y_train, epochs=200, incremental=True)
+	print('\nfit done')
+	result[r] = 100*(tm.predict(x_test) == y_test).mean()
+	
+	for cur_cls in CLASSES:
+		for cur_clause in range(NUM_CLAUSES):
+			for f in range(0,NUM_FEATURES):
+				action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
+				action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
+				feature_count_plain[r][f]+=action_plain
+				feature_count_negated[r][f]+=action_negated
 
+fout=open('feature_details.csv','w')
+for r in range(RUNS):
+	for f in range(0,NUM_FEATURES):
+		fout.write(str(r)+'\t'+feature_count_plain[r][f]+'\t'+feature_count_negated[r][f]+'\n')
+fout.close()
+
+
+
+fout=open('clause_details.csv','w')
+fout.write('Num Clauses:'+str(NUM_CLAUSES))
+fout.write('Num Classes: '+ str(len(CLASSES)))
+fout.write('T: '+str(T))
+fout.write('s: '+str(s))
+fout.write('Num Features: '+ str(NUM_FEATURES))
+clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
+rc=0
 for cur_cls in CLASSES:
 	for cur_clause in range(NUM_CLAUSES):
-		this_clause=''
-		for f in range(0,NUM_FEATURES*2):
+		for f in range(0,NUM_FEATURES):
 			action = tm.ta_action(int(cur_cls), cur_clause, f)
+			action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
 			if action==1:
-				if this_clause!='':
-					this_clause+='AND '
-				if f<NUM_FEATURES:
-					this_clause+=''+str(reverse_word_map[f])+' '
-				else:
-					this_clause+='-|'+str(reverse_word_map[f-NUM_FEATURES])+' '
+				clauses[rc][f]+=1
+			if action_negated==1:
+				clauses[rc][f+NUM_FEATURES]+=1
+	rc+=1
 
-		print('CLASS :',cur_cls,' - CLAUSE ',cur_clause, ' : ', this_clause)
-	print('\n\n')
