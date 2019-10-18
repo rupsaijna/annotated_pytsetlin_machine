@@ -62,7 +62,7 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=200
+NUM_CLAUSES=20
 T=15
 s=3.9
 CLASSES=list(set(labels))
@@ -82,6 +82,7 @@ fout_c.write('Num Features: '+ str(NUM_FEATURES))
 clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
 for r in range(RUNS):
+	print('Run:',r)
 	x_train, x_test, y_train, y_test = train_test_split(data, labels)
 	x_train_ids=x_train[:,-1]
 	x_test_ids=x_test[:,-1]
@@ -90,7 +91,7 @@ for r in range(RUNS):
 
 	#print('\nsplits ready:',x_train.shape, x_test.shape)
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
-	tm.fit(x_train, y_train, epochs=200, incremental=True)
+	tm.fit(x_train, y_train, epochs=2, incremental=True)
 	print('\nfit done')
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
 	fout_c.write(str(r)+'\t')
