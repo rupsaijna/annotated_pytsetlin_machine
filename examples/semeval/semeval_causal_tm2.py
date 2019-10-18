@@ -10,7 +10,7 @@ import re
 import string
 
 print('bigrams and unigrams. stopwords not removed. punctuation not removed')
-RUNS=1
+RUNS=100
 
 inp='training.csv'
 
