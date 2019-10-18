@@ -95,7 +95,7 @@ for r in range(RUNS):
 	print('\nfit done')
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
 	fout_c.write(str(r)+'\t')
-	feature_vector=np.zeroes(NUM_FEATURES*2)
+	feature_vector=np.zeros(NUM_FEATURES*2)
 	for cur_cls in CLASSES:
 		for cur_clause in range(NUM_CLAUSES):
 			fout_c.write(str(cur_clause)+'\t')
