@@ -73,6 +73,14 @@ NUM_FEATURES=len(data[0])-1
 result=np.zeros(RUNS)
 feature_count_plain=np.zeros((RUNS,NUM_FEATURES))
 feature_count_negated=np.zeros((RUNS,NUM_FEATURES))
+fout_c=open('clause_details.csv','w')
+fout_c.write('Num Clauses:'+str(NUM_CLAUSES))
+fout_c.write('Num Classes: '+ str(len(CLASSES)))
+fout_c.write('T: '+str(T))
+fout_c.write('s: '+str(s))
+fout_c.write('Num Features: '+ str(NUM_FEATURES))
+clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
+
 for r in range(RUNS):
 	x_train, x_test, y_train, y_test = train_test_split(data, labels)
 	x_train_ids=x_train[:,-1]
@@ -85,39 +93,34 @@ for r in range(RUNS):
 	tm.fit(x_train, y_train, epochs=200, incremental=True)
 	print('\nfit done')
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
-	
+	fout_c.write(str(r)+'\t')
+	feature_vector=np.zeroes(NUM_FEATURES*2)
 	for cur_cls in CLASSES:
 		for cur_clause in range(NUM_CLAUSES):
+			fout_c.write(str(cur_clause)+'\t')
+			if cur_clause%2==0:
+				fout_c.write('positive'+'\t')
+			else:
+				fout_c.write('negative'+'\t')
+			fout_c.write(str(cur_cls)+'\t')
 			for f in range(0,NUM_FEATURES):
 				action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
 				action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
+				feature_vector[f]=action_plain
+				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[r][f]+=action_plain
 				feature_count_negated[r][f]+=action_negated
+				
+			for fv in feature_vector:
+				if fv==0:
+					fout_c.write('*'+'\t')
+				else:
+					fout_c.write('1'+'\t')
+			fout_c.write(str(result[r])+'\n')
 
 fout=open('feature_details.csv','w')
 for r in range(RUNS):
 	for f in range(0,NUM_FEATURES):
 		fout.write(str(r)+'\t'+feature_count_plain[r][f]+'\t'+feature_count_negated[r][f]+'\n')
 fout.close()
-
-
-
-fout=open('clause_details.csv','w')
-fout.write('Num Clauses:'+str(NUM_CLAUSES))
-fout.write('Num Classes: '+ str(len(CLASSES)))
-fout.write('T: '+str(T))
-fout.write('s: '+str(s))
-fout.write('Num Features: '+ str(NUM_FEATURES))
-clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
-rc=0
-for cur_cls in CLASSES:
-	for cur_clause in range(NUM_CLAUSES):
-		for f in range(0,NUM_FEATURES):
-			action = tm.ta_action(int(cur_cls), cur_clause, f)
-			action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
-			if action==1:
-				clauses[rc][f]+=1
-			if action_negated==1:
-				clauses[rc][f+NUM_FEATURES]+=1
-	rc+=1
-
+fout_c.close()
