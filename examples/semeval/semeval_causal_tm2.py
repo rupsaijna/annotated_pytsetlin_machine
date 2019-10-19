@@ -84,9 +84,9 @@ clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 fout_c.write('Run\tClause\tp/n\tclass\n')
 
 for f in range(NUM_FEATURES):
-	fout_c.write(reverse_word_map[f]+'\t')
+	fout_c.write(str(reverse_word_map[f])+'\t')
 for f in range(NUM_FEATURES):
-	fout_c.write('^'+reverse_word_map[f]+'\t')
+	fout_c.write('^'+str(reverse_word_map[f])+'\t')
 fout_c.write('result\n')
 	
 for r in range(RUNS):
@@ -130,6 +130,6 @@ for r in range(RUNS):
 fout=open('feature_details.csv','w')
 for r in range(RUNS):
 	for f in range(0,NUM_FEATURES):
-		fout.write(str(r)+'\t'+reverse_word_map[f]+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
+		fout.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
 fout.close()
 fout_c.close()
