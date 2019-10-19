@@ -122,6 +122,6 @@ for r in range(RUNS):
 fout=open('feature_details.csv','w')
 for r in range(RUNS):
 	for f in range(0,NUM_FEATURES):
-		fout.write(str(r)+'\t'+feature_count_plain[r][f]+'\t'+feature_count_negated[r][f]+'\n')
+		fout.write(str(r)+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
 fout.close()
 fout_c.close()
