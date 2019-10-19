@@ -83,9 +83,9 @@ clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
 fout_c.write('Run\tClause\tp/n\tclass\n')
 
-for f in range(NUM_FEATURES)
+for f in range(NUM_FEATURES):
 	fout_c.write(reverse_word_map[f]+'\t')
-for f in range(NUM_FEATURES)
+for f in range(NUM_FEATURES):
 	fout_c.write('^'+reverse_word_map[f]+'\t')
 fout_c.write('result\n')
 	
