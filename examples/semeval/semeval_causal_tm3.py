@@ -8,8 +8,12 @@ import numpy as np
 from nltk.util import ngrams,everygrams
 import re
 import string
+import time
+timestr = time.strftime("%Y%m%d-%H%M%S")
+clause_file='clause_details'+timestr+'.csv'
+feature_file='feature_details'+timestr+'.csv'
+meta_file='meta_details'+timestr+'.txt'
 
-print('bigrams and unigrams. stopwords not removed. punctuation not removed')
 RUNS=100
 
 inp='training.csv'
@@ -62,23 +66,30 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=20
+NUM_CLAUSES=100
 T=15
 s=3.9
+TRAIN_EPOCHS=10
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
-
+fo=open(meta_file,'w')
+fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.')
+fo.write('bigrams and unigrams. stopwords not removed. punctuation not removed')
+fo.write('Num Clauses:'+str(NUM_CLAUSES))
+fo.write('Num Classes: '+ str(len(CLASSES)))
+fo.write('T: '+str(T))
+fo.write('s: '+str(s))
+fo.write('Num Features: '+ str(NUM_FEATURES)+'\n\n')
+fo.write('Total Runs: '+str(RUNS))
+fo.write('Train Epochs: '+str(TRAIN_EPOCHS))
 
 result=np.zeros(RUNS)
 feature_count_plain=np.zeros((RUNS,NUM_FEATURES))
 feature_count_negated=np.zeros((RUNS,NUM_FEATURES))
-fout_c=open('clause_details.csv','w')
-fout_c.write('Num Clauses:'+str(NUM_CLAUSES))
-fout_c.write('Num Classes: '+ str(len(CLASSES)))
-fout_c.write('T: '+str(T))
-fout_c.write('s: '+str(s))
-fout_c.write('Num Features: '+ str(NUM_FEATURES)+'\n\n')
+fout_c=open(clause_file,'w')
+
+
 clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
 fout_c.write('Run\tClause\tp/n\tclass\n')
@@ -99,7 +110,7 @@ for r in range(RUNS):
 
 	#print('\nsplits ready:',x_train.shape, x_test.shape)
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
-	tm.fit(x_train, y_train, epochs=2, incremental=True)
+	tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 	print('\nfit done')
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
 	fout_c.write(str(r)+'\t')
@@ -127,9 +138,14 @@ for r in range(RUNS):
 					fout_c.write('1'+'\t')
 			fout_c.write(str(result[r])+'\n')
 
-fout=open('feature_details.csv','w')
+fout_f=open(feature_file,'w')
 for r in range(RUNS):
 	for f in range(0,NUM_FEATURES):
-		fout.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
-fout.close()
+		fout_f.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
+fout_f.close()
 fout_c.close()
+
+fo.write('Best result:'+str(result.max()))
+fo.write('Mean result:'+str(result.mean()))
+fo.close()
+
