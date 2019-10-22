@@ -147,7 +147,7 @@ for r in range(RUNS):
 	fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
 	for c in clause_dict.keys():
 		fout_c.write(str(r)+'\t')
-		fout_c.write(c+'\t'+clause_dict[c]+'\n')
+		fout_c.write(c+'\t'+str(clause_dict[c])+'\n')
 	fout_c.close()
 
 fo.write('\nBest result:'+str(result.max()))
