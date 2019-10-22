@@ -14,7 +14,7 @@ clause_file='clause_details'+timestr+'.csv'
 feature_file='feature_details'+timestr+'.csv'
 meta_file='meta_details'+timestr+'.txt'
 
-RUNS=100
+RUNS=1
 
 inp='training.csv'
 
@@ -66,7 +66,7 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=100
+NUM_CLAUSES=20
 T=15
 s=3.9
 TRAIN_EPOCHS=10
@@ -139,9 +139,9 @@ for r in range(RUNS):
 			fout_c.write(str(result[r])+'\n')
 
 fout_f=open(feature_file,'w')
-for r in range(RUNS):
-	for f in range(0,NUM_FEATURES):
-		fout_f.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[r][f])+'\t'+str(feature_count_negated[r][f])+'\n')
+fout_f.write('feature\tcount_plain\tcount_negated\n')
+for f in range(0,NUM_FEATURES):
+	fout_f.write(str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\n')
 fout_f.close()
 fout_c.close()
 
