@@ -137,12 +137,12 @@ for r in range(RUNS):
 				else:
 					fout_c.write('1'+'\t')
 			fout_c.write(str(result[r])+'\n')
+	fout_f=open(feature_file,'w')
+	fout_f.write('run\tfeature\tcount_plain\tcount_negated\n')
+	for f in range(0,NUM_FEATURES):
+		fout_f.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\n')
+	fout_f.close()
 
-fout_f=open(feature_file,'w')
-fout_f.write('feature\tcount_plain\tcount_negated\n')
-for f in range(0,NUM_FEATURES):
-	fout_f.write(str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\n')
-fout_f.close()
 fout_c.close()
 
 fo.write('\nBest result:'+str(result.max()))
