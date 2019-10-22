@@ -87,19 +87,19 @@ fo.write('\nTrain Epochs: '+str(TRAIN_EPOCHS))
 result=np.zeros(RUNS)
 feature_count_plain=np.zeros(NUM_FEATURES)
 feature_count_negated=np.zeros(NUM_FEATURES)
-fout_c=open(clause_file,'w')
+
 
 
 clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
-fout_c.write('Run\tClause\tp/n\tclass\t')
-
-for f in range(NUM_FEATURES):
+'''for f in range(NUM_FEATURES):
 	fout_c.write(str(reverse_word_map[f])+'\t')
 for f in range(NUM_FEATURES):
-	fout_c.write('^'+str(reverse_word_map[f])+'\t')
+	fout_c.write('^'+str(reverse_word_map[f])+'\t')'''
 fout_c.write('result\n')
-	
+
+clause_dict={}
+
 for r in range(RUNS):
 	print('Run:',r)
 	x_train, x_test, y_train, y_test = train_test_split(data, labels)
@@ -113,15 +113,13 @@ for r in range(RUNS):
 	tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 	print('\nfit done')
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
-	fout_c.write(str(r)+'\t')
 	feature_vector=np.zeros(NUM_FEATURES*2)
 	for cur_cls in CLASSES:
 		for cur_clause in range(NUM_CLAUSES):
-			fout_c.write(str(cur_clause)+'\t')
 			if cur_clause%2==0:
-				fout_c.write('positive'+'\t')
+				clause_type='positive'
 			else:
-				fout_c.write('negative'+'\t')
+				clause_type='negative'
 			fout_c.write(str(cur_cls)+'\t')
 			for f in range(0,NUM_FEATURES):
 				action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
@@ -130,20 +128,28 @@ for r in range(RUNS):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-				
-			for fv in feature_vector:
-				if fv==0:
-					fout_c.write('*'+'\t')
-				else:
-					fout_c.write('1'+'\t')
-			fout_c.write(str(result[r])+'\n')
+			this_clause=''
+			if action_plain==1:
+				this_clause+=reverse_word_map[f]+';'
+			if action_negated==1:
+				this_clause+=' #'+reverse_word_map[f]+';'
+	this_clause+='\t'+clause_type+'\t'+str(cur_cls)		
+	if this_clause in clause_dict.keys():
+		clause_dict[this_clause]+=1
+	else:
+		clause_dict[this_clause]=1
 	fout_f=open(feature_file,'w')
 	fout_f.write('run\tfeature\tcount_plain\tcount_negated\n')
 	for f in range(0,NUM_FEATURES):
 		fout_f.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\n')
 	fout_f.close()
-
-fout_c.close()
+	
+	fout_c=open(clause_file,'w')
+	fout_c.write('Run\tClause\tp/n\tclass\tcount\n')
+	for c in clause_dict.keys():
+		fout_c.write(str(r)+'\t')
+		fout_c.write(c+'\t'+clause_dict[c]+'\n')
+	fout_c.close()
 
 fo.write('\nBest result:'+str(result.max()))
 fo.write('\nMean result:'+str(result.mean()))
