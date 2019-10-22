@@ -68,7 +68,7 @@ data=encode_sentences(sents)
 
 NUM_CLAUSES=30
 T=15
-s=3.9
+s=2.5
 TRAIN_EPOCHS=10
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
