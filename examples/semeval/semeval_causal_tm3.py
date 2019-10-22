@@ -10,8 +10,8 @@ import re
 import string
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-clause_file='clause_details'+timestr+'.csv'
-feature_file='feature_details'+timestr+'.csv'
+clause_file='clause_details'+timestr+'.txt'
+feature_file='feature_details'+timestr+'.txt'
 meta_file='meta_details'+timestr+'.txt'
 
 RUNS=1
@@ -74,15 +74,15 @@ CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
 fo=open(meta_file,'w')
-fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.')
-fo.write('bigrams and unigrams. stopwords not removed. punctuation not removed')
-fo.write('Num Clauses:'+str(NUM_CLAUSES))
-fo.write('Num Classes: '+ str(len(CLASSES)))
-fo.write('T: '+str(T))
-fo.write('s: '+str(s))
-fo.write('Num Features: '+ str(NUM_FEATURES)+'\n\n')
-fo.write('Total Runs: '+str(RUNS))
-fo.write('Train Epochs: '+str(TRAIN_EPOCHS))
+fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.\n')
+fo.write('bigrams and unigrams. stopwords not removed. punctuation not removed.\n')
+fo.write('\nNum Clauses:'+str(NUM_CLAUSES))
+fo.write('\nNum Classes: '+ str(len(CLASSES)))
+fo.write('\nT: '+str(T))
+fo.write('\ns: '+str(s))
+fo.write('\nNum Features: '+ str(NUM_FEATURES)+'\n\n')
+fo.write('\nTotal Runs: '+str(RUNS))
+fo.write('\nTrain Epochs: '+str(TRAIN_EPOCHS))
 
 result=np.zeros(RUNS)
 feature_count_plain=np.zeros(NUM_FEATURES)
@@ -92,7 +92,7 @@ fout_c=open(clause_file,'w')
 
 clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
-fout_c.write('Run\tClause\tp/n\tclass\n')
+fout_c.write('Run\tClause\tp/n\tclass\t')
 
 for f in range(NUM_FEATURES):
 	fout_c.write(str(reverse_word_map[f])+'\t')
@@ -145,7 +145,7 @@ for f in range(0,NUM_FEATURES):
 fout_f.close()
 fout_c.close()
 
-fo.write('Best result:'+str(result.max()))
-fo.write('Mean result:'+str(result.mean()))
+fo.write('\nBest result:'+str(result.max()))
+fo.write('\nMean result:'+str(result.mean()))
 fo.close()
 
