@@ -95,8 +95,8 @@ clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 '''for f in range(NUM_FEATURES):
 	fout_c.write(str(reverse_word_map[f])+'\t')
 for f in range(NUM_FEATURES):
-	fout_c.write('^'+str(reverse_word_map[f])+'\t')'''
-fout_c.write('result\n')
+	fout_c.write('^'+str(reverse_word_map[f])+'\t')
+fout_c.write('result\n')'''
 
 clause_dict={}
 
