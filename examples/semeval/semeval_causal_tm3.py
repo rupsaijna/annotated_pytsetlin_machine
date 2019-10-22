@@ -131,7 +131,7 @@ for r in range(RUNS):
 				'''if action_plain==1:
 					this_clause+=str(reverse_word_map[f])+';'
 				if action_negated==1:
-					this_clause+=' #'+str(reverse_word_map[f])+';''''
+					this_clause+=' #'+str(reverse_word_map[f])+";"'''
 				if action_plain==1:
 					this_clause+=str(f)+';'
 				if action_negated==1:
