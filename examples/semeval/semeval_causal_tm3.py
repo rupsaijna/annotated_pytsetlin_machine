@@ -45,7 +45,7 @@ for line in open(inp).readlines():
   if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
-		#line[0]=line[0].translate(None, string.punctuation)
+		line[0]=line[0].translate(None, string.punctuation)
 		'''for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
@@ -75,7 +75,7 @@ NUM_FEATURES=len(data[0])-1
 
 fo=open(meta_file,'w')
 fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.\n')
-fo.write('bigrams and unigrams. stopwords not removed. punctuation not removed.\n')
+fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
 fo.write('\nNum Clauses:'+str(NUM_CLAUSES))
 fo.write('\nNum Classes: '+ str(len(CLASSES)))
 fo.write('\nT: '+str(T))
