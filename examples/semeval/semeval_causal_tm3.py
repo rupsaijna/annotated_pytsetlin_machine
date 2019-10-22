@@ -66,7 +66,7 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=20
+NUM_CLAUSES=5
 T=15
 s=3.9
 TRAIN_EPOCHS=10
@@ -120,6 +120,7 @@ for r in range(RUNS):
 				clause_type='positive'
 			else:
 				clause_type='negative'
+			this_clause=''
 			for f in range(0,NUM_FEATURES):
 				action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
 				action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
@@ -127,16 +128,16 @@ for r in range(RUNS):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-			this_clause=''
-			if action_plain==1:
-				this_clause+=reverse_word_map[f]+';'
-			if action_negated==1:
-				this_clause+=' #'+reverse_word_map[f]+';'
-	this_clause+='\t'+clause_type+'\t'+str(cur_cls)		
-	if this_clause in clause_dict.keys():
-		clause_dict[this_clause]+=1
-	else:
-		clause_dict[this_clause]=1
+				if action_plain==1:
+					this_clause+=reverse_word_map[f]+';'
+				if action_negated==1:
+					this_clause+=' #'+reverse_word_map[f]+';'
+			this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
+			print('cl:', this_clause)
+			if this_clause in clause_dict.keys():
+				clause_dict[this_clause]+=1
+			else:
+				clause_dict[this_clause]=1
 	fout_f=open(feature_file,'w')
 	fout_f.write('run\tfeature\tcount_plain\tcount_negated\n')
 	for f in range(0,NUM_FEATURES):
