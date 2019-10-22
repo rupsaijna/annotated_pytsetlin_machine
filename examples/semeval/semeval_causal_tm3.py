@@ -120,7 +120,6 @@ for r in range(RUNS):
 				clause_type='positive'
 			else:
 				clause_type='negative'
-			fout_c.write(str(cur_cls)+'\t')
 			for f in range(0,NUM_FEATURES):
 				action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
 				action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
