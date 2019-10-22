@@ -129,9 +129,9 @@ for r in range(RUNS):
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
 				if action_plain==1:
-					this_clause+=reverse_word_map[f]+';'
+					this_clause+=str(reverse_word_map[f])+';'
 				if action_negated==1:
-					this_clause+=' #'+reverse_word_map[f]+';'
+					this_clause+=' #'+str(reverse_word_map[f])+';'
 			this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 			print('cl:', this_clause)
 			if this_clause in clause_dict.keys():
