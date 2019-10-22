@@ -14,7 +14,7 @@ clause_file='clause_details'+timestr+'.txt'
 feature_file='feature_details'+timestr+'.txt'
 meta_file='meta_details'+timestr+'.txt'
 
-RUNS=1
+RUNS=200
 
 inp='training.csv'
 
@@ -66,7 +66,7 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=5
+NUM_CLAUSES=30
 T=15
 s=3.9
 TRAIN_EPOCHS=10
@@ -128,10 +128,14 @@ for r in range(RUNS):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-				if action_plain==1:
+				'''if action_plain==1:
 					this_clause+=str(reverse_word_map[f])+';'
 				if action_negated==1:
-					this_clause+=' #'+str(reverse_word_map[f])+';'
+					this_clause+=' #'+str(reverse_word_map[f])+';''''
+				if action_plain==1:
+					this_clause+=str(f)+';'
+				if action_negated==1:
+					this_clause+=' #'+str(f)+';'
 			this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 			print('cl:', this_clause)
 			if this_clause in clause_dict.keys():
