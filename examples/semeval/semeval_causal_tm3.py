@@ -85,8 +85,8 @@ fo.write('Total Runs: '+str(RUNS))
 fo.write('Train Epochs: '+str(TRAIN_EPOCHS))
 
 result=np.zeros(RUNS)
-feature_count_plain=np.zeros((RUNS,NUM_FEATURES))
-feature_count_negated=np.zeros((RUNS,NUM_FEATURES))
+feature_count_plain=np.zeros(NUM_FEATURES)
+feature_count_negated=np.zeros(NUM_FEATURES)
 fout_c=open(clause_file,'w')
 
 
@@ -128,8 +128,8 @@ for r in range(RUNS):
 				action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
 				feature_vector[f]=action_plain
 				feature_vector[f+NUM_FEATURES]=action_negated
-				feature_count_plain[r][f]+=action_plain
-				feature_count_negated[r][f]+=action_negated
+				feature_count_plain[f]+=action_plain
+				feature_count_negated[f]+=action_negated
 				
 			for fv in feature_vector:
 				if fv==0:
