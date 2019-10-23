@@ -132,7 +132,7 @@ for r in range(RUNS):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-				feature_count_ignore += not(action_plain || action_negated)
+				feature_count_ignore += not(action_plain or action_negated)
 				feature_count_contradiction += action_plain and action_negated
 				if (cur_cls % 2 == 0):
 					feature_count_plain_positive[f] += action_plain
