@@ -14,7 +14,7 @@ clause_file='clause_details'+timestr+'.txt'
 feature_file='feature_details'+timestr+'.txt'
 meta_file='meta_details'+timestr+'.txt'
 
-RUNS=10
+RUNS=100
 
 inp='training.csv'
 
@@ -96,12 +96,6 @@ feature_count_negated_negative= np.zeros(NUM_FEATURES)
 
 clauses=np.zeros((RUNS*NUM_CLAUSES,NUM_FEATURES*2+1))
 
-'''for f in range(NUM_FEATURES):
-	fout_c.write(str(reverse_word_map[f])+'\t')
-for f in range(NUM_FEATURES):
-	fout_c.write('^'+str(reverse_word_map[f])+'\t')
-fout_c.write('result\n')'''
-
 clause_dict={}
 
 for r in range(RUNS):
@@ -132,7 +126,8 @@ for r in range(RUNS):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-				feature_count_ignore += not(action_plain or action_negated)
+				if action_plain==0 and action_negated==0:
+					feature_count_ignore += 1
 				feature_count_contradiction += action_plain and action_negated
 				if (cur_cls % 2 == 0):
 					feature_count_plain_positive[f] += action_plain
@@ -152,9 +147,9 @@ for r in range(RUNS):
 			else:
 				clause_dict[this_clause]=1
 	fout_f=open(feature_file,'w')
-	fout_f.write('run\tfeature\tcount_plain\tcount_negated\tcount_ignore\tcount_contradiction\tcount_plain_positive\tcount_negated_positive\tcount_plain_negative\tcount_negated_negative\n')
+	fout_f.write('run\tfnum\tfeature\tcount_plain\tcount_negated\tcount_ignore\tcount_contradiction\tcount_plain_positive\tcount_negated_positive\tcount_plain_negative\tcount_negated_negative\n')
 	for f in range(0,NUM_FEATURES):
-		fout_f.write(str(r)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\t'+str(feature_count_ignore[f])+'\t'+str(feature_count_contradiction[f])+'\t'+str(feature_count_plain_positive[f])+'\t'+str(feature_count_negated_positive[f])+'\t'+str(feature_count_plain_negative[f])+'\t'+str(feature_count_negated_negative[f])+'\n')
+		fout_f.write(str(r)+'\t'+str(f)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\t'+str(feature_count_ignore[f])+'\t'+str(feature_count_contradiction[f])+'\t'+str(feature_count_plain_positive[f])+'\t'+str(feature_count_negated_positive[f])+'\t'+str(feature_count_plain_negative[f])+'\t'+str(feature_count_negated_negative[f])+'\n')
 	fout_f.close()
 	
 	fout_c=open(clause_file,'w')
