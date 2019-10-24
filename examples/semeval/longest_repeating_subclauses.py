@@ -6,11 +6,9 @@ data=pd.read_csv(input, sep='\t', na_filter = False)
 multiples={}
 full_clauses_count=0
 
-for index, row in data.iterrows():
-    if row['count']>50:
-        print(data.iloc[index])
-        multiples[row['Clause']]=row['count']
-        full_clauses_count+=1
+clauses=data['Clause']
+
+print(clauses)
         
 print(full_clauses_count)
 print(multiples)
