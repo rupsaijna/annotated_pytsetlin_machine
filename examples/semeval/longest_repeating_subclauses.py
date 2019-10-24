@@ -12,3 +12,4 @@ for index, row in data.iterrows():
         full_clauses_count+=1
         
 print(full_clauses_count)
+print(multiples)
