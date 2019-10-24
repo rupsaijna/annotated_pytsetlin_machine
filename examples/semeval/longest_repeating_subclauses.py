@@ -5,8 +5,7 @@ data=pd.read_csv(input, sep='\t')
 
 multiples={}
 full_clauses_count=0
-print(data.iloc[1])
-mlk
+
 for index, row in data.iterrows():
     if row['count']>50:
         print(data.iloc[index])
