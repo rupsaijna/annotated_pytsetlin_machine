@@ -9,7 +9,7 @@ print(data.iloc[1])
 mlk
 for index, row in data.iterrows():
     if row['count']>50:
-        print(row)
+        print(data.iloc[index])
         multiples[row['Clause']]=row['count']
         full_clauses_count+=1
         
