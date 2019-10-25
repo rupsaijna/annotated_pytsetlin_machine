@@ -8,7 +8,7 @@ data=data.head()
 
 dataset=[]
 for ind, row in data.iterrows():
-    cl=row['Clause'].split(';')
+    cl=row['Clause'].split(';')[:-1]
     cl=[c.strip() for c in cl]
     print (cl)
     dataset.append(cl)
