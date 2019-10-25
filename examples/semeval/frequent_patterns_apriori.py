@@ -25,7 +25,7 @@ for index, row in df_clause.iterrows():
     df_clause.iloc[index]['Extended']=ext_cl
 
 ##Working with clauses with feature names
-dataset=df_clause[['Extended']].copy()
+dataset=df_clause[['Extended']].values()
 
 print(dataset)
 ##one hot encoding
