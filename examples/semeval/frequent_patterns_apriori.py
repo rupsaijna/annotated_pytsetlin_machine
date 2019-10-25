@@ -30,7 +30,8 @@ dataset=df_clause[['Extended']].copy()
 print(dataset)
 ##one hot encoding
 te = TransactionEncoder()
-te_ary = te.ft(dataset).transform(dataset) ##one_hot encoding
+te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
+print(te.columns_)
 df = pd.DataFrame(te_ary, columns=te.columns_)
 
 print (df)
