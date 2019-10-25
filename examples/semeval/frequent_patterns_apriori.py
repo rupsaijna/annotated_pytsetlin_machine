@@ -9,6 +9,8 @@ input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 df_clause['Extended']=''
 
+
+##replacing feature_numbers with features
 for index, row in df_clause.iterrows():
     cl=row['Clause']
     cl_list=cl.split(';')[:-1]
@@ -19,22 +21,32 @@ for index, row in df_clause.iterrows():
         else:
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
     df_clause.iloc[index]['Extended']=ext_cl
-    break
-    
-print(df_clause)
-jhfrgk
 
+##Working with clauses with feature names
+dataset=df_clause[['Extended']].copy()
+
+##one hot encoding
 te = TransactionEncoder()
-te_ary = te.fit(dataset).transform(dataset)
+te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
 df = pd.DataFrame(te_ary, columns=te.columns_)
-frequent_itemsets=apriori(df, min_support=0.6, use_colnames=True)
+
+'''
+##sparse encoding
+oht_ary = te.fit(dataset).transform(dataset, sparse=True)
+sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
+sparse_df
+'''
+frequent_itemsets=apriori(df, min_support=0.8, use_colnames=True)
 print(frequent_itemsets)
 
 fi=frequent_itemsets[0]
-print('Frequent Itemset',fi)
+print('1st Frequent Itemset',fi)
 
-
-
-'''frequent_itemsets = apriori(df, min_support=0.6, use_colnames=True)
+'''
+##adding length filter
+frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
 frequent_itemsets['length'] = frequent_itemsets['itemsets'].apply(lambda x: len(x))
-print(frequent_itemsets)'''
+print(frequent_itemsets)
+fi=frequent_itemsets[ (frequent_itemsets['length'] == 2) & (frequent_itemsets['support'] >= 0.8) ]
+print(fi)
+'''
