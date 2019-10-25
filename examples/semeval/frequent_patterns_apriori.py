@@ -10,15 +10,8 @@ dataset=[]
 for ind, row in data.iterrows():
     cl=row['Clause'].split(';')[:-1]
     cl=[c.strip() for c in cl]
-    print (cl)
     dataset.append(cl)
 
-print(dataset)
-jhsdgfj
-dataset=[d.split(';') for d in dataset]
-
-print(dataset)
-sgf
 
 '''
 df_clause= data[['Clause']].copy()
