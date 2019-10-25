@@ -6,9 +6,11 @@ input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 data=data.head()
 df_clause= data[['Clause']].copy()
+dataset= data[['Clause']].values
 
 
-input_features='feature_details20191023-120835.txt'
+
+'''input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 df_clause['Extended']=''
 
@@ -25,7 +27,7 @@ for index, row in df_clause.iterrows():
     df_clause.iloc[index]['Extended']=ext_cl
 
 ##Working with clauses with feature names
-dataset=df_clause[['Extended']].values
+dataset=df_clause[['Extended']].values'''
 
 print(dataset)
 ##one hot encoding
