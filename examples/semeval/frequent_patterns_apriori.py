@@ -34,6 +34,7 @@ print(dataset)
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
 print(te.columns_)
+df
 df = pd.DataFrame(te_ary, columns=te.columns_)
 
 print (df)
