@@ -8,7 +8,10 @@ data=data.head()
 df_clause= data[['Clause']].copy()
 dataset= data[['Clause']].values
 
+dataset=[d.split(';') for d in dataset]
 
+print(dataset)
+sgf
 
 '''input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
