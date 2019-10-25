@@ -36,17 +36,16 @@ dataset=df_clause[['Extended']].values'''
 
 ##one hot encoding, sparse
 te = TransactionEncoder()
-te_ary = te.fit(dataset).transform(dataset, sparse=True) ##one_hot encoding
-sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
-#df = pd.DataFrame(te_ary, columns=te.columns_)
+'''te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
+df = pd.DataFrame(te_ary, columns=te.columns_)'''
 
-print (df)
-dsjkfh
-'''
+
 ##sparse encoding
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
 sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
-sparse_df
+
+print (sparse_df)
+dsjkfh
 '''
 frequent_itemsets=apriori(df, min_support=0.2, use_colnames=True)
 print(frequent_itemsets)
