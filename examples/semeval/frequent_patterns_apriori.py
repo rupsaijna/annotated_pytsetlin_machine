@@ -38,7 +38,7 @@ oht_ary = te.fit(dataset).transform(dataset, sparse=True)
 sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
 sparse_df
 '''
-frequent_itemsets=apriori(df, min_support=0.8, use_colnames=True)
+frequent_itemsets=apriori(df, min_support=0.2, use_colnames=True)
 print(frequent_itemsets)
 
 fi=frequent_itemsets[0]
