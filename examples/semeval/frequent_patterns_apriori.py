@@ -5,17 +5,23 @@ from mlxtend.frequent_patterns import apriori
 input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 data=data.head()
-df_clause= data[['Clause']].copy()
-dataset= list(data[['Clause']].values)
+
+dataset=[]
+for ind, row for data.iterrows():
+    cl=row['Clause'].split(';')
+    print (cl)
+    dataset.append(cl)
 
 print(dataset)
-
+jhsdgfj
 dataset=[d.split(';') for d in dataset]
 
 print(dataset)
 sgf
 
-'''input_features='feature_details20191023-120835.txt'
+'''
+df_clause= data[['Clause']].copy()
+input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 df_clause['Extended']=''
 
