@@ -9,8 +9,6 @@ input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 #df_clause['Extended']=[]
 
-print(df_features.columns)
-
 for index, row in df_clause.iterrows():
     cl=row['Clause']
     cl_list=cl.split(';')[:-1]
@@ -21,6 +19,7 @@ for index, row in df_clause.iterrows():
         else:
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#',''))]))
     df_clause.iloc[index]['Extended']=ext_cl
+    break
     
 print(df_clause)
 jhfrgk
