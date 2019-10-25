@@ -37,7 +37,7 @@ dataset=df_clause[['Extended']].values'''
 ##one hot encoding
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
-print('cols',te.columns_)
+print('cols',te.columns_[0:5])
 dfasd
 df = pd.DataFrame(te_ary, columns=te.columns_)
 
