@@ -52,7 +52,7 @@ frequent_itemsets['Word_clause']=''
 input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 
-for index, row in frequent_itemsets.iterrows():
+for idx, row in frequent_itemsets.iterrows():
     fi=row['itemsets']
     ext_cl=[]
     for c in fi:
@@ -60,7 +60,7 @@ for index, row in frequent_itemsets.iterrows():
             ext_cl.append(str(df_features.loc[df_features['fnum'] == int(c),'feature'].item()))
         else:
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
-    frequent_itemsets.iloc[index]['Word_clause']=ext_cl
+    frequent_itemsets.iloc[idx]['Word_clause']=ext_cl
         
 print(frequent_itemsets)
 '''
