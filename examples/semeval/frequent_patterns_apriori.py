@@ -2,11 +2,11 @@ import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 
 input_clause='clause_details20191023-074616.txt'
-data=pd.read_csv(input, sep='\t', na_filter = False)
+data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 df_clause= data[['Clause']].copy()
 
 input_features='clause_details20191023-074616.txt'
-df_features=pd.read_csv(input, sep='\t', na_filter = False)
+df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 df_clause['Extended']=[]
 
 for index, row in df_clause:
