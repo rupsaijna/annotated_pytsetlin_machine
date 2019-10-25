@@ -49,9 +49,19 @@ sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=
 frequent_itemsets=apriori(sparse_df, min_support=0.2, use_colnames=True)
 print(frequent_itemsets)
 
-fi=frequent_itemsets[0]
-print('1st Frequent Itemset',fi)
+frequent_itemsets['Word_clause']=''
 
+for index, row in frequent_itemsets:
+    fi=row[itemsets]
+    ext_cl=[]
+    for c in fi:
+        if '#' not in c:
+            ext_cl.append(str(df_features.loc[df_features['fnum'] == int(c),'feature'].item()))
+        else:
+             ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
+    frequent_itemsets.iloc[index]['Word_clause']=ext_cl
+        
+print(frequent_itemsets)
 '''
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
