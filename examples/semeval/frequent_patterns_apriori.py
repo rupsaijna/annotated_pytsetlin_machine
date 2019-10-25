@@ -4,7 +4,6 @@ from mlxtend.frequent_patterns import apriori
 
 input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
-data=data.head(50)
 
 dataset=[]
 for ind, row in data.iterrows():
@@ -45,7 +44,6 @@ sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=
 #print (sparse_df)
 
 frequent_itemsets=apriori(sparse_df, min_support=0.2, use_colnames=True)
-print(frequent_itemsets)
 
 frequent_itemsets['Word_clause']=''
 
