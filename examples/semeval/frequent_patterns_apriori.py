@@ -6,7 +6,9 @@ input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 data=data.head()
 df_clause= data[['Clause']].copy()
-dataset= data[['Clause']].values
+dataset= list(data[['Clause']].values)
+
+print(dataset)
 
 dataset=[d.split(';') for d in dataset]
 
