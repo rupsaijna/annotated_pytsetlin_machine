@@ -7,7 +7,7 @@ df_clause= data[['Clause']].copy()
 
 input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
-#df_clause['Extended']=[]
+df_clause['Extended']=''
 
 for index, row in df_clause.iterrows():
     cl=row['Clause']
