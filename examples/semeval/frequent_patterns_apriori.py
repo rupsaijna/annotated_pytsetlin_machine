@@ -53,7 +53,7 @@ print(frequent_itemsets)
 fi=frequent_itemsets[0]
 print('1st Frequent Itemset',fi)
 
-'''
+
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
 frequent_itemsets['length'] = frequent_itemsets['itemsets'].apply(lambda x: len(x))
