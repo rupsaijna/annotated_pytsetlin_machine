@@ -60,7 +60,7 @@ for idx, row in frequent_itemsets.iterrows():
             ext_cl.append(str(df_features.loc[df_features['fnum'] == int(c),'feature'].item()))
         else:
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
-    frequent_itemsets.iloc[idx,'Word_clause']=ext_cl
+    frequent_itemsets.at[idx,'Word_clause']=ext_cl
         
 print(frequent_itemsets)
 '''
