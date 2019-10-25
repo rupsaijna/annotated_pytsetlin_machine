@@ -27,9 +27,10 @@ for index, row in df_clause.iterrows():
 ##Working with clauses with feature names
 dataset=df_clause[['Extended']].copy()
 
+print(dataset)
 ##one hot encoding
 te = TransactionEncoder()
-te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
+te_ary = te.ft(dataset).transform(dataset) ##one_hot encoding
 df = pd.DataFrame(te_ary, columns=te.columns_)
 
 print (df)
