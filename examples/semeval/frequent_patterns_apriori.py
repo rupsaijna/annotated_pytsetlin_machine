@@ -7,7 +7,7 @@ data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 data=data.head()
 
 dataset=[]
-for ind, row for data.iterrows():
+for ind, row in data.iterrows():
     cl=row['Clause'].split(';')
     print (cl)
     dataset.append(cl)
