@@ -9,7 +9,7 @@ input_features='clause_details20191023-074616.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 #df_clause['Extended']=[]
 
-for index, row in df_clause:
+for index, row in df_clause.iterrows():
     cl=row['Clause']
     cl_list=cl.split(';')
     ext_cl=[]
