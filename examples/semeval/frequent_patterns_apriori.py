@@ -15,8 +15,6 @@ for ind, row in data.iterrows():
 
 '''
 df_clause= data[['Clause']].copy()
-input_features='feature_details20191023-120835.txt'
-df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 df_clause['Extended']=''
 
 ##replacing feature_numbers with features
@@ -50,6 +48,9 @@ frequent_itemsets=apriori(sparse_df, min_support=0.2, use_colnames=True)
 print(frequent_itemsets)
 
 frequent_itemsets['Word_clause']=''
+
+input_features='feature_details20191023-120835.txt'
+df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 
 for index, row in frequent_itemsets.iterrows():
     fi=row['itemsets']
