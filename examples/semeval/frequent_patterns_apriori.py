@@ -13,7 +13,7 @@ print(df_features.columns)
 
 for index, row in df_clause.iterrows():
     cl=row['Clause']
-    cl_list=cl.split(';')
+    cl_list=cl.split(';')[:-1]
     ext_cl=[]
     for c in cl_list:
         if '#' not in c:
