@@ -17,9 +17,9 @@ for index, row in df_clause.iterrows():
     ext_cl=[]
     for c in cl_list:
         if '#' not in c:
-            ext_cl.append(df_features.loc[df_features['fnum'] == int(c)])
+            ext_cl.append(str(df_features.loc[df_features['fnum'] == int(c)]))
         else:
-             ext_cl.append('#'+df_features.loc[df_features['fnum'] == int(c.replace('#',''))])
+             ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#',''))]))
     df_clause.iloc[index]['Extended']=ext_cl
     
 print(df_clause)
