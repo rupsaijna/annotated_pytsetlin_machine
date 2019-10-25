@@ -37,7 +37,8 @@ dataset=df_clause[['Extended']].values'''
 ##one hot encoding, sparse
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset, sparse=True) ##one_hot encoding
-df = pd.DataFrame(te_ary, columns=te.columns_)
+sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
+#df = pd.DataFrame(te_ary, columns=te.columns_)
 
 print (df)
 dsjkfh
