@@ -51,7 +51,7 @@ print(frequent_itemsets)
 
 frequent_itemsets['Word_clause']=''
 
-for index, row in frequent_itemsets:
+for index, row in frequent_itemsets.iterrows():
     fi=row[itemsets]
     ext_cl=[]
     for c in fi:
