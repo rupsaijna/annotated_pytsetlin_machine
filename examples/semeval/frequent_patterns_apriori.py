@@ -45,10 +45,9 @@ sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=
 #print (sparse_df)
 
 frequent_itemsets=apriori(sparse_df, min_support=0.2, use_colnames=True)
-freq=frequent_itemsets.copy()
 print(frequent_itemsets)
 
-freq['Word_clause']=''
+frequent_itemsets['Word_clause']=''
 
 input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
@@ -61,9 +60,9 @@ for idx, row in frequent_itemsets.iterrows():
             ext_cl.append(str(df_features.loc[df_features['fnum'] == int(c),'feature'].item()))
         else:
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
-    freq.iloc[idx]['Word_clause']=ext_cl
+    frequent_itemsets.iloc[idx,'Word_clause']=ext_cl
         
-print(freq)
+print(frequent_itemsets)
 '''
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
