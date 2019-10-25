@@ -4,7 +4,7 @@ from mlxtend.frequent_patterns import apriori
 
 input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
-data=data.head(50)
+data=data.head()
 df_clause= data[['Clause']].copy()
 
 
@@ -32,6 +32,8 @@ te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
 df = pd.DataFrame(te_ary, columns=te.columns_)
 
+print (df)
+dsjkfh
 '''
 ##sparse encoding
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
