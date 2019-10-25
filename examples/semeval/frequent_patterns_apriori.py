@@ -3,7 +3,10 @@ from mlxtend.preprocessing import TransactionEncoder
 
 input_clause='clause_details20191023-120835.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
+data=data.head()
 df_clause= data[['Clause']].copy()
+print(df_clause)
+dshjf
 
 input_features='feature_details20191023-120835.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
