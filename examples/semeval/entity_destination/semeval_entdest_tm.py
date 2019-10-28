@@ -72,7 +72,7 @@ CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
 fo=open(meta_file,'w')
-fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.\n')
+fo.write('SEMEVAL 2010 task 8. Sentences classified as Entity-Destination/Non-Entity-Destination.\n')
 fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
 fo.write('semeval_causal_tm4.py\n')
 fo.write('\nNum Clauses:'+str(NUM_CLAUSES))
@@ -140,7 +140,6 @@ for r in range(RUNS):
 				if action_negated==1:
 					this_clause+=' #'+str(f)+';'
 			this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
-			print('cl:', this_clause)
 			if this_clause in clause_dict.keys():
 				clause_dict[this_clause]+=1
 			else:
