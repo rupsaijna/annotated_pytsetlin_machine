@@ -47,7 +47,7 @@ sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=
 
 frequent_itemsets=apriori(df, min_support=0.2, use_colnames=True)
 
-frequent_itemsets = frequent_itemsets.sort(['support'], ascending=False)
+frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 
 frequent_itemsets['Word_clause']=''
 
