@@ -35,17 +35,17 @@ dataset=df_clause[['Extended']].values'''
 
 ##one hot encoding, sparse
 te = TransactionEncoder()
-'''te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
-df = pd.DataFrame(te_ary, columns=te.columns_)'''
+te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
+df = pd.DataFrame(te_ary, columns=te.columns_)
 
 
-##sparse encoding
+'''##sparse encoding
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
 sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
-
 #print (sparse_df)
+'''
 
-frequent_itemsets=apriori(sparse_df, min_support=0.02, use_colnames=True)
+frequent_itemsets=apriori(df, min_support=0.2, use_colnames=True)
 
 frequent_itemsets['Word_clause']=''
 
