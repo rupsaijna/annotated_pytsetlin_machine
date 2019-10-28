@@ -14,7 +14,7 @@ clause_file='clause_details'+timestr+'.txt'
 feature_file='feature_details'+timestr+'.txt'
 meta_file='meta_details'+timestr+'.txt'
 
-RUNS=300
+RUNS=1
 
 inp='training_entity_destination.csv'
 
@@ -66,10 +66,10 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=40
+NUM_CLAUSES=20
 T=15
 s=3.9
-TRAIN_EPOCHS=40
+TRAIN_EPOCHS=10
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
