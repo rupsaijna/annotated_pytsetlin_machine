@@ -64,7 +64,9 @@ for idx, row in frequent_itemsets.iterrows():
              ext_cl.append('#'+str(df_features.loc[df_features['fnum'] == int(c.replace('#','')),'feature'].item()))
     frequent_itemsets.at[idx,'Word_clause']=ext_cl
         
-print(frequent_itemsets)
+#print(frequent_itemsets)
+
+frequent_itemsets.to_csv('frequent_itemsets_details20191023-12083.csv', sep='\t')
 '''
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
