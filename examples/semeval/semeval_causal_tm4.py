@@ -14,7 +14,7 @@ clause_file='clause_details'+timestr+'.txt'
 feature_file='feature_details'+timestr+'.txt'
 meta_file='meta_details'+timestr+'.txt'
 
-RUNS=100
+RUNS=300
 
 inp='training.csv'
 
@@ -66,16 +66,17 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=20
+NUM_CLAUSES=40
 T=15
 s=3.9
-TRAIN_EPOCHS=10
+TRAIN_EPOCHS=40
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
 fo=open(meta_file,'w')
 fo.write('SEMEVAL 2010 task 8. Sentences classified as Causal/Non-Causal.\n')
 fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
+fo.write('semeval_causal_tm4.py\n')
 fo.write('\nNum Clauses:'+str(NUM_CLAUSES))
 fo.write('\nNum Classes: '+ str(len(CLASSES)))
 fo.write('\nT: '+str(T))
