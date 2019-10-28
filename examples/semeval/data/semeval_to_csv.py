@@ -3,7 +3,7 @@ import re
 regex = r"<\/*e\d{1}>"
 subst = ""
 
-inp_file='training_full.txt'
+inp_file='../training_full.txt'
 out_file='training_entity_destination.csv'
 
 fo=open(out_file,'w')
