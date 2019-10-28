@@ -1,4 +1,4 @@
-#identify if a sentence is causal or not (presence of causal connective)
+#identify if a sentence contains entity-destination relationship
 import sys
 sys.path.append('../../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
