@@ -10,13 +10,13 @@ import re
 import string
 import time
 timestr = time.strftime("%Y%m%d-%H%M%S")
-clause_file='clause_details'+timestr+'.txt'
-feature_file='feature_details'+timestr+'.txt'
-meta_file='meta_details'+timestr+'.txt'
+clause_file='entdest_clause_details'+timestr+'.txt'
+feature_file='entdest_feature_details'+timestr+'.txt'
+meta_file='entdest_meta_details'+timestr+'.txt'
 
 RUNS=1
 
-inp='training_entity_destination.csv'
+inp='../data/training_entity_destination.csv'
 
 sents=[]
 labels=[]
