@@ -2,7 +2,9 @@ import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 
-input_clause='clause_details20191023-120835.txt'
+file_date='20191023-120835'
+
+input_clause='clause_details'+file_date+'.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
 
 #data=data.head(500)
@@ -51,7 +53,7 @@ frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 
 frequent_itemsets['Word_clause']=''
 
-input_features='feature_details20191023-120835.txt'
+input_features='feature_details'+file_date+'.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 
 for idx, row in frequent_itemsets.iterrows():
@@ -66,7 +68,7 @@ for idx, row in frequent_itemsets.iterrows():
         
 #print(frequent_itemsets)
 
-frequent_itemsets.to_csv('frequent_itemsets_details20191023-12083.csv', sep='\t')
+frequent_itemsets.to_csv('frequent_itemsets_details'+file_date+'.csv', sep='\t')
 '''
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
