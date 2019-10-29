@@ -68,7 +68,15 @@ for idx, row in frequent_itemsets.iterrows():
         
 #print(frequent_itemsets)
 
-frequent_itemsets.to_csv('frequent_itemsets_details'+file_date+'.csv', sep='\t')
+with open('meta'+file_date+'.txt) as f:
+    lines = f.readlines()
+    lines = [l for l in lines if "ROW" in l]
+    with open('frequent_itemsets_details'+file_date+'.csv', 'w') as f1:
+        f1.writelines(lines)
+f1.close()
+          
+with open('frequent_itemsets_details'+file_date+'.csv', 'a') as f:
+    frequent_itemsets.to_csv(f, sep='\t')
 '''
 ##adding length filter
 frequent_itemsets = apriori(df, min_support=0.8, use_colnames=True)
