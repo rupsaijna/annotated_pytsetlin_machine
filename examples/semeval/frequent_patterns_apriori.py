@@ -72,7 +72,9 @@ with open('meta_details'+file_date+'.txt') as f:
     lines = f.readlines()
     with open('frequent_itemsets_details'+file_date+'.csv', 'w') as f1:
         f1.writelines(lines)
-
+f1= open('frequent_itemsets_details'+file_date+'.csv', 'a+')
+f1.write('\n\n')
+f1.close()
           
 with open('frequent_itemsets_details'+file_date+'.csv', 'a') as f:
     frequent_itemsets.to_csv(f, sep='\t')
