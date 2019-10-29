@@ -68,7 +68,7 @@ for idx, row in frequent_itemsets.iterrows():
         
 #print(frequent_itemsets)
 
-with open('meta'+file_date+'.txt') as f:
+with open('meta_details'+file_date+'.txt') as f:
     lines = f.readlines()
     with open('frequent_itemsets_details'+file_date+'.csv', 'w') as f1:
         f1.writelines(lines)
