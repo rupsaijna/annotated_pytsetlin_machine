@@ -1,5 +1,5 @@
-from sklearn.cross_validation import train_test_split
-#from sklearn.model_selection import train_test_split #py3
+#from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split #py3
 from sklearn.feature_extraction import stop_words
 import numpy as np
 from nltk.util import ngrams,everygrams
