@@ -4,7 +4,7 @@ regex = r"<\/*e\d{1}>"
 subst = ""
 
 inp_file='../training_full.txt'
-out_file='training_component_whole.csv'
+out_file='training_member_collection.csv'
 
 fo=open(out_file,'w')
 
@@ -17,7 +17,7 @@ for ln in open(inp_file,'r').readlines():
         sent=sent[1].strip()
         sent=re.sub(regex, subst, sent, 0, re.MULTILINE)
     if line_num%4==1:
-        if 'Component-Whole' in ln:
+        if 'Member-Collection' in ln:
             label='1'
         else:
             label='0'
