@@ -33,7 +33,7 @@ maxlen=0
 lcnt=0
 
 for line in open(inp).readlines():
-  if lcnt>0:
+	if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
 		line[0]=line[0].translate(None, string.punctuation)
