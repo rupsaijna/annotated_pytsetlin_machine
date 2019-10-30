@@ -75,7 +75,7 @@ for r in range(RUNS):
 	clf.fit(x_train, y_train)
 	result[r] = 100*(clf.predict(x_test) == y_test).mean()
 
-fo=open('svm_entdest','w')
+fo=open('svm_cause_effect','w')
 fo.write('SEMEVAL 2010 task 8. Sentences classified as Entity-Destination/Non-Entity-Destination.\n')
 fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
 fo.write('baseline_svm.py\n')
