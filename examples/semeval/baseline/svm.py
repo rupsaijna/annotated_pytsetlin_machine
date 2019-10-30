@@ -10,7 +10,7 @@ from sklearn import svm
 
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
-inp='../data/training_entity_destination.csv'
+inp='../data/training_cause_effect.csv'
 
 sents=[]
 labels=[]
