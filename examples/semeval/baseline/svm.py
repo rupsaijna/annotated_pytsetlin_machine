@@ -66,13 +66,13 @@ clf = svm.SVC(gamma='scale', decision_function_shape='ovo')
 
 for r in range(RUNS):
 	print('Run:',r)
-  	x_train, x_test, y_train, y_test = train_test_split(data, labels)
+	x_train, x_test, y_train, y_test = train_test_split(data, labels)
 	x_train_ids=x_train[:,-1]
 	x_test_ids=x_test[:,-1]
 	x_train=x_train[:,:-1]
 	x_test=x_test[:,:-1]
-  	clf.fit(x_train, y_train)
-  	result[r] = 100*(clf.predict(x_test) == y_test).mean()
+	clf.fit(x_train, y_train)
+	result[r] = 100*(clf.predict(x_test) == y_test).mean()
 
 fo=open('svm_entdest','w')
 fo.write('SEMEVAL 2010 task 8. Sentences classified as Entity-Destination/Non-Entity-Destination.\n')
