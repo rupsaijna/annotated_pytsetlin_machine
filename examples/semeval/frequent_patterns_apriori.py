@@ -2,7 +2,7 @@ import pandas as pd
 from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 
-fp='data/instrumentagency/instrumentagency_'
+fp='data/productproducer/productproducer_'
 file_date='20191029-113104'
 
 input_clause=fp+'clause_details'+file_date+'.txt'
