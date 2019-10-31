@@ -3,7 +3,7 @@ from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 
 fp='data/productproducer/productproducer_'
-file_date='20191029-113104'
+file_date='20191029-152432'
 
 input_clause=fp+'clause_details'+file_date+'.txt'
 data=pd.read_csv(input_clause, sep='\t', na_filter = False)
