@@ -55,7 +55,7 @@ for line in open(inp).readlines():
 		words.insert(0,lcnt)
 		sents.append(words)
 		labels.append(int(line[1]))
-  	lcnt+=1
+	lcnt+=1
 
   
 word_set=set(all_words)
