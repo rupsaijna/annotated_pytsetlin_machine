@@ -10,10 +10,10 @@ from sklearn import svm
 
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
-inp='../data/training_instrument_agency.csv'
+inp='../data/training_product_producer.csv'
 
-fo=open('svm_instrument_agency.txt','w')
-fo.write('SEMEVAL 2010 task 8. Sentences classified asInstrument-Agency/Non-Instrument-Agency.\n')
+fo=open('svm_product_producer.txt','w')
+fo.write('SEMEVAL 2010 task 8. Sentences classified as Product-Producer/Non-Product-Producer.\n')
 
 sents=[]
 labels=[]
