@@ -12,7 +12,7 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 
 inp='../data/training_instrument_agency.csv'
 
-fo=open('svm_instrument_agency','w')
+fo=open('svm_instrument_agency.txt','w')
 fo.write('SEMEVAL 2010 task 8. Sentences classified asInstrument-Agency/Non-Instrument-Agency.\n')
 
 sents=[]
