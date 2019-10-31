@@ -44,7 +44,7 @@ for line in open(inp).readlines():
 	if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
-		line[0]=line[0].translate(None, string.punctuation)
+		line[0]=line[0].translate(str.maketrans('','',string.punctuation)) #.translate(None, string.punctuation) #py2
 		'''for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
