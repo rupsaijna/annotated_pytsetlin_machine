@@ -17,7 +17,7 @@ meta_file='contentcontainer_meta_details'+timestr+'.txt'
 
 RUNS=5
 
-inp='../data/training_product_producer.csv'
+inp='../data/training_content_container.csv'
 
 sents=[]
 labels=[]
