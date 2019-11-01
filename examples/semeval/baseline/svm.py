@@ -6,7 +6,7 @@ from nltk.util import ngrams,everygrams
 import re
 import string
 import time
-from sklearn.naive_bayes import svm #change
+from sklearn import svm #change
 
 data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
 timestr = time.strftime("%Y%m%d-%H%M%S")
