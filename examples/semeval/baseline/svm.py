@@ -10,10 +10,10 @@ from sklearn import svm
 
 timestr = time.strftime("%Y%m%d-%H%M%S")
 
-inp='../data/training_content_container.csv'
+inp='../data/training_message_topic.csv'
 
-fo=open('svm_content_container.txt','w')
-fo.write('SEMEVAL 2010 task 8. Sentences classified as content_container/Non-content_container.\n')
+fo=open('svm_message_topic.txt','w')
+fo.write('SEMEVAL 2010 task 8. Sentences classified as message_topic/Non-message_topicr.\n')
 
 sents=[]
 labels=[]
