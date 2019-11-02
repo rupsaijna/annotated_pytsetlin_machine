@@ -66,7 +66,7 @@ for data_names in data_files:
             sents.append(words)
             labels.append(int(line[1]))
         lcnt+=1
-    
+    print(maxlen)
     for s in range(len(sents)):
             if len(sents[s])<maxlen:
                 for i in range(maxlen-len(sents[s])):
