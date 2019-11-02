@@ -71,8 +71,11 @@ for data_names in data_files:
             if len(sents[s])<maxlen:
                 for i in range(maxlen-len(sents[s])):
                         sents[s].append('<PAD>')
-
-    word_set=set(all_words+['<PAD>'])
+    all_words+=['<PAD>']
+    
+    print(all_words.index('because'))
+    print(all_words.index('<PAD>'))
+    word_set=set(all_words)
     print(word_set)
     i=0
     word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
