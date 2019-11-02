@@ -71,9 +71,9 @@ for data_names in data_files:
             if len(sents[s])<maxlen:
                 for i in range(maxlen-len(sents[s])):
                         sents[s].append('<PAD>')
-                print(sents[s])
 
     word_set=set(all_words+['<PAD>'])
+    print(word_set)
     i=0
     word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
