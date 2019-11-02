@@ -70,7 +70,7 @@ for data_names in data_files:
 
     word_set=set(all_words)
     i=0
-    word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
+    word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = 1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
     data=encode_sentences(sents)
     print(reverse_word_map)
