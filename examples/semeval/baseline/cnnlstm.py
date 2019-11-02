@@ -6,7 +6,9 @@ from nltk.util import ngrams,everygrams
 import re
 import string
 import time
-from sklearn import svm #change
+from keras.models import Sequential
+from keras.layers import Dense, Flatten, LSTM, Conv1D, MaxPooling1D, Dropout, Activation
+from keras.layers.embeddings import Embedding #change
 
 data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
 timestr = time.strftime("%Y%m%d-%H%M%S")
@@ -34,13 +36,13 @@ def create_conv_model():
     model_conv.add(MaxPooling1D(pool_size=4))
     model_conv.add(LSTM(100))
     model_conv.add(Dense(1, activation='sigmoid'))
-    model_conv.compile(loss='binary_crossentropy', optimizer='adam',    metrics=['accuracy'])
+    model_conv.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model_conv
 
 for data_names in data_files:
     inp='../data/training_'+data_names+'.csv'
 
-    fo=open('svm_'+data_names+'.txt','w') #change
+    fo=open('cl_'+data_names+'.txt','w') #change
     fo.write('SEMEVAL 2010 task 8. Sentences classified as '+data_names+'/Non-'+data_names+'.\n')
 
     sents=[]
