@@ -73,10 +73,8 @@ for data_names in data_files:
                         sents[s].append('<PAD>')
     all_words+=['<PAD>']
     
-    print(all_words.index('because'))
-    print(all_words.index('<PAD>'))
     word_set=set(all_words)
-    print(word_set)
+    print(list(word_set).index('<PAD>'))
     i=0
     word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
