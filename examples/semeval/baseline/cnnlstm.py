@@ -49,7 +49,7 @@ for data_names in data_files:
     labels=[]
     all_words=[]   
 
-    maxlen=0
+    maxlen=85
     lcnt=0
 
     for line in open(inp).readlines():
@@ -58,21 +58,16 @@ for data_names in data_files:
             line[0]=line[0].lower()
             line[0]=line[0].translate(str.maketrans('','',string.punctuation))
             words=line[0].split(' ')
-            if len(words)>maxlen:
-                maxlen=len(words)
+            if len(words)<maxlen:
+                for ms in range(maxlen-len(words)):
+                        words.append('<PAD>')
             bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
             all_words+=words+bl
             words.insert(0,lcnt)
             sents.append(words)
             labels.append(int(line[1]))
         lcnt+=1
-    print(maxlen)
-    for s in range(len(sents)):
-            if len(sents[s])<maxlen:
-                for i in range(maxlen-len(sents[s])):
-                        sents[s].append('<PAD>')
-    all_words+=['<PAD>']
-    
+                    
     word_set=set(all_words)
     print(list(word_set).index('<PAD>'))
     i=0
