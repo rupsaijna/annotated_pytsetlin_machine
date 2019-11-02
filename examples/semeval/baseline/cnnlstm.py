@@ -69,7 +69,9 @@ for data_names in data_files:
     
     for s in range(len(sents)):
             if len(sents[s])<maxlen:
-                sents[s].append('<PAD>')
+                for i in range(maxlen-len(sents[s]))
+                        sents[s].append('<PAD>')
+                print(sents[s])
 
     word_set=set(all_words+['<PAD>'])
     i=0
