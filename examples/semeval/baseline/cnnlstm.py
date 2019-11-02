@@ -58,6 +58,8 @@ for data_names in data_files:
             line[0]=line[0].lower()
             line[0]=line[0].translate(str.maketrans('','',string.punctuation))
             words=line[0].split(' ')
+            if len(words)>maxlen:
+                maxlen=len(words)
             bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
             all_words+=words+bl
             words.insert(0,lcnt)
@@ -71,6 +73,8 @@ for data_names in data_files:
     word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
     data=encode_sentences(sents)
+    print(reverse_word_map)
+    print(data[0])
 
     CLASSES=list(set(labels))
     NUM_FEATURES=len(data[0])-1
