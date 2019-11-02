@@ -69,7 +69,7 @@ for data_names in data_files:
     
     for s in range(len(sents)):
             if len(sents[s])<maxlen:
-                for i in range(maxlen-len(sents[s]))
+                for i in range(maxlen-len(sents[s])):
                         sents[s].append('<PAD>')
                 print(sents[s])
 
