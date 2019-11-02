@@ -28,9 +28,9 @@ def encode_sentences(txt):
             tnum+=1
         return feature_set
         
-def create_conv_model():
+def create_conv_model(inplen):
     model_conv = Sequential()
-    model_conv.add(Embedding(len(word_set)+1, 100, input_length=50))
+    model_conv.add(Embedding(len(word_set)+1, 100, input_length=inplen))
     model_conv.add(Dropout(0.2))
     model_conv.add(Conv1D(64, 5, activation='relu'))
     model_conv.add(MaxPooling1D(pool_size=4))
@@ -66,21 +66,22 @@ for data_names in data_files:
             sents.append(words)
             labels.append(int(line[1]))
         lcnt+=1
+    
+    for s in range(len(sents)):
+            if len(sents[s])<maxlen:
+                sents[s].append('<PAD>')
 
-
-    word_set=set(all_words)
+    word_set=set(all_words+['<PAD>'])
     i=0
-    word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = 1))
+    word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
     data=encode_sentences(sents)
-    print(reverse_word_map)
-    print(data[0])
 
     CLASSES=list(set(labels))
     NUM_FEATURES=len(data[0])-1
 
     result=np.zeros(RUNS)
-    clf = create_conv_model() #change
+    clf = create_conv_model(maxlen) #change
     
     for r in range(RUNS):
         print('Run:',r)
