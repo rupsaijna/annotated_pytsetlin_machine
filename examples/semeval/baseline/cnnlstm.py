@@ -69,7 +69,6 @@ for data_names in data_files:
         lcnt+=1
                     
     word_set=set(all_words)
-    print(list(word_set).index('<PAD>'))
     i=0
     word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
     reverse_word_map = dict(map(reversed, word_idx.items()))
@@ -79,7 +78,7 @@ for data_names in data_files:
     NUM_FEATURES=len(data[0])-1
 
     result=np.zeros(RUNS)
-    clf = create_conv_model(maxlen) #change
+    clf = create_conv_model(len(word_set)) #change
     
     for r in range(RUNS):
         print('Run:',r)
