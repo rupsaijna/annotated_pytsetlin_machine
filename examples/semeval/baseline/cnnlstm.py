@@ -10,11 +10,11 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten, LSTM, Conv1D, MaxPooling1D, Dropout, Activation
 from keras.layers.embeddings import Embedding #change
 
-data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
+#data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
 timestr = time.strftime("%Y%m%d-%H%M%S")
 stop=stop_words.ENGLISH_STOP_WORDS
 RUNS=1
-
+data_files=['entity_origin']
 
 def encode_sentences(txt):
         feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
@@ -88,6 +88,9 @@ for data_names in data_files:
         x_train=x_train[:,:-1]
         x_test=x_test[:,:-1]
         clf.fit(x_train, np.array(y_train), validation_split=0.4, epochs = 3)
+        print(clf.predict(x_test))
+        print(clf.predict(x_test) == y_test)
+        print(100*(clf.predict(x_test) == y_test).mean())
         result[r] = 100*(clf.predict(x_test) == y_test).mean()
 
     fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
