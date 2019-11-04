@@ -1,6 +1,6 @@
 import pandas as pd
 
-df=pd.read_csv('training.1600000.processed.noemoticon.csv', header=['polarity', 'id','date','query','user','tweet'])
+df=pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, names=['polarity', 'id','date','query','user','tweet'])
 
 allow_polarity=['0','2'] #change
 fout='tweets_neutralnegative.csv'
