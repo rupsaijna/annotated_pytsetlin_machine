@@ -10,11 +10,11 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten, LSTM, Conv1D, MaxPooling1D, Dropout, Activation
 from keras.layers.embeddings import Embedding #change
 
-#data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
+data_files=['entity_origin','cause_effect','entity_destination','member_collection','component_whole','message_topic','content_container','instrument_agency','product_producer', 'all_classes']
 timestr = time.strftime("%Y%m%d-%H%M%S")
 stop=stop_words.ENGLISH_STOP_WORDS
 RUNS=1
-data_files=['cause_effect']
+data_files=data_files[1:]
 
 def encode_sentences(txt):
         feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
@@ -42,8 +42,8 @@ def create_conv_model(inplen):
 for data_names in data_files:
     inp='../data/training_'+data_names+'.csv'
 
-    fo=open('cl_'+data_names+'.txt','w') #change
-    fo.write('SEMEVAL 2010 task 8. Sentences classified as '+data_names+'/Non-'+data_names+'.\n')
+    #fo=open('cl_'+data_names+'.txt','w') #change
+    #fo.write('SEMEVAL 2010 task 8. Sentences classified as '+data_names+'/Non-'+data_names+'.\n')
 
     sents=[]
     labels=[]
@@ -81,7 +81,7 @@ for data_names in data_files:
     clf = create_conv_model(len(word_set)) #change
     
     for r in range(RUNS):
-        print('Run:',r)
+        print('\nRun:',r,':',data_names)
         x_train, x_test, y_train, y_test = train_test_split(data, labels)
         x_train_ids=x_train[:,-1]
         x_test_ids=x_test[:,-1]
@@ -94,9 +94,9 @@ for data_names in data_files:
         result[r] = 100*(clf.predict(x_test) == y_test).mean()
         r+=1
 
-    fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
+    '''fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
     fo.write('baseline_cnnlstm.py\n') #change
     fo.write('\nTotal Runs: '+str(RUNS))
     fo.write('\nBest result:'+str(result.max()))
     fo.write('\nMean result:'+str(result.mean()))
-    fo.close()
+    fo.close()'''
