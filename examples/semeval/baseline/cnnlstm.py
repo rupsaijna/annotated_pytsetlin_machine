@@ -14,7 +14,7 @@ from keras.layers.embeddings import Embedding #change
 timestr = time.strftime("%Y%m%d-%H%M%S")
 stop=stop_words.ENGLISH_STOP_WORDS
 RUNS=1
-data_files=['entity_origin']
+data_files=['cause_effect']
 
 def encode_sentences(txt):
         feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
@@ -87,7 +87,7 @@ for data_names in data_files:
         x_test_ids=x_test[:,-1]
         x_train=x_train[:,:-1]
         x_test=x_test[:,:-1]
-        clf.fit(x_train, np.array(y_train), validation_split=0.4, epochs = 3)
+        clf.fit(x_train, np.array(y_train), validation_split=0.1, epochs =1)
         print(clf.predict(x_test))
         print(clf.predict(x_test) == y_test)
         print(100*(clf.predict(x_test) == y_test).mean())
