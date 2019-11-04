@@ -92,6 +92,7 @@ for data_names in data_files:
         print(clf.predict(x_test) == y_test)
         print(100*(clf.predict(x_test) == y_test).mean())
         result[r] = 100*(clf.predict(x_test) == y_test).mean()
+        r+=1
 
     fo.write('bigrams and unigrams. stopwords not removed. punctuation removed.\n')
     fo.write('baseline_cnnlstm.py\n') #change
