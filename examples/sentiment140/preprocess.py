@@ -1,7 +1,6 @@
 import pandas as pd
 import re
 regex=r"(?:\@|https?\://)\S+"
-text = re.sub(regex, "", text)
 
 df=pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, names=['polarity', 'id','date','query','user','tweet'], encoding='latin-1')
 
