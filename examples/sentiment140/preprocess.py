@@ -7,7 +7,7 @@ fout='tweets_neutralnegative.csv'
 
 print(df)
 
-data=df.loc[df['polarity']isin(allow_polarity)]
+data=df.loc[df['polarity'].isin(allow_polarity)]
 
 data=data['id','tweet','polarity'].copy()
 
