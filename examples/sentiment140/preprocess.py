@@ -9,7 +9,5 @@ print(df)
 
 data=df.loc[df['polarity'].isin(allow_polarity)]
 
-data=data['id','tweet','polarity'].copy()
-
 print(data)
-data.to_csv(fout, index=False)
+data.to_csv(fout, columns=['id','tweet','polarity'], index=False)
