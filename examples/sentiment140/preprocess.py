@@ -8,6 +8,4 @@ fout='tweets_neutralnegative.csv'
 print(df)
 
 data=df.loc[df['polarity'].isin(allow_polarity)]
-
-print(data)
-data.to_csv(fout, columns=['id','tweet','polarity'], index=False)
+data.to_csv(fout, columns=['id','tweet','polarity'], index=False, quoting=3)
