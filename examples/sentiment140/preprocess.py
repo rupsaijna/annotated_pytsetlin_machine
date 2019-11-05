@@ -14,6 +14,8 @@ data=df.loc[df['polarity'].isin(allow_polarity)]
 for ind, row in data.iterrows():
     text = re.sub(regex, "", row['tweet'])
     data.loc[ind, 'tweet']=text
+    print(data.loc[ind])
+    break
   
 
 data.to_csv(fout, columns=['id','tweet','polarity'], index=False, sep='\t', quoting=2)
