@@ -9,8 +9,6 @@ df=pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, names=[
 allow_polarity=['0','2'] #change
 fout='tweets_neutralnegative.csv'
 
-print(df.iloc[0,'tweet'])
-
 data=df.loc[df['polarity'].isin(allow_polarity)]
 
 for ind, row in data.iterrows():
@@ -19,7 +17,7 @@ for ind, row in data.iterrows():
     print(text)
     emojis=emot.emoji(text)
     print(emojis)
-    #text=text.translate(str.maketrans('','',string.punctuation))
+    text=text.translate(str.maketrans('','',string.punctuation))
     data.loc[ind, 'tweet']=text
     if ind==5:
         break
