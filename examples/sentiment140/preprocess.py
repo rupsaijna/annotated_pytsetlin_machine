@@ -19,8 +19,8 @@ for ind, row in tqdm(data.iterrows(), total=data.shape[0]):
     text=text.replace('..',' ELLIPSIS ')
     text=text.replace('  ',' ')
     text=text.strip()
-    #text=text.translate(str.maketrans('','',string.punctuation))'''
-    data.loc[ind, 'tweet']=text
+    #text=text.translate(str.maketrans('','',string.punctuation))
+    data.loc[ind, 'tweet']=text'''
     if row['polarity']==2:
         print (row)
         break
