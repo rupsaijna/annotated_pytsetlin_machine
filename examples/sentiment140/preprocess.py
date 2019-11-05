@@ -19,7 +19,7 @@ for ind, row in data.iterrows():
     print(emojis)
     text=text.translate(str.maketrans('','',string.punctuation))
     data.loc[ind, 'tweet']=text
-    if ind==5:
+    if ind==10:
         break
   
 
