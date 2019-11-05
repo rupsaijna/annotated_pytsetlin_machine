@@ -16,6 +16,7 @@ data=df.loc[df['polarity'].isin(allow_polarity)]
 for ind, row in data.iterrows():
     text = re.sub(regex, "", row['tweet'])
     text=text.encode('ascii', 'ignore').decode('ascii')
+    print(text)
     emojis=emot.emoji(text)
     print(emojis)
     #text=text.translate(str.maketrans('','',string.punctuation))
