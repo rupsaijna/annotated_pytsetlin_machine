@@ -15,7 +15,7 @@ clause_file='contentcontainer_clause_details'+timestr+'.txt'
 feature_file='contentcontainer_feature_details'+timestr+'.txt'
 meta_file='contentcontainer_meta_details'+timestr+'.txt'
 
-RUNS=5
+RUNS=300
 
 inp='../data/training_content_container.csv'
 
