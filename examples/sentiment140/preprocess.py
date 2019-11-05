@@ -13,9 +13,10 @@ data=df.loc[df['polarity'].isin(allow_polarity)]
 for ind, row in data.iterrows():
     text = re.sub(regex, "", row['tweet'])
     text=text.encode('ascii', 'ignore').decode('ascii')
-    text=text.replace('...',' ... ')
-    text=text.replace('..',' ... ')
+    text=text.replace('...',' ELLIPSIS ')
+    text=text.replace('..',' ELLIPSIS ')
     text=text.replace('  ',' ')
+    text=text.strip()
     #text=text.translate(str.maketrans('','',string.punctuation))
     data.loc[ind, 'tweet']=text
     if ind==10:
