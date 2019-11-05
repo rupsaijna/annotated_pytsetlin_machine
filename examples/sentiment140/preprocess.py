@@ -9,7 +9,7 @@ df=pd.read_csv('training.1600000.processed.noemoticon.csv', header=None, names=[
 allow_polarity=['0','2'] #change
 fout='tweets_neutralnegative.csv'
 
-print(df)
+print(df.iloc[0])
 
 data=df.loc[df['polarity'].isin(allow_polarity)]
 
