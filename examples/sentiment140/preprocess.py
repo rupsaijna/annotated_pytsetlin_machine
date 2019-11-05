@@ -1,3 +1,4 @@
+##the polarity of the tweet (0 = negative, 2 = neutral, 4 = positive)
 import pandas as pd
 import re
 import string
@@ -12,14 +13,21 @@ fout='tweets_neutralnegative.csv'
 data=df.loc[df['polarity'].isin(allow_polarity)]
 
 for ind, row in tqdm(data.iterrows(), total=data.shape[0]):
-    text = re.sub(regex, "", row['tweet'])
+    '''text = re.sub(regex, "", row['tweet'])
     text=text.encode('ascii', 'ignore').decode('ascii')
     text=text.replace('...',' ELLIPSIS ')
     text=text.replace('..',' ELLIPSIS ')
     text=text.replace('  ',' ')
     text=text.strip()
-    #text=text.translate(str.maketrans('','',string.punctuation))
+    #text=text.translate(str.maketrans('','',string.punctuation))'''
     data.loc[ind, 'tweet']=text
+    if row['polarity']==2:
+        print (row)
+        break
+    if row['polarity']==0:
+        data.loc[ind, 'polarity']==1
+    else:
+        data.loc[ind, 'polarity']==0
   
 
 data.to_csv(fout, columns=['id','tweet','polarity'], index=False, sep='\t', quoting=2)
