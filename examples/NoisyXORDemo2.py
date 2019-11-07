@@ -38,7 +38,8 @@ newY=np.random.randint(np.unique(Y_train).size, size=Y_train.shape)
 print ('X.shape ',newX.shape)
 print ('Y.shape ',newY.shape)
 
-tm2 = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
+MultiClassTsetlinMachine.load_model(self)
+'''tm2 = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 tm2.fit(newX, newY, epochs=0)
 ta_state_loaded = np.load("tm_model.npz")['arr_0']
 tm2.set_state(ta_state_loaded)
@@ -47,4 +48,4 @@ tm2.set_state(ta_state_loaded)
 
 #Predict on test data, compare to ground truth, calculate accuracy0
 #print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
-print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())
+print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())'''
