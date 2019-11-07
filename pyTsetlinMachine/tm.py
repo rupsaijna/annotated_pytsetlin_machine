@@ -194,7 +194,7 @@ class MultiClassTsetlinMachine():
 		if self.mc_tm != None:
 			_lib.mc_tm_destroy(self.mc_tm)
 			
-	def __load_model__():
+	def load_model():
 		print ('ok this may work')
 
 	def fit(self, X, Y, epochs=100, incremental=False):
