@@ -275,6 +275,9 @@ class MultiClassTsetlinMachine():
 			_lib.mc_tm_set_state(self.mc_tm, i, ta_states[i])
 
 		return
+	def save_model(self, savefile):
+		save_ta_state = self.get_state()
+		np.savez_compressed(savefile, save_ta_state)
 
 class RegressionTsetlinMachine():
 	def __init__(self, number_of_clauses, T, s, boost_true_positive_feedback=1, number_of_state_bits=8):
