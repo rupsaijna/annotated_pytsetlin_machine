@@ -46,5 +46,5 @@ tm2.set_state(ta_state_loaded)
 
 
 #Predict on test data, compare to ground truth, calculate accuracy0
-print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
-print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())'''
+"print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
+print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())
