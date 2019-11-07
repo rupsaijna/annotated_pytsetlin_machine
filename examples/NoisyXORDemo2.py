@@ -36,6 +36,8 @@ print ('Y_train.shape ',Y_train.shape)
 
 newX=np.ones(X_train.shape)
 newY=np.ones(Y_train.shape)
+print ('X.shape ',newX.shape)
+print ('Y.shape ',newY.shape)
 
 tm2 = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 tm2.fit(X_train, Y_train, epochs=-1)
