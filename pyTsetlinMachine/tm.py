@@ -182,7 +182,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 
 class MultiClassTsetlinMachine():
 	def load_model(self):
-		print 'ok this may work'
+		print ('ok this may work')
 	def __init__(self, number_of_clauses, T, s, boost_true_positive_feedback=1, number_of_state_bits=8):
 		self.number_of_clauses = number_of_clauses
 		self.number_of_clause_chunks = (number_of_clauses-1)/32 + 1
