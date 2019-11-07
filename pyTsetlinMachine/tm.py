@@ -194,7 +194,7 @@ class MultiClassTsetlinMachine():
 		if self.mc_tm != None:
 			_lib.mc_tm_destroy(self.mc_tm)
 			
-	def load_model():
+	def load_model(load_filename):
 		print ('ok this may work')
 
 	def fit(self, X, Y, epochs=100, incremental=False):
@@ -281,7 +281,8 @@ class MultiClassTsetlinMachine():
 	
 	def save_model(self, savefile):
 		save_ta_state = self.get_state()
-		np.savez_compressed(savefile, save_ta_state)
+		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes])
+		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
 		
 
 class RegressionTsetlinMachine():
