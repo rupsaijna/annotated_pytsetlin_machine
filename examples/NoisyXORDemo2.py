@@ -44,6 +44,7 @@ tm2.fit(newX, newY, epochs=0)
 ta_state_loaded = np.load("tm_model.npz")['states']
 tm2.set_state(ta_state_loaded)
 
+print( np.load("tm_model.npz")['hyperparams'])
 #Predict on test data, compare to ground truth, calculate accuracy0
 #print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())
