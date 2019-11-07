@@ -28,8 +28,7 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 tm.fit(X_train, Y_train, epochs=1)
 
 ##save
-ta_state = tm.get_state()
-np.savez_compressed("tm_full66.npz", ta_state)
+tm.save('tm_model.npz')
 
 print ('X_train.shape ',X_train.shape)
 print ('Y_train.shape ',Y_train.shape)
