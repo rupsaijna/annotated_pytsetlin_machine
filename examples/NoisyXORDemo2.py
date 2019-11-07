@@ -35,7 +35,7 @@ print ('X_train.shape ',X_train.shape)
 print ('Y_train.shape ',Y_train.shape)
 
 newX=np.ones(X_train.shape)
-newY=np.ones(Y_train.shape)
+newY=np.zeros(Y_train.shape)
 print ('X.shape ',newX.shape)
 print ('Y.shape ',newY.shape)
 
