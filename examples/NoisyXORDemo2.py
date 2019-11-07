@@ -30,23 +30,7 @@ tm.fit(X_train, Y_train, epochs=1)
 ##save
 #tm.save_model('tm_model.npz')
 
-print ('X_train.shape ',X_train.shape)
-print ('Y_train.shape ',Y_train.shape)
-
-#
-#
-#print ('X.shape ',newX.shape)
-#print ('Y.shape ',newY.shape)
 tm2=MultiClassTsetlinMachine.load_model('tm_model.npz')
-'''hp=np.load("tm_model.npz")['hyperparams']
-tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
-newX=np.ones((1,int(hp[5])))
-newY=np.random.randint(int(hp[6]), size=(int(hp[6])+1,))
-
-tm2.fit(newX, newY, epochs=0)
-ta_state_loaded = np.load("tm_model.npz")['states']
-tm2.set_state(ta_state_loaded)'''
-
 
 
 #Predict on test data, compare to ground truth, calculate accuracy0
