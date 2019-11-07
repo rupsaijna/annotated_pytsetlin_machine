@@ -193,9 +193,6 @@ class MultiClassTsetlinMachine():
 	def __del__(self):
 		if self.mc_tm != None:
 			_lib.mc_tm_destroy(self.mc_tm)
-			
-	def load_model(load_filename):
-		print ('ok this may work')
 
 	def fit(self, X, Y, epochs=100, incremental=False):
 		number_of_examples = X.shape[0]
@@ -283,7 +280,18 @@ class MultiClassTsetlinMachine():
 		save_ta_state = self.get_state()
 		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes])
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
+	
+	def load_model(load_filename):
+		ld=np.load(load_filename)
+		hp=ld['hyperparams']
+		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
+		newX=np.ones((1,int(hp[5])))
+		newY=np.random.randint(int(hp[6]), size=(int(hp[6])+1,))
+		tm2.fit(newX, newY, epochs=0)
+		ta_state_loaded = ld['states']
+		tm2.set_state(ta_state_loaded)
 		
+		return tm2
 
 class RegressionTsetlinMachine():
 	def __init__(self, number_of_clauses, T, s, boost_true_positive_feedback=1, number_of_state_bits=8):
