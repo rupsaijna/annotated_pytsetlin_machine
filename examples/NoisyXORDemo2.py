@@ -41,7 +41,7 @@ print ('Y_train.shape ',Y_train.shape)
 hp=np.load("tm_model.npz")['hyperparams']
 tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
 newX=np.ones((1,int(hp[5])))
-newY=np.random.randint(int(hp[6]), size=(50,))
+newY=np.random.randint(int(hp[6]), size=(2,))
 
 tm2.fit(newX, newY, epochs=0)
 ta_state_loaded = np.load("tm_model.npz")['states']
