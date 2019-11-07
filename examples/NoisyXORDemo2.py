@@ -33,18 +33,20 @@ tm.save_model('tm_model.npz')
 print ('X_train.shape ',X_train.shape)
 print ('Y_train.shape ',Y_train.shape)
 
-newX=np.ones((1,X_train.shape[1]))
-newY=np.random.randint(np.unique(Y_train).size, size=Y_train.shape)
-print ('X.shape ',newX.shape)
-print ('Y.shape ',newY.shape)
+#
+#
+#print ('X.shape ',newX.shape)
+#print ('Y.shape ',newY.shape)
 
 #MultiClassTsetlinMachine.load_model()
-tm2 = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
+hp=np.load("tm_model.npz")['hyperparams']
+tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
+newX=np.ones((1,int(hp[5]))
+newY=np.random.randint(int(hp[6]), size=(1,))
 tm2.fit(newX, newY, epochs=0)
 ta_state_loaded = np.load("tm_model.npz")['states']
 tm2.set_state(ta_state_loaded)
 
-print( np.load("tm_model.npz")['hyperparams'])
 #Predict on test data, compare to ground truth, calculate accuracy0
 #print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())
