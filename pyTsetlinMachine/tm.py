@@ -181,8 +181,6 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		return
 
 class MultiClassTsetlinMachine():
-	def load_model(self):
-		print ('ok this may work')
 	def __init__(self, number_of_clauses, T, s, boost_true_positive_feedback=1, number_of_state_bits=8):
 		self.number_of_clauses = number_of_clauses
 		self.number_of_clause_chunks = (number_of_clauses-1)/32 + 1
@@ -195,6 +193,9 @@ class MultiClassTsetlinMachine():
 	def __del__(self):
 		if self.mc_tm != None:
 			_lib.mc_tm_destroy(self.mc_tm)
+			
+	def __load_model__():
+		print ('ok this may work')
 
 	def fit(self, X, Y, epochs=100, incremental=False):
 		number_of_examples = X.shape[0]
