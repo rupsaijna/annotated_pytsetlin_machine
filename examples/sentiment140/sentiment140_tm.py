@@ -42,7 +42,7 @@ from nltk.tokenize import TweetTokenizer
 tknzr = TweetTokenizer()
 
 for ind, row in data.iterrows():
-	tw=tw.lower()
+	tw=row['tweet'].lower()
 	words=tknzr.tokenize(tw)
 	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 	all_words+=words+bl
