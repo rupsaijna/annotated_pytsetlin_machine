@@ -41,6 +41,7 @@ data=df.iloc[np.r_[0:2, -2:0]]
 from nltk.tokenize import TweetTokenizer
 tknzr = TweetTokenizer()
 
+lcnt=0
 for ind, row in data.iterrows():
 	tw=row['tweet'].lower()
 	words=tknzr.tokenize(tw)
@@ -49,6 +50,7 @@ for ind, row in data.iterrows():
 	words.insert(0,lcnt)
 	sents.append(words)
 	labels.append(row['polarity'])
+	lcnt+=1
 	
 word_set=set(all_words)
 i=0
