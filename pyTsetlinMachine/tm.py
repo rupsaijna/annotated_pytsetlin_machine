@@ -187,12 +187,13 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
 		
 	#load trained model and hyperparams
-	def load_model(load_filename):
+	def load_model(load_filename, Xt, Yt):
 		ld=np.load(load_filename)
 		hp=ld['hyperparams']
 		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
-		newX=np.ones((int(hp[5]),int(hp[6]),int(hp[7])))
-		newY=np.random.randint(int(hp[8]), size=(int(hp[8])+1,))
+		#newX=np.ones((int(hp[5]),int(hp[6]),int(hp[7])))
+		newX=np.ones(Xt.shape)
+		newY=np.random.randint(np.unique(Yt).size, size=Yt.shape)
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
