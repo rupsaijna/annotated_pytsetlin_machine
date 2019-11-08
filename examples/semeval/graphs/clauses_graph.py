@@ -64,7 +64,7 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-NUM_CLAUSES=-5
+NUM_CLAUSES=4
 T=15
 s=3.9
 TRAIN_EPOCHS=2
