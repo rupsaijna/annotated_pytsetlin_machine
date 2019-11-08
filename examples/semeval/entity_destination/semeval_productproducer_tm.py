@@ -41,7 +41,7 @@ maxlen=0
 lcnt=0
 
 for line in open(inp).readlines():
-  if lcnt>0:
+	if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
 		line[0]=line[0].translate(str.maketrans('','',string.punctuation)) #.translate(None, string.punctuation) #py2
@@ -56,7 +56,7 @@ for line in open(inp).readlines():
 		words.insert(0,lcnt)
 		sents.append(words)
 		labels.append(int(line[1]))
-  lcnt+=1
+	lcnt+=1
 
   
 word_set=set(all_words)
