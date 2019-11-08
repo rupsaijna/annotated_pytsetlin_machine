@@ -69,7 +69,7 @@ data=encode_sentences(sents)
 print(reverse_word_map)
 print(sents[0],data[0])
 
-fov.open(vocab_file)
+fov=open(vocab_file,'w')
 fov.write(list(word_set))
 fov.close()
 
