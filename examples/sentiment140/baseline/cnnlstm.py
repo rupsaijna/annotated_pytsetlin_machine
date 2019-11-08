@@ -41,9 +41,6 @@ def encode_sentences(txt):
 
 inp='../tweets_positivenegative.csv'
 
-fo=open('cl_res.txt','w') #change
-fo.write('Sentiment140. Positive/Negative.\n')
-
 sents=[]
 labels=[]
 all_words=[]   
@@ -55,15 +52,16 @@ data=df.iloc[np.r_[0:num_ex, -num_ex:0]]
 from nltk.tokenize import TweetTokenizer
 tknzr = TweetTokenizer()
 
-maxlen=0
+maxlen=53
 lcnt=0
 
 for ind, row in data.iterrows():
 	tw=row['tweet'].lower()
 	words=tknzr.tokenize(tw)
-	if len(words)>maxlen:
-		maxlen=len(words)
-	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+	if len(words)<maxlen:
+                for ms in range(maxlen-len(words)):
+                        words.append('<PAD>')
+            bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 	all_words+=words+bl
 	words.insert(0,lcnt)
 	sents.append(words)
@@ -72,8 +70,7 @@ for ind, row in data.iterrows():
 	else:
 		labels.append(0)
 	lcnt+=1
-print ('maxlen:',maxlen)
-aaarghjsdf
+
 word_set=set(all_words)
 i=0
 word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
@@ -84,7 +81,7 @@ CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
 result=np.zeros(RUNS)
-clf = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0, n_jobs=2) #change
+clf = create_conv_model(len(word_set)) #change
 
 for r in range(RUNS):
     print('Run:',r)
@@ -93,12 +90,5 @@ for r in range(RUNS):
     x_test_ids=x_test[:,-1]
     x_train=x_train[:,:-1]
     x_test=x_test[:,:-1]
-    clf.fit(x_train, y_train)
-    result[r] = 100*(clf.predict(x_test) == y_test).mean()
-
-fo.write('bigrams and unigrams. stopwords not removed. punctuation not removed.\n')
-fo.write('baseline_rf.py\n') #change
-fo.write('\nTotal Runs: '+str(RUNS))
-fo.write('\nBest result:'+str(result.max()))
-fo.write('\nMean result:'+str(result.mean()))
-fo.close()
+    clf.fit(x_train, np.array(y_train), validation_split=0.1, epochs =1)
+    print(clf.predict(x_test))
