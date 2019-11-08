@@ -29,7 +29,7 @@ for i in range(1):
 	tm.save_model('mnist_model.npz')
 	
 	
-	tm2=MultiClassConvolutionalTsetlinMachine2D.load_model('mnist_model.npz')
+	tm2=MultiClassConvolutionalTsetlinMachine2D.load_model('mnist_model.npz', X_train, Y_train)
 	result = 100*(tm.predict(X_test) == Y_test).mean()
 	result2= 100*(tm2.predict(X_test) == Y_test).mean()
 	
