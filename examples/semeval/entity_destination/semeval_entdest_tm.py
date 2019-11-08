@@ -132,7 +132,7 @@ for r in range(RUNS):
 				if (cur_cls % 2 == 0):
 					feature_count_plain_positive[f] += action_plain
 					feature_count_negated_positive[f] += action_negated
-   				else:
+				else:
 					feature_count_plain_negative[f] += action_plain
 					feature_count_negated_negative[f] += action_negated
 				
