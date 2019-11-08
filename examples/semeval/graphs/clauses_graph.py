@@ -96,7 +96,7 @@ x_test_ids=x_test[:,-1]
 x_train=x_train[:,:-1]
 x_test=x_test[:,:-1]
 
-for s in range(STEP):
+for s in range(STEPS):
 	lr=np.zeros(RUNS)
 	for r in range(RUNS):
 		print ('Step '+str(s)+' Run'+str(r))
