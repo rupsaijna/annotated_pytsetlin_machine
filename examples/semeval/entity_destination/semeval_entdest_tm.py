@@ -2,7 +2,8 @@
 import sys
 sys.path.append('../../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
-from sklearn.cross_validation import train_test_split
+#from sklearn.cross_validation import train_test_split #py2
+from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import stop_words
 import numpy as np
 from nltk.util import ngrams,everygrams
@@ -14,7 +15,7 @@ clause_file='entdest_clause_details'+timestr+'.txt'
 feature_file='entdest_feature_details'+timestr+'.txt'
 meta_file='entdest_meta_details'+timestr+'.txt'
 
-RUNS=300
+RUNS=10
 
 inp='../data/training_entity_destination.csv'
 
@@ -40,10 +41,10 @@ maxlen=0
 lcnt=0
 
 for line in open(inp).readlines():
-  if lcnt>0:
+	if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
-		line[0]=line[0].translate(None, string.punctuation)
+		line[0]=line[0].translate(str.maketrans('','',string.punctuation)) #.translate(None, string.punctuation) #py2
 		'''for s in stop:
 			if s not in ['because','caused','cause','due','by','to','of','since','he','in', 'therefore', 'hence','causing']:
 				regex = r"( |^)"+re.escape(s)+r"( |$)"
@@ -55,7 +56,7 @@ for line in open(inp).readlines():
 		words.insert(0,lcnt)
 		sents.append(words)
 		labels.append(int(line[1]))
-  lcnt+=1
+	lcnt+=1
 
   
 word_set=set(all_words)
@@ -130,7 +131,7 @@ for r in range(RUNS):
 				feature_count_contradiction += action_plain and action_negated
 				if (cur_cls % 2 == 0):
 					feature_count_plain_positive[f] += action_plain
-    					feature_count_negated_positive[f] += action_negated
+					feature_count_negated_positive[f] += action_negated
    				else:
 					feature_count_plain_negative[f] += action_plain
 					feature_count_negated_negative[f] += action_negated
@@ -145,9 +146,9 @@ for r in range(RUNS):
 			else:
 				clause_dict[this_clause]=1
 	fout_f=open(feature_file,'w')
-	fout_f.write('run\tfnum\tfeature\tcount_plain\tcount_negated\tcount_ignore\tcount_contradiction\tcount_plain_positive\tcount_negated_positive\tcount_plain_negative\tcount_negated_negative\n')
+	fout_f.write('run\tfnum\tfeature\tcount_plain\tcount_negated\tcount_ignore\tcount_contradiction\tcount_plain_positive\tcount_negated_positive\tcount_plain_negative\tcount_negated_negative\tcurrent_result\n')
 	for f in range(0,NUM_FEATURES):
-		fout_f.write(str(r)+'\t'+str(f)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\t'+str(feature_count_ignore[f])+'\t'+str(feature_count_contradiction[f])+'\t'+str(feature_count_plain_positive[f])+'\t'+str(feature_count_negated_positive[f])+'\t'+str(feature_count_plain_negative[f])+'\t'+str(feature_count_negated_negative[f])+'\n')
+		fout_f.write(str(r)+'\t'+str(f)+'\t'+str(reverse_word_map[f])+'\t'+str(feature_count_plain[f])+'\t'+str(feature_count_negated[f])+'\t'+str(feature_count_ignore[f])+'\t'+str(feature_count_contradiction[f])+'\t'+str(feature_count_plain_positive[f])+'\t'+str(feature_count_negated_positive[f])+'\t'+str(feature_count_plain_negative[f])+'\t'+str(feature_count_negated_negative[f])+'\t'+str(result[r])+'\n')
 	fout_f.close()
 	
 	fout_c=open(clause_file,'w')
