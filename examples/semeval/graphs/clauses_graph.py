@@ -19,7 +19,7 @@ fig_file='accoverclauses'+timestr+'.png'
 
 STEPS=2
 STEP_SIZE=10
-RUNS=10
+RUNS=3
 
 inp='../data/training_cause_effect.csv'
 
@@ -108,7 +108,7 @@ for s in range(STEPS):
 	result_max[s] = lr.max()
 	clausesizes[s]=NUM_CLAUSES
 	
-	fo.write(str(NUM_CLAUSES)+'\t'+str(result_mean[r])+'\t'+str(result_max[r])+'\n')
+	fo.write(str(NUM_CLAUSES)+'\t'+str(result_mean[s])+'\t'+str(result_max[s])+'\n')
 
 plt.plot(clausesizes,result_mean)
 plt.plot(clausesizes,result_max)
