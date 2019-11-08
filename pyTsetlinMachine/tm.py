@@ -179,6 +179,25 @@ class MultiClassConvolutionalTsetlinMachine2D():
 			_lib.mc_tm_set_state(self.mc_ctm, i, ta_states[i])
 
 		return
+	
+	#save trained model and hyperparams
+	def save_model(self, savefile):
+		save_ta_state = self.get_state()
+		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.dim_x,self.dim_y,self.dim_z,self.number_of_classes])
+		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
+		
+	#load trained model and hyperparams
+	def load_model(load_filename):
+		ld=np.load(load_filename)
+		hp=ld['hyperparams']
+		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
+		newX=np.ones((int(hp[5]),int(hp[6]),int(hp[7])))
+		newY=np.random.randint(int(hp[8]), size=(int(hp[8])+1,))
+		tm2.fit(newX, newY, epochs=0)
+		ta_state_loaded = ld['states']
+		tm2.set_state(ta_state_loaded)
+		
+		return tm2
 
 class MultiClassTsetlinMachine():
 	def __init__(self, number_of_clauses, T, s, boost_true_positive_feedback=1, number_of_state_bits=8):
@@ -275,12 +294,12 @@ class MultiClassTsetlinMachine():
 			_lib.mc_tm_set_state(self.mc_tm, i, ta_states[i])
 
 		return
-	
+	#save trained model and hyperparams
 	def save_model(self, savefile):
 		save_ta_state = self.get_state()
 		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes])
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
-	
+	#load trained model and hyperparams
 	def load_model(load_filename):
 		ld=np.load(load_filename)
 		hp=ld['hyperparams']
