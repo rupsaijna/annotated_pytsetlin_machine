@@ -17,7 +17,7 @@ meta_file='senti140_meta_details'+timestr+'.txt'
 vocab_file='senti140_vocab_details'+timestr+'.txt'
 
 RUNS=1
-num_ex=200 #number of positive & negative instances
+num_ex=2000 #number of positive & negative instances
 
 inp='tweets_positivenegative.csv'
 
