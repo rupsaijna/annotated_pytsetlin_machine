@@ -37,8 +37,10 @@ def encode_sentences(txt):
 	return feature_set
 
 df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
+df = df.dropna()
 data=df.iloc[np.r_[0:20, -20:0]]
 print(data)
+
 
 from nltk.tokenize import TweetTokenizer
 tknzr = TweetTokenizer()
