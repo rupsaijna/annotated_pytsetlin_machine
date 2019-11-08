@@ -17,7 +17,7 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 meta_file='accoverclauses'+timestr+'.txt'
 fig_file='accoverclauses'+timestr+'.png'
 
-STEP=2
+STEPS=2
 STEP_SIZE=10
 RUNS=10
 
@@ -33,8 +33,6 @@ def encode_sentences(txt):
 	feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
 	tnum=0
 	for t in txt:
-		if t[0]==10:
-			print (t)
 		s_words=t[1:]+list(set(list(everygrams(t[1:], min_len=2,max_len=2))))
 		for w in s_words:
 			idx=word_idx[w]
