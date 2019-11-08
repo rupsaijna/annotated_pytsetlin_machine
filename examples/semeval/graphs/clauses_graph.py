@@ -100,7 +100,7 @@ for s in range(STEPS):
 	lr=np.zeros(RUNS)
 	for r in range(RUNS):
 		NUM_CLAUSES+=STEP_SIZE
-		print ('Step '+str(s)+' Run '+str(r)+' num_clause '+NUM_CLAUSES)
+		print ('Step '+str(s)+' Run '+str(r)+' num_clause '+str(NUM_CLAUSES))
 		tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 		tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 		lr[r]=100*(tm.predict(x_test) == y_test).mean()
