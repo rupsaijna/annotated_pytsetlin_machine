@@ -26,6 +26,7 @@ for i in range(1):
 	start = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
+	tm.save_model('mnist_model.npz')
 	
 	result = 100*(tm.predict(X_test) == Y_test).mean()
 	
