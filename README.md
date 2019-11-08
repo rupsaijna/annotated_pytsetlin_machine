@@ -46,3 +46,8 @@ instead of
 ~~~~ 
 from pyTsetlinMachine.tm import MultiClassTsetlinMachine 
 ~~~~ 
+
+#### extra commands
+imagemiagick for graphs:
+
+apt-get update && sudo apt-get install imagemagick
