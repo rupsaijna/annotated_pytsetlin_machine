@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier #change
 timestr = time.strftime("%Y%m%d-%H%M%S")
 stop=stop_words.ENGLISH_STOP_WORDS
 RUNS=3
-
+num_ex=20000
 
 def encode_sentences(txt):
         feature_set=np.zeros((len(txt), len(word_set)+1),dtype=int)
