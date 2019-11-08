@@ -35,7 +35,7 @@ def encode_sentences(txt):
 		tnum+=1
 	return feature_set
 
-df=pd.read_csv(inp)
+df=pd.read_csv(inp,sep='\t', quoting=2)
 data=df.iloc[np.r_[0:2, -2:0]]
 
 print(data)
