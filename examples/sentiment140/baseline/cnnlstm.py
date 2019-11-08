@@ -41,7 +41,7 @@ def encode_sentences(txt):
 
 inp='../tweets_positivenegative.csv'
 
-fo=open('rf_res.txt','w') #change
+fo=open('cl_res.txt','w') #change
 fo.write('Sentiment140. Positive/Negative.\n')
 
 sents=[]
@@ -61,7 +61,7 @@ lcnt=0
 for ind, row in data.iterrows():
 	tw=row['tweet'].lower()
 	words=tknzr.tokenize(tw)
-	if len(words)<maxlen:
+	if len(words)>maxlen:
 		maxlen=len(words)
 	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 	all_words+=words+bl
@@ -72,7 +72,7 @@ for ind, row in data.iterrows():
 	else:
 		labels.append(0)
 	lcnt+=1
-print (maxlen)
+print ('maxlen:',maxlen)
 aaarghjsdf
 word_set=set(all_words)
 i=0
