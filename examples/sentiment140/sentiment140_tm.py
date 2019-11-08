@@ -40,8 +40,6 @@ def encode_sentences(txt):
 df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
 df = df.dropna()
 data=df.iloc[np.r_[0:num_ex, -num_ex:0]]
-print(data)
-
 
 from nltk.tokenize import TweetTokenizer
 tknzr = TweetTokenizer()
@@ -67,17 +65,14 @@ word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
 reverse_word_map = dict(map(reversed, word_idx.items()))
 data=encode_sentences(sents)
 
-print(reverse_word_map)
-print(sents[0],data[0])
-
 fov=open(vocab_file,'w')
 fov.write(str(list(word_set)))
 fov.close()
 
-NUM_CLAUSES=20
+NUM_CLAUSES=40
 T=15
 s=3.9
-TRAIN_EPOCHS=1
+TRAIN_EPOCHS=40
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
