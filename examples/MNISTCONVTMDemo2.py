@@ -27,7 +27,7 @@ for i in range(1):
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
 	tm.save_model('mnist_model.npz')
-	
+	print('saved')
 	
 	tm2=MultiClassConvolutionalTsetlinMachine2D.load_model('mnist_model.npz', X_train, Y_train)
 	result = 100*(tm.predict(X_test) == Y_test).mean()
