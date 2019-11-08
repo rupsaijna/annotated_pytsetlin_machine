@@ -67,7 +67,7 @@ data=encode_sentences(sents)
 NUM_CLAUSES=-5
 T=15
 s=3.9
-TRAIN_EPOCHS=40
+TRAIN_EPOCHS=2
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
@@ -99,8 +99,8 @@ x_test=x_test[:,:-1]
 for s in range(STEPS):
 	lr=np.zeros(RUNS)
 	for r in range(RUNS):
-		print ('Step '+str(s)+' Run'+str(r))
 		NUM_CLAUSES+=STEP_SIZE
+		print ('Step '+str(s)+' Run '+str(r)+' num_clause '+NUM_CLAUSES)
 		tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 		tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 		lr[r]=100*(tm.predict(x_test) == y_test).mean()
