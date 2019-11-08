@@ -16,7 +16,7 @@ feature_file='senti140_feature_details'+timestr+'.txt'
 meta_file='senti140_meta_details'+timestr+'.txt'
 vocab_file='senti140_vocab_details'+timestr+'.txt'
 
-RUNS=100
+RUNS=1
 num_ex=20000 #number of positive & negative instances
 
 inp='tweets_positivenegative.csv'
@@ -68,10 +68,10 @@ fov=open(vocab_file,'w')
 fov.write(str(list(word_set)))
 fov.close()
 
-NUM_CLAUSES=40
+NUM_CLAUSES=4000
 T=15
 s=3.9
-TRAIN_EPOCHS=20
+TRAIN_EPOCHS=2
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
