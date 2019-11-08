@@ -19,7 +19,7 @@ fig_file='accoverclauses'+timestr+'.png'
 
 STEPS=2
 STEP_SIZE=1
-RUNS=3
+RUNS=100
 
 inp='../data/training_cause_effect.csv'
 
@@ -90,17 +90,16 @@ result_mean=np.zeros(STEPS)
 result_max=np.zeros(STEPS)
 clausesizes=np.zeros(STEPS)
 
-x_train, x_test, y_train, y_test = train_test_split(data, labels)
-x_train_ids=x_train[:,-1]
-x_test_ids=x_test[:,-1]
-x_train=x_train[:,:-1]
-x_test=x_test[:,:-1]
-
 for s in range(STEPS):
 	lr=np.zeros(RUNS)
 	NUM_CLAUSES+=STEP_SIZE
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 	for r in range(RUNS):
+		x_train, x_test, y_train, y_test = train_test_split(data, labels)
+		x_train_ids=x_train[:,-1]
+		x_test_ids=x_test[:,-1]
+		x_train=x_train[:,:-1]
+		x_test=x_test[:,:-1]
 		print ('Step '+str(s)+' Run '+str(r)+' num_clause '+str(NUM_CLAUSES))
 		tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 		lr[r]=100*(tm.predict(x_test) == y_test).mean()
@@ -110,15 +109,14 @@ for s in range(STEPS):
 	
 	fo.write(str(NUM_CLAUSES)+'\t'+str(result_mean[s])+'\t'+str(result_max[s])+'\t'+str(lr)+'\n')
 
-plt.plot(clausesizes,result_mean)
-plt.plot(clausesizes,result_max)
+	plt.plot(clausesizes,result_mean)
+	plt.plot(clausesizes,result_max)
 
-plt.legend(['Avg.Accuracy', 'Max Accuracy'], loc='upper left')
-plt.xlabel('#Clauses')
-plt.ylabel('Accuracy')
+	plt.legend(['Avg.Accuracy', 'Max Accuracy'], loc='upper left')
+	plt.xlabel('#Clauses')
+	plt.ylabel('Accuracy')
 
-plt.show()
-plt.savefig(fig_file)
+	plt.savefig(fig_file)
 
 fo.write('\n\nBest result:'+str(result_max.max()))
 fo.write('\nMean result:'+str(result_max.mean()))
