@@ -17,6 +17,7 @@ meta_file='senti140_meta_details'+timestr+'.txt'
 vocab_file='senti140_vocab_details'+timestr+'.txt'
 
 RUNS=1
+num_ex=200 #number of positive & negative instances
 
 inp='tweets_positivenegative.csv'
 
@@ -38,7 +39,7 @@ def encode_sentences(txt):
 
 df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
 df = df.dropna()
-data=df.iloc[np.r_[0:20, -20:0]]
+data=df.iloc[np.r_[0:num_ex, -num_ex:0]]
 print(data)
 
 
