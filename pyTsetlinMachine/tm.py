@@ -188,15 +188,12 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
 		
 	#load trained model and hyperparams
-	def load_model(load_filename, Xt, Yt):
+	def load_model(load_filename):
 		ld=np.load(load_filename)
 		hp=ld['hyperparams']
 		tm2 = MultiClassConvolutionalTsetlinMachine2D(int(hp[0]), int(hp[1]), int(hp[2]), (int(hp[3]),int(hp[4])), boost_true_positive_feedback=int(hp[5]), number_of_state_bits=int(hp[6]))
 		newX=np.ones((1,int(hp[7]),int(hp[8]),int(hp[9])))
-		#newY=np.random.randint(int(hp[10]), size=(int(hp[10])+1,))
-		#newX=np.ones(Xt.shape)
-		print(int(hp[10]))
-		newY=np.random.randint(int(hp[10]), size=(int(hp[10])*int(hp[0]),)) #(np.unique(Yt).size, size=Yt.shape)
+		newY=np.random.randint(int(hp[10]), size=(int(hp[10])*int(hp[0]),)) 
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
@@ -309,7 +306,7 @@ class MultiClassTsetlinMachine():
 		hp=ld['hyperparams']
 		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
 		newX=np.ones((1,int(hp[5])))
-		newY=np.random.randint(int(hp[6]), size=(int(hp[6])+1,))
+		newY=np.random.randint(int(hp[6]), size=(int(hp[6])*int(hp[0]),))
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
