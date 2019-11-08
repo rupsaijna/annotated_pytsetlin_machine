@@ -99,6 +99,7 @@ x_test=x_test[:,:-1]
 for s in range(STEP):
 	lr=np.zeros(RUNS)
 	for r in range(RUNS):
+		print ('Step '+str(s)+' Run'+str(r))
 		NUM_CLAUSES+=STEP_SIZE
 		tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 		tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
