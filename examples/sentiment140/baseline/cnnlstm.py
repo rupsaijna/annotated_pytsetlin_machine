@@ -61,7 +61,7 @@ for ind, row in data.iterrows():
 	if len(words)<maxlen:
                 for ms in range(maxlen-len(words)):
                         words.append('<PAD>')
-        bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 	all_words+=words+bl
 	words.insert(0,lcnt)
 	sents.append(words)
