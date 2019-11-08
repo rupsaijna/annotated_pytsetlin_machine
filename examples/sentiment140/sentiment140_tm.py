@@ -37,4 +37,4 @@ def encode_sentences(txt):
 
 df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
 data=df.iloc[np.r_[0:2, -2:0]]
-
+print(data)
