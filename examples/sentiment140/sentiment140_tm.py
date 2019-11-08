@@ -37,4 +37,24 @@ def encode_sentences(txt):
 
 df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
 data=df.iloc[np.r_[0:2, -2:0]]
+
+from nltk.tokenize import TweetTokenizer
+tknzr = TweetTokenizer()
+
+for ind, row in data.iterrows():
+	tw=tw.lower()
+	words=tknzr.tokenize(tw)
+	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+	all_words+=words+bl
+	words.insert(0,lcnt)
+	sents.append(words)
+	labels.append(row['polarity'])
+	
+word_set=set(all_words)
+i=0
+word_idx = dict((c, i + 1) for i, c in enumerate(word_set,start = -1))
+reverse_word_map = dict(map(reversed, word_idx.items()))
+data=encode_sentences(sents)
+
+print(reverse_word_map)
 print(data)
