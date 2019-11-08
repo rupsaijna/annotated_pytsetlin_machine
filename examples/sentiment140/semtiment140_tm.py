@@ -1,7 +1,7 @@
 #identify if a sentence is Positive or Negative
 
 import sys
-sys.path.append('../../../pyTsetlinMachine/')
+sys.path.append('../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import stop_words
