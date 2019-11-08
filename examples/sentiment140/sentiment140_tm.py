@@ -37,5 +37,5 @@ def encode_sentences(txt):
 
 df=pd.read_csv(inp,sep='\t', quoting=2)
 data=df.iloc[np.r_[0:2, -2:0]]
-data.astype({'polarity': 'int32'}).dtypes
+data.astype({'polarity': int }).dtypes
 print(data)
