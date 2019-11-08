@@ -21,7 +21,7 @@ STEP=2
 STEP_SIZE=10
 RUNS=10
 
-inp='training.csv'
+inp='../data/training_cause_effect.csv'
 
 sents=[]
 labels=[]
