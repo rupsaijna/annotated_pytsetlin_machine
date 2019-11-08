@@ -18,7 +18,7 @@ meta_file='accoverclauses'+timestr+'.txt'
 fig_file='accoverclauses'+timestr+'.png'
 
 STEPS=2
-STEP_SIZE=10
+STEP_SIZE=1
 RUNS=3
 
 inp='../data/training_cause_effect.csv'
@@ -84,7 +84,7 @@ fo.write('\nTotal Runsper Step: '+str(RUNS))
 fo.write('\nTotal Steps: '+str(STEPS))
 fo.write('\nSTEP Size: '+str(STEP_SIZE))
 fo.write('\nTrain Epochs: '+str(TRAIN_EPOCHS)+'\n\n')
-fo.write('Num_CLAUSES\tMean\tMax')
+fo.write('Num_CLAUSES\tMean\tMax\tAll\n')
 
 result_mean=np.zeros(STEPS)
 result_max=np.zeros(STEPS)
@@ -99,16 +99,16 @@ x_test=x_test[:,:-1]
 for s in range(STEPS):
 	lr=np.zeros(RUNS)
 	NUM_CLAUSES+=STEP_SIZE
+	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 	for r in range(RUNS):
 		print ('Step '+str(s)+' Run '+str(r)+' num_clause '+str(NUM_CLAUSES))
-		tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 		tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 		lr[r]=100*(tm.predict(x_test) == y_test).mean()
 	result_mean[s] = lr.mean()
 	result_max[s] = lr.max()
 	clausesizes[s]=NUM_CLAUSES
 	
-	fo.write(str(NUM_CLAUSES)+'\t'+str(result_mean[s])+'\t'+str(result_max[s])+'\n')
+	fo.write(str(NUM_CLAUSES)+'\t'+str(result_mean[s])+'\t'+str(result_max[s])+'\t'+str(lr)+'\n')
 
 plt.plot(clausesizes,result_mean)
 plt.plot(clausesizes,result_max)
