@@ -46,7 +46,6 @@ tknzr = TweetTokenizer()
 
 lcnt=0
 for ind, row in data.iterrows():
-	print(row)
 	tw=row['tweet'].lower()
 	words=tknzr.tokenize(tw)
 	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
