@@ -35,7 +35,7 @@ def encode_sentences(txt):
 		tnum+=1
 	return feature_set
 
-df=pd.read_csv(inp,sep='\t', quoting=2)
+df=pd.read_csv(inp,sep='\t', quoting=2, dtype={'id ':int,'polarity': int })
 data=df.iloc[np.r_[0:2, -2:0]]
-data.astype({'polarity': int }).dtypes
+data.astype().dtypes
 print(data.dtypes)
