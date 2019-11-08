@@ -1,5 +1,5 @@
 #identify if a sentence is Positive or Negative
-
+import pandas as pd
 import sys
 sys.path.append('../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
