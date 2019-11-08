@@ -70,7 +70,7 @@ print(reverse_word_map)
 print(sents[0],data[0])
 
 fov=open(vocab_file,'w')
-fov.write(list(word_set))
+fov.write(','.join(list(word_set)))
 fov.close()
 
 NUM_CLAUSES=20
