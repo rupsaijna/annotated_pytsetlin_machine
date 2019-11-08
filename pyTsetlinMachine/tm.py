@@ -196,7 +196,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		#newY=np.random.randint(int(hp[10]), size=(int(hp[10])+1,))
 		#newX=np.ones(Xt.shape)
 		print(int(hp[10]))
-		newY=np.random.randint(int(hp[10]), size=(int(hp[10])*2,)) #(np.unique(Yt).size, size=Yt.shape)
+		newY=np.random.randint(int(hp[10]), size=(int(hp[10])*int(hp[0]),)) #(np.unique(Yt).size, size=Yt.shape)
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
