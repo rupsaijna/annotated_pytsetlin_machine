@@ -191,6 +191,7 @@ class MultiClassConvolutionalTsetlinMachine2D():
 	def load_model(load_filename, Xt, Yt):
 		ld=np.load(load_filename)
 		hp=ld['hyperparams']
+		print(hp, hp[5])
 		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), (int(hp[3]),int(hp[4])), boost_true_positive_feedback=int(hp[5]), number_of_state_bits=int(hp[6]))
 		#newX=np.ones((int(hp[7]),int(hp[8]),int(hp[9])))
 		#newY=np.random.randint(int(hp[10]), size=(int(hp[7]),))
