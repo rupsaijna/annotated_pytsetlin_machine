@@ -221,17 +221,17 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 static inline void print_indv_class_votes(struct TsetlinMachine *tm)
 {
 	int class_sum = 0;
-	printf("Starting off with Class Sum = %d\n", class_sum);
+	printf("\nStarting off with Class Sum = %d\n", class_sum);
 	for (int j = 0; j < tm->number_of_clause_chunks; j++) {
 		class_sum += __builtin_popcount(tm->clause_output[j] & 0x55555555); // 0101
 		printf("Clause chunk #%d , Class Sum = %d\n", j,class_sum);
 		class_sum -= __builtin_popcount(tm->clause_output[j] & 0xaaaaaaaa); // 1010
-		printf("Clause chunk #%d , Class Sum = %d\n\n", j,class_sum);
+		printf("Clause chunk #%d , Class Sum = %d\n", j,class_sum);
 	}
 
 	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
 	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
-	printf("Final Class Sum = %d\n\n", class_sum);
+	printf("Final Class Sum = %d\n\n\n", class_sum);
 }
 
 
@@ -330,7 +330,7 @@ static inline void tm_calculate_clause_output_and_print(struct TsetlinMachine *t
 			if (output) {
 				tm->output_one_patches[output_one_patches_count] = patch;
 				output_one_patches_count++;
-				printf("tm->output_one_patches[output_one_patches_count]: %d output_one_patches_count: %d",patch,output_one_patches_count);
+				printf("\n--tm->output_one_patches[output_one_patches_count]: %d output_one_patches_count: %d",patch,output_one_patches_count);
 			}
 		}
 	
@@ -339,11 +339,11 @@ static inline void tm_calculate_clause_output_and_print(struct TsetlinMachine *t
 			unsigned int clause_chunk_pos = j % 32;
 
  			tm->clause_output[clause_chunk] |= (1 << clause_chunk_pos);
-			printf("tm->clause_output[clause_chunk]:%d",tm->clause_output[clause_chunk]);
+			printf("\n--tm->clause_output[clause_chunk]:%d",tm->clause_output[clause_chunk]);
 
  			int patch_id = fast_rand() % output_one_patches_count;
 	 		tm->clause_patch[j] = tm->output_one_patches[patch_id];
-			printf("tm->clause_patch[j], j:%d %d",tm->clause_patch[j],j);
+			printf("\n--tm->clause_patch[j], j:%d %d",tm->clause_patch[j],j);
  		}
  	}
 }
