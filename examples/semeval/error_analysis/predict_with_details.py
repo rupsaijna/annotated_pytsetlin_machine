@@ -116,7 +116,7 @@ print('\n\nFull result average=',100*(res == y_test).mean())
 for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], '\nPredicted:',res[i],'\nActual',y_test[i])
-	tm.predict_and_print(np.array(x_test[i]))
+	tm.predict_and_print(np.array([x_test[i]]))
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
 	feature_vector=np.zeros(NUM_FEATURES*2)
 	for cur_cls in CLASSES:
