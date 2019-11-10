@@ -133,15 +133,6 @@ for i in range(len(x_test_ids)):
 				feature_vector[f+NUM_FEATURES]=action_negated
 				feature_count_plain[f]+=action_plain
 				feature_count_negated[f]+=action_negated
-				if action_plain==0 and action_negated==0:
-					feature_count_ignore += 1
-				feature_count_contradiction += action_plain and action_negated
-				if (cur_cls % 2 == 0):
-					feature_count_plain_positive[f] += action_plain
-    					feature_count_negated_positive[f] += action_negated
-   				else:
-					feature_count_plain_negative[f] += action_plain
-					feature_count_negated_negative[f] += action_negated
 				
 				if action_plain==1:
 					this_clause+=str(f)+';'
