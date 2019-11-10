@@ -113,6 +113,7 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 {
 	int max_class;
 	int max_class_sum;
+	int max_pos;
 
 	unsigned int step_size = mc_tm->number_of_patches * mc_tm->number_of_ta_chunks;
 
@@ -122,7 +123,7 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 		// Identify class with largest output
 		max_class_sum = tm_score(mc_tm->tsetlin_machines[0], &X[pos]);
 		max_class = 0;
-		max_pos=0
+		max_pos=0;
 		for (int i = 1; i < mc_tm->number_of_classes; i++) {	
 			int class_sum = tm_score(mc_tm->tsetlin_machines[i], &X[pos]);
 			if (max_class_sum < class_sum) {
