@@ -218,6 +218,23 @@ static inline int sum_up_class_votes(struct TsetlinMachine *tm)
 	return class_sum;
 }
 
+static inline void print_indv_class_votes(struct TsetlinMachine *tm)
+{
+	int class_sum = 0;
+	printf('Starting off with Class Sum = %d\n', class_sum)
+	for (int j = 0; j < tm->number_of_clause_chunks; j++) {
+		class_sum += __builtin_popcount(tm->clause_output[j] & 0x55555555); // 0101
+		printf('Clause chunk #%d , Class Sum = %d\n', j,class_sum)
+		class_sum -= __builtin_popcount(tm->clause_output[j] & 0xaaaaaaaa); // 1010
+		printf('Clause chunk #%d , Class Sum = %d\n\n', j,class_sum)
+	}
+
+	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
+	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
+	printf('Final Class Sum = %d\n\n', j,class_sum)
+}
+
+
 /* Calculate the output of each clause using the actions of each Tsetline Automaton. */
 static inline void tm_calculate_clause_output(struct TsetlinMachine *tm, unsigned int *Xi, int predict)
 {
@@ -353,6 +370,13 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target)
 			}
 		}
 	}
+}
+
+//print clause outputs for decision class
+void tm_print_max_class(struct TsetlinMachine *tm, unsigned int *Xi){
+	tm_calculate_clause_output(tm, Xi, PREDICT);
+	print_indv_class_votes(tm);
+	return;
 }
 
 int tm_score(struct TsetlinMachine *tm, unsigned int *Xi) {
