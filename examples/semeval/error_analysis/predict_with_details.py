@@ -43,15 +43,15 @@ lcnt=0
 
 for line in open(inp).readlines():
   if lcnt>0:
-		line=line.replace('\n','').replace(',','').split('\t')
-		line[0]=line[0].lower()
-		line[0]=line[0].translate(str.maketrans('','',string.punctuation))
-		words=line[0].split(' ')
-		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
-		all_words+=words+bl
-		words.insert(0,lcnt)
-		sents.append(words)
-		labels.append(int(line[1]))
+	line=line.replace('\n','').replace(',','').split('\t')
+	line[0]=line[0].lower()
+	line[0]=line[0].translate(str.maketrans('','',string.punctuation))
+	words=line[0].split(' ')
+	bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
+	all_words+=words+bl
+	words.insert(0,lcnt)
+	sents.append(words)
+	labels.append(int(line[1]))
   lcnt+=1
 
   
