@@ -272,15 +272,16 @@ class MultiClassTsetlinMachine():
 		return Y
 	
 	def predict_and_print(self, X):
+		print("fine here 1")
 		number_of_examples = X.shape[0]
 		
 		self.encoded_X = np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32)
-
+		print("fine here 2", number_of_examples)
 		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
 		_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.number_of_features, 1, 1, self.number_of_features, 1)
-	
+		print("fine here 3")	
 		Y = np.zeros(number_of_examples, dtype=np.uint32)
-
+		print("fine here 4")
 		_lib.mc_tm_predict_and_print(self.mc_tm, self.encoded_X, Y, number_of_examples)
 
 		return Y
