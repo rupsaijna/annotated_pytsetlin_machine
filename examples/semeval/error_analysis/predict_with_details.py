@@ -109,16 +109,14 @@ for r in range(RUNS):
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 	tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
 	print('\nfit done')
-  tm.save_model('causal_model.npz')
+tm.save_model('causal_model.npz')
+res=tm.predict(x_test)
+print('\n\nFull result average=',100*(res == y_test).mean())
   
-  res=tm.predict(x_test)
-  print('\n\nFull result average=',100*(res == y_test).mean())
-  
-  for i in range(len(x_test_ids)):
-	  sidx=x_test_ids[i]
-	  print(sents[sidx], '\nPredicted:',res[i],'\nActual',y_test[i])
-    tm.predict_and_print(x_test[i])
-  
+for i in range(len(x_test_ids)):
+	sidx=x_test_ids[i]
+	print(sents[sidx], '\nPredicted:',res[i],'\nActual',y_test[i])
+	tm.predict_and_print(x_test[i])
 	result[r] = 100*(tm.predict(x_test) == y_test).mean()
 	feature_vector=np.zeros(NUM_FEATURES*2)
 	for cur_cls in CLASSES:
@@ -150,7 +148,5 @@ for r in range(RUNS):
 				if action_negated==1:
 					this_clause+=' #'+str(f)+';'
 			this_clause+='\t'+clause_type+'\t'+str(cur_cls)
-      fout_c.write(str(cur_clause)+'\t'+this_clause)
-
-	fout_c.close()
-
+			fout_c.write(str(cur_clause)+'\t'+this_clause+'\n')
+fout_c.close()
