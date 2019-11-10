@@ -67,6 +67,8 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target);
 
 int tm_score(struct TsetlinMachine *tm, unsigned int *Xi);
 
+void tm_print_max_class(struct TsetlinMachine *tm, unsigned int *Xi); //print clause outputs for decision class
+
 int tm_ta_state(struct TsetlinMachine *tm, int clause, int ta);
 
 int tm_ta_action(struct TsetlinMachine *tm, int clause, int ta);
