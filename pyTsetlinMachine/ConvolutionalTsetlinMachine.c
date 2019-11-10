@@ -231,7 +231,7 @@ static inline void print_indv_class_votes(struct TsetlinMachine *tm)
 
 	class_sum = (class_sum > (tm->T)) ? (tm->T) : class_sum;
 	class_sum = (class_sum < -(tm->T)) ? -(tm->T) : class_sum;
-	printf("Final Class Sum = %d\n\n", j,class_sum);
+	printf("Final Class Sum = %d\n\n", class_sum);
 }
 
 
