@@ -289,6 +289,65 @@ static inline void tm_calculate_clause_output(struct TsetlinMachine *tm, unsigne
  	}
 }
 
+static inline void tm_calculate_clause_output_and_print(struct TsetlinMachine *tm, unsigned int *Xi, int predict)
+{
+	int output_one_patches_count;
+
+	unsigned int *ta_state = tm->ta_state;
+
+	for (int j = 0; j < tm->number_of_clause_chunks; j++) {
+		tm->clause_output[j] = 0;
+	}
+
+	for (int j = 0; j < tm->number_of_clauses; j++) {
+		output_one_patches_count = 0;
+
+		for (int patch = 0; patch < tm->number_of_patches; ++patch) {
+			unsigned int output = 1;
+			unsigned int all_exclude = 1;
+			for (int k = 0; k < tm->number_of_ta_chunks-1; k++) {
+				unsigned int pos = j*tm->number_of_ta_chunks*tm->number_of_state_bits + k*tm->number_of_state_bits + tm->number_of_state_bits-1;
+				output = output && (ta_state[pos] & Xi[patch*tm->number_of_ta_chunks + k]) == ta_state[pos];
+
+				if (!output) {
+					break;
+				}
+				all_exclude = all_exclude && (ta_state[pos] == 0);
+			}
+			printf("\nClause %d op1 %d ",j,output);
+			unsigned int pos = j*tm->number_of_ta_chunks*tm->number_of_state_bits + (tm->number_of_ta_chunks-1)*tm->number_of_state_bits + tm->number_of_state_bits-1;
+			output = output &&
+				(ta_state[pos] & Xi[patch*tm->number_of_ta_chunks + tm->number_of_ta_chunks - 1] & tm->filter) ==
+				(ta_state[pos] & tm->filter);
+
+			all_exclude = all_exclude && ((ta_state[pos] & tm->filter) == 0);
+			printf("op2 %d ",output);
+
+			output = output && !(predict == PREDICT && all_exclude == 1);
+			printf("op3 %d ",output);
+
+			
+			if (output) {
+				tm->output_one_patches[output_one_patches_count] = patch;
+				output_one_patches_count++;
+				printf("tm->output_one_patches[output_one_patches_count]: %d output_one_patches_count: %d",patch,output_one_patches_count);
+			}
+		}
+	
+		if (output_one_patches_count > 0) {
+			unsigned int clause_chunk = j / 32;
+			unsigned int clause_chunk_pos = j % 32;
+
+ 			tm->clause_output[clause_chunk] |= (1 << clause_chunk_pos);
+			printf("tm->clause_output[clause_chunk]:%d",tm->clause_output[clause_chunk]);
+
+ 			int patch_id = fast_rand() % output_one_patches_count;
+	 		tm->clause_patch[j] = tm->output_one_patches[patch_id];
+			printf("tm->clause_patch[j], j:%d %d",tm->clause_patch[j],j);
+ 		}
+ 	}
+}
+
 /******************************************/
 /*** Online Training of Tsetlin Machine ***/
 /******************************************/
@@ -374,7 +433,7 @@ void tm_update(struct TsetlinMachine *tm, unsigned int *Xi, int target)
 
 //print clause outputs for decision class
 void tm_print_max_class(struct TsetlinMachine *tm, unsigned int *Xi){
-	tm_calculate_clause_output(tm, Xi, PREDICT);
+	tm_calculate_clause_output_and_print(tm, Xi, PREDICT);
 	print_indv_class_votes(tm);
 	return;
 }
