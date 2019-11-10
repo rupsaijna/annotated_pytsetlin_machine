@@ -111,6 +111,7 @@ void mc_tm_predict(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int 
 //predict the class and print the clauses associated
 void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned int *X, int *y, int number_of_examples)
 {
+	printf("in mc_tm_predict_and_print");
 	int max_class;
 	int max_class_sum;
 	int max_pos;
@@ -134,7 +135,7 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 		}
 
 		y[l] = max_class;
-		printf("\nin first");
+		printf("\nin mc_tm_predict_and_print first");
 		tm_print_max_class(mc_tm->tsetlin_machines[max_class], &X[max_pos]);
 		pos += step_size;
 	}
