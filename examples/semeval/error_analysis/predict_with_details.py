@@ -2,7 +2,7 @@
 import sys
 sys.path.append('../../pyTsetlinMachine/')
 from tm import MultiClassTsetlinMachine
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import stop_words
 import numpy as np
 from nltk.util import ngrams,everygrams
@@ -45,7 +45,7 @@ for line in open(inp).readlines():
   if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
-		line[0]=line[0].translate(None, string.punctuation)
+		line[0]=line[0].translate(str.maketrans('','',string.punctuation))
 		words=line[0].split(' ')
 		bl=list(set(list(everygrams(words, min_len=2,max_len=2))))
 		all_words+=words+bl
@@ -64,7 +64,7 @@ data=encode_sentences(sents)
 NUM_CLAUSES=40
 T=15
 s=3.9
-TRAIN_EPOCHS=20
+TRAIN_EPOCHS=2
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
