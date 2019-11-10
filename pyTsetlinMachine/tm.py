@@ -166,7 +166,8 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.dim_x, self.dim_y, self.dim_z, self.patch_dim[0], self.patch_dim[1])
 	
 		Y = np.zeros(number_of_examples, dtype=np.uint32)
-
+		
+		print('here')
 		_lib.mc_tm_predict_and_print(self.mc_ctm, self.encoded_X, Y, number_of_examples)
 
 		return Y
