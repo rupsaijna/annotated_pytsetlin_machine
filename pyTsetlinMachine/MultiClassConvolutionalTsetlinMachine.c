@@ -123,7 +123,6 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 		// Identify class with largest output
 		max_class_sum = tm_score(mc_tm->tsetlin_machines[0], &X[pos]);
 		max_class = 0;
-		max_pos=0;
 		for (int i = 1; i < mc_tm->number_of_classes; i++) {	
 			int class_sum = tm_score(mc_tm->tsetlin_machines[i], &X[pos]);
 			if (max_class_sum < class_sum) {
@@ -134,11 +133,15 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 		}
 
 		y[l] = max_class;
+		printf('in forst')
 		tm_print_max_class(mc_tm->tsetlin_machines[max_class], &X[max_pos]);
 		pos += step_size;
 	}
+	
 	return;
 }
+		
+
 
 /******************************************/
 /*** Online Training of Tsetlin Machine ***/
