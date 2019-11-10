@@ -133,7 +133,7 @@ void mc_tm_predict_and_print(struct MultiClassTsetlinMachine *mc_tm, unsigned in
 		}
 
 		y[l] = max_class;
-		printf('in forst')
+		printf('\nin first')
 		tm_print_max_class(mc_tm->tsetlin_machines[max_class], &X[max_pos]);
 		pos += step_size;
 	}
