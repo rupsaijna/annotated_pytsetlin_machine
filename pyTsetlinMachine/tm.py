@@ -155,6 +155,21 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		_lib.mc_tm_predict(self.mc_ctm, self.encoded_X, Y, number_of_examples)
 
 		return Y
+	
+	def predict_and_print(self, X):
+		number_of_examples = X.shape[0]
+		
+		self.encoded_X = np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32)
+
+		Xm = np.ascontiguousarray(X.flatten()).astype(np.uint32)
+
+		_lib.tm_encode(Xm, self.encoded_X, number_of_examples, self.dim_x, self.dim_y, self.dim_z, self.patch_dim[0], self.patch_dim[1])
+	
+		Y = np.zeros(number_of_examples, dtype=np.uint32)
+
+		_lib.mc_tm_predict_and_print(self.mc_ctm, self.encoded_X, Y, number_of_examples)
+
+		return Y
 
 	def ta_state(self, mc_tm_class, clause, ta):
 		return _lib.mc_tm_ta_state(self.mc_ctm, mc_tm_class, clause, ta)
