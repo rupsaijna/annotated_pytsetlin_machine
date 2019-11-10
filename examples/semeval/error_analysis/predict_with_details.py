@@ -113,7 +113,7 @@ tm.save_model('causal_model.npz')
 res=tm.predict(x_test)
 print('\n\nFull result average=',100*(res == y_test).mean())
   
-for i in range(4): #len(x_test_ids)):
+for i in range(len(x_test_ids)):
 	sidx=x_test_ids[i]
 	print(sents[sidx], '\nPredicted:',res[i],'\nActual',y_test[i])
 	tm.predict_and_print(np.array([x_test[i]]))
