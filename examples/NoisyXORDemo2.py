@@ -23,7 +23,7 @@ Y_test = test_data[:,-1]  #last column is class labels
 
 print(X_train.shape)
 print(Y_train.shape)
-'''
+
 #Initialize the Tsetlin Machine
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 
@@ -31,7 +31,7 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 tm.fit(X_train, Y_train, epochs=1)
 
 ##save
-tm.save_model('tm_model.npz', X_train, Y_train)
+tm.save_model('tm_model.npz', Y_train)
 
 print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 '''
@@ -40,4 +40,4 @@ tm2=MultiClassTsetlinMachine.load_model('tm_model.npz')
 
 #Predict on test data, compare to ground truth, calculate accuracy0
 #
-print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())
+print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())'''
