@@ -336,7 +336,8 @@ class MultiClassTsetlinMachine():
 		hp=ld['hyperparams']
 		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
 		newX=np.ones((int(hp[7]),int(hp[5])))
-		newY=np.random.randint(int(hp[7]), size=(int(hp[7]),))
+		newY=np.random.randint(int(hp[6]), size=(int(hp[7]),))
+		print(newY.shape)
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
