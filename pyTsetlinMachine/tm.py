@@ -200,10 +200,10 @@ class MultiClassConvolutionalTsetlinMachine2D():
 		return
 	
 	#save trained model and hyperparams
-	def save_model(self, savefile):
+	def save_model(self, savefile, y):
 		save_ta_state = self.get_state()
-		#0:self.number_of_clauses, 1:self.T, 2:self.s, 3:self.patch_dim[0], 4:self.patch_dim[1],  5:self.boost_true_positive_feedback, 6:self.number_of_state_bits, 7:self.dim_x, 8:self.dim_y, 9:self.dim_z, 10:self.number_of_classes
-		hp=np.array([self.number_of_clauses, self.T, self.s, self.patch_dim[0], self.patch_dim[1], self.boost_true_positive_feedback, self.number_of_state_bits,self.dim_x,self.dim_y,self.dim_z,self.number_of_classes])
+		#0:self.number_of_clauses, 1:self.T, 2:self.s, 3:self.patch_dim[0], 4:self.patch_dim[1],  5:self.boost_true_positive_feedback, 6:self.number_of_state_bits, 7:self.dim_x, 8:self.dim_y, 9:self.dim_z, 10:self.number_of_classes, 11: num_examples
+		hp=np.array([self.number_of_clauses, self.T, self.s, self.patch_dim[0], self.patch_dim[1], self.boost_true_positive_feedback, self.number_of_state_bits,self.dim_x,self.dim_y,self.dim_z,self.number_of_classes, len(y)])
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
 		
 	#load trained model and hyperparams
@@ -326,7 +326,7 @@ class MultiClassTsetlinMachine():
 
 		return
 	#save trained model and hyperparams
-	def save_model(self, savefile, x, y):
+	def save_model(self, savefile, y):
 		save_ta_state = self.get_state()
 		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes, len(y)])
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
