@@ -27,7 +27,7 @@ for i in range(1):
 	start = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
-	tm.save_model('mnist_model.npz')
+	tm.save_model('mnist_model.npz', Y_train)
 	print('saved')
 	result = 100*(tm.predict(X_test) == Y_test).mean()
 	print("#%d Accuracy: %.2f%% (%.2fs)" % (i+1, result, stop-start))
