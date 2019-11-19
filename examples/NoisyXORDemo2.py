@@ -31,7 +31,7 @@ tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_fee
 tm.fit(X_train, Y_train, epochs=1)
 
 ##save
-tm.save_model('tm_model.npz')
+tm.save_model('tm_model.npz', X_train, Y_train)
 
 #tm2=MultiClassTsetlinMachine.load_model('tm_model.npz')
 
