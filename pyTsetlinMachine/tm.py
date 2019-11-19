@@ -326,17 +326,17 @@ class MultiClassTsetlinMachine():
 
 		return
 	#save trained model and hyperparams
-	def save_model(self, savefile):
+	def save_model(self, savefile, x, y):
 		save_ta_state = self.get_state()
-		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes])
+		hp=np.array([self.number_of_clauses, self.T, self.s, self.boost_true_positive_feedback, self.number_of_state_bits,self.number_of_features,self.number_of_classes, len(y)])
 		np.savez_compressed(savefile, states=save_ta_state, hyperparams=hp)
 	#load trained model and hyperparams
 	def load_model(load_filename):
 		ld=np.load(load_filename)
 		hp=ld['hyperparams']
 		tm2 = MultiClassTsetlinMachine(int(hp[0]), int(hp[1]), int(hp[2]), boost_true_positive_feedback=int(hp[3]), number_of_state_bits=int(hp[4]))
-		newX=np.ones((1,int(hp[5])))
-		newY=np.random.randint(int(hp[6]), size=(int(hp[6])*int(hp[0]),))
+		newX=np.ones((int(hp[7]),int(hp[5])))
+		newY=np.random.randint(int(hp[7]), size=(int(hp[7]),))
 		tm2.fit(newX, newY, epochs=0)
 		ta_state_loaded = ld['states']
 		tm2.set_state(ta_state_loaded)
