@@ -23,7 +23,7 @@ Y_test = test_data[:,-1]  #last column is class labels
 
 print(X_train.shape)
 print(len(Y_train))
-'''
+
 #Initialize the Tsetlin Machine
 tm = MultiClassTsetlinMachine(NUM_CLAUSES, THRESHOLD, S, boost_true_positive_feedback=0)
 
