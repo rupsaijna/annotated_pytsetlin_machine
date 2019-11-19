@@ -37,5 +37,5 @@ tm.save_model('tm_model.npz', X_train, Y_train)
 
 
 #Predict on test data, compare to ground truth, calculate accuracy0
-#print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
+print("Accuracy:", 100*(tm.predict(X_test) == Y_test).mean())
 #print("Accuracy after saving:", 100*(tm2.predict(X_test) == Y_test).mean())'''
