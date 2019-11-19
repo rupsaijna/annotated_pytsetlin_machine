@@ -23,15 +23,15 @@ NUM_FEATURES=len(X_train[0])
 print(NUM_FEATURES)
 print("\nAccuracy over 1 epochs:\n")
 for i in range(1):
+	
 	start = time()
 	tm.fit(X_train, Y_train, epochs=1, incremental=True)
 	stop = time()
 	tm.save_model('mnist_model.npz')
 	print('saved')
-	print(np.unique(Y_train).size)
-	tm2=MultiClassConvolutionalTsetlinMachine2D.load_model('mnist_model.npz', X_train, Y_train)
 	result = 100*(tm.predict(X_test) == Y_test).mean()
-	result2= 100*(tm2.predict(X_test) == Y_test).mean()
-	
 	print("#%d Accuracy: %.2f%% (%.2fs)" % (i+1, result, stop-start))
-	print("Accuracy2: %.2f%%" % (result2))
+	'''
+	tm2=MultiClassConvolutionalTsetlinMachine2D.load_model('mnist_model.npz', X_train, Y_train)
+	result2= 100*(tm2.predict(X_test) == Y_test).mean()
+	print("Accuracy2: %.2f%%" % (result2))'''
