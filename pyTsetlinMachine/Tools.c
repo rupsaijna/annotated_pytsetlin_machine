@@ -1,17 +1,13 @@
 /*
-
 Copyright (c) 2019 Ole-Christoffer Granmo
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,21 +15,25 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
 This code implements the Convolutional Tsetlin Machine from paper arXiv:1905.09688
 https://arxiv.org/abs/1905.09688
-
 */
 
 #include <stdio.h>
 #include <string.h>
 
-void tm_encode(unsigned int *X, unsigned int *encoded_X, int number_of_examples, int dim_x, int dim_y, int dim_z, int patch_dim_x, int patch_dim_y)
+void tm_encode(unsigned int *X, unsigned int *encoded_X, int number_of_examples, int dim_x, int dim_y, int dim_z, int patch_dim_x, int patch_dim_y, int append_negated)
 {
 	int global_number_of_features = dim_x * dim_y * dim_z;
 	int number_of_features = patch_dim_x * patch_dim_y * dim_z + (dim_x - patch_dim_x) + (dim_y - patch_dim_y);
 	int number_of_patches = (dim_x - patch_dim_x + 1) * (dim_y - patch_dim_y + 1);
-	int number_of_ta_chunks = (((2*number_of_features-1)/32 + 1));
+
+	int number_of_ta_chunks;
+	if (append_negated) {
+		number_of_ta_chunks= (((2*number_of_features-1)/32 + 1));
+	} else {
+		number_of_ta_chunks= (((number_of_features-1)/32 + 1));
+	}
 
 	unsigned int *Xi;
 	unsigned int *encoded_Xi;
@@ -62,7 +62,7 @@ void tm_encode(unsigned int *X, unsigned int *encoded_X, int number_of_examples,
 						int chunk_nr = patch_pos / 32;
 						int chunk_pos = patch_pos % 32;
 						encoded_Xi[chunk_nr] |= (1 << chunk_pos);
-					} else {
+					} else if (append_negated) {
 						int chunk_nr = (patch_pos + number_of_features) / 32;
 						int chunk_pos = (patch_pos + number_of_features) % 32;
 						encoded_Xi[chunk_nr] |= (1 << chunk_pos);
@@ -78,7 +78,7 @@ void tm_encode(unsigned int *X, unsigned int *encoded_X, int number_of_examples,
 						int chunk_pos = patch_pos % 32;
 
 						encoded_Xi[chunk_nr] |= (1 << chunk_pos);
-					} else {
+					} else if (append_negated) {
 						int chunk_nr = (patch_pos + number_of_features) / 32;
 						int chunk_pos = (patch_pos + number_of_features) % 32;
 						encoded_Xi[chunk_nr] |= (1 << chunk_pos);
@@ -96,7 +96,7 @@ void tm_encode(unsigned int *X, unsigned int *encoded_X, int number_of_examples,
 								int chunk_nr = patch_pos / 32;
 								int chunk_pos = patch_pos % 32;
 								encoded_Xi[chunk_nr] |= (1 << chunk_pos);
-							} else {
+							} else if (append_negated) {
 								int chunk_nr = (patch_pos + number_of_features) / 32;
 								int chunk_pos = (patch_pos + number_of_features) % 32;
 								encoded_Xi[chunk_nr] |= (1 << chunk_pos);
