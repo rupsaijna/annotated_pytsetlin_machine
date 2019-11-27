@@ -108,8 +108,9 @@ for r in range(RUNS):
 	res=tm.predict(x_test)
 	result[r] = 100*(res == y_test).mean()
 	X_test_transformed = tm.transform(x_test)
-	
+	print('here')
 	for t in range(len(x_test),5):
+		print(t)
 		print(res[t],y_test[t])
 		if res[t]!=y_test[t]:
 			sid=x_test_ids[t]
