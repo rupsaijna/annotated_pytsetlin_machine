@@ -109,17 +109,17 @@ for r in range(RUNS):
 	result[r] = 100*(res == y_test).mean()
 	X_test_transformed = tm.transform(x_test)
 	print('here', len(x_test))
-	for t in range(len(x_test),5):
-		print(t)
-		print(res[t],y_test[t])
-		if res[t]!=y_test[t]:
-			sid=x_test_ids[t]
+	for testsample in range(len(x_test),5):
+		print(testsample)
+		print(res[testsample],y_test[testsample])
+		if res[testsample]!=y_test[testsample]:
+			sid=x_test_ids[testsample]
 			fot.write(str(sid)+'\t'+sents[sid]+'\n')
-			strTransformed=[str(k) for k in X_test_transformed[t]]
+			strTransformed=[str(k) for k in X_test_transformed[testsample]]
 			fot.write(' '.join(strTransformed)+'\n')
 			for cur_cls in CLASSES:
 				for cur_clause in range(NUM_CLAUSES):
-					if X_test_transformed[t][cur_clause]==1:
+					if X_test_transformed[testsample][cur_clause]==1:
 						if cur_clause%2==0:
 							clause_type='positive'
 						else:
