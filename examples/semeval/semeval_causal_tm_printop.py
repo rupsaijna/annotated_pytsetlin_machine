@@ -17,7 +17,7 @@ meta_file='meta_details'+timestr+'.txt'
 
 RUNS=1
 
-inp='training.csv'
+inp='data/training_cause_effect.csv'
 
 sents=[]
 labels=[]
