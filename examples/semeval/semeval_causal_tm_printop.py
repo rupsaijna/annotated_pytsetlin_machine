@@ -108,7 +108,7 @@ for r in range(RUNS):
 	res=tm.predict(x_test)
 	result[r] = 100*(res == y_test).mean()
 	X_test_transformed = tm.transform(x_test)
-	print('here')
+	print('here', len(x_test))
 	for t in range(len(x_test),5):
 		print(t)
 		print(res[t],y_test[t])
