@@ -97,10 +97,13 @@ fot=open(testing_file,'w')
 for r in range(RUNS):
 	print('Run:',r)
 	x_train, x_test, y_train, y_test = train_test_split(data, labels)
+	y_train=x_train[:100].copy() ###
+	y_test=x_test[:100].copy()  ####
 	x_train_ids=x_train[:,-1]
 	x_test_ids=x_test[:,-1]
 	x_train=x_train[:,:-1]
 	x_test=x_test[:,:-1]
+	
 	#print('\nsplits ready:',x_train.shape, x_test.shape)
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 	tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
