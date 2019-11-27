@@ -42,7 +42,7 @@ maxlen=0
 lcnt=0
 
 for line in open(inp).readlines():
-  if lcnt>0:
+	if lcnt>0:
 		line=line.replace('\n','').replace(',','').split('\t')
 		line[0]=line[0].lower()
 		line[0]=line[0].translate(None, string.punctuation)
@@ -57,7 +57,7 @@ for line in open(inp).readlines():
 		words.insert(0,lcnt)
 		sents.append(words)
 		labels.append(int(line[1]))
-  lcnt+=1
+	lcnt+=1
 
   
 word_set=set(all_words)
@@ -100,7 +100,6 @@ for r in range(RUNS):
 	x_test_ids=x_test[:,-1]
 	x_train=x_train[:,:-1]
 	x_test=x_test[:,:-1]
-
 	#print('\nsplits ready:',x_train.shape, x_test.shape)
 	tm = MultiClassTsetlinMachine(NUM_CLAUSES, T, s)
 	tm.fit(x_train, y_train, epochs=TRAIN_EPOCHS, incremental=True)
