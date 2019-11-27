@@ -122,13 +122,16 @@ for r in range(RUNS):
 							clause_type='positive'
 						else:
 							clause_type='negative'
-						this_clause='cur_clause\t'				
-						if action_plain==1:
-							this_clause+=str(reverse_word_map[f])+';'
-						if action_negated==1:
-							this_clause+=' #'+str(reverse_word_map[f])+';'
+						this_clause='cur_clause\t'
+						for f in range(0,NUM_FEATURES):
+							action_plain = tm.ta_action(int(cur_cls), cur_clause, f)
+							action_negated = tm.ta_action(int(cur_cls), cur_clause, f+NUM_FEATURES)
+							if action_plain==1:
+								this_clause+=str(reverse_word_map[f])+';'
+							if action_negated==1:
+								this_clause+=' #'+str(reverse_word_map[f])+';'
 						this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
-						fot.write('cl:'+ this_clause+'\n\n')
+						fot.write('cl:'+ this_clause+'\n')
 					
 
 fo.write('\nBest result:'+str(result.max()))
