@@ -123,10 +123,10 @@ for r in range(RUNS):
 						else:
 							clause_type='negative'
 						this_clause='cur_clause\t'				
-							if action_plain==1:
-								this_clause+=str(reverse_word_map[f])+';'
-							if action_negated==1:
-								this_clause+=' #'+str(reverse_word_map[f])+';'
+						if action_plain==1:
+							this_clause+=str(reverse_word_map[f])+';'
+						if action_negated==1:
+							this_clause+=' #'+str(reverse_word_map[f])+';'
 						this_clause+='\t'+clause_type+'\t'+str(cur_cls)	
 						fot.write('cl:'+ this_clause+'\n\n')
 					
