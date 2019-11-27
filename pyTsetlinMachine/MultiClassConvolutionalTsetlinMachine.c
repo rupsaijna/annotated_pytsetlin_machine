@@ -192,6 +192,15 @@ int mc_tm_ta_action(struct MultiClassTsetlinMachine *mc_tm, int class, int claus
 	return tm_ta_action(mc_tm->tsetlin_machines[class], clause, ta);
 }
 
+void mc_tm_clause_configuration(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, unsigned int *clause_configuration)
+{
+	for (int k = 0; k < mc_tm->tsetlin_machines[class]->number_of_features; ++k) {
+		clause_configuration[k] = tm_ta_action(mc_tm->tsetlin_machines[class], clause, k);
+	}
+
+	return;
+}
+
 int mc_tm_typeII_clause(struct MultiClassTsetlinMachine *mc_tm, int class, int clause, int ta)
 {
 	return tm_ta_typeII_clause(mc_tm->tsetlin_machines[class], clause, ta);
