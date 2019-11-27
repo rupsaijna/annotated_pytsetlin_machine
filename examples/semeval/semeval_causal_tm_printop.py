@@ -109,7 +109,7 @@ for r in range(RUNS):
 	result[r] = 100*(res == y_test).mean()
 	X_test_transformed = tm.transform(x_test)
 	print('here', len(x_test))
-	for testsample in range(5):
+	for testsample in range(len(x_test)):
 		print(testsample)
 		print(res[testsample],y_test[testsample])
 		if res[testsample]!=y_test[testsample]:
