@@ -377,10 +377,7 @@ class MultiClassTsetlinMachine():
 	
 		X_transformed = np.ascontiguousarray(np.empty(number_of_examples*self.number_of_classes*self.number_of_clauses, dtype=np.uint32))
 
-		if self.indexed:
-			_lib.itm_transform(self.itm, self.encoded_X, X_transformed, inverted, number_of_examples)
-		else:
-			_lib.mc_tm_transform(self.mc_tm, self.encoded_X, X_transformed, inverted, number_of_examples)
+		_lib.mc_tm_transform(self.mc_tm, self.encoded_X, X_transformed, inverted, number_of_examples)
 
 		return X_transformed.reshape((number_of_examples, self.number_of_classes*self.number_of_clauses))
 
