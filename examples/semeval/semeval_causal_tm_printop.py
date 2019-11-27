@@ -70,7 +70,7 @@ data=encode_sentences(sents)
 NUM_CLAUSES=40
 T=15
 s=3.9
-TRAIN_EPOCHS=1
+TRAIN_EPOCHS=40
 CLASSES=list(set(labels))
 NUM_FEATURES=len(data[0])-1
 
@@ -109,7 +109,7 @@ for r in range(RUNS):
 	result[r] = 100*(res == y_test).mean()
 	X_test_transformed = tm.transform(x_test)
 	print('here', len(x_test))
-	for testsample in range(len(x_test)):
+	for testsample in range(100):
 		print(testsample)
 		print(res[testsample],y_test[testsample])
 		if res[testsample]!=y_test[testsample]:
