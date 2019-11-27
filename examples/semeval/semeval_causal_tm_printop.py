@@ -115,9 +115,10 @@ for r in range(RUNS):
 		if res[testsample]!=y_test[testsample]:
 			sid=x_test_ids[testsample]
 			fot.write(str(sid)+'\t')
-			for sentence in sents:
+			'''for sentence in sents:
 				if sentence[0]==sid:
-					fot.write(' '.join(sentence[1:])+'\n')
+					fot.write(' '.join(sentence[1:])+'\n')'''
+			fot.write(' '.join(sents[sid][1:])+'\n')
 			strTransformed=[str(k) for k in X_test_transformed[testsample]]
 			fot.write(' '.join(strTransformed)+'\n')
 			for cur_cls in CLASSES:
@@ -142,3 +143,4 @@ for r in range(RUNS):
 fo.write('\nBest result:'+str(result.max()))
 fo.write('\nMean result:'+str(result.mean()))
 fo.close()
+fot.close()
