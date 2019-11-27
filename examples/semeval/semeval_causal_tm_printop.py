@@ -114,7 +114,7 @@ for r in range(RUNS):
 		print(res[testsample],y_test[testsample])
 		if res[testsample]!=y_test[testsample]:
 			sid=x_test_ids[testsample]
-			fot.write(str(sid)+'\t'+sents[sid]+'\n')
+			fot.write(str(sid)+'\t'+' '.join(sents[sid])+'\n')
 			strTransformed=[str(k) for k in X_test_transformed[testsample]]
 			fot.write(' '.join(strTransformed)+'\n')
 			for cur_cls in CLASSES:
