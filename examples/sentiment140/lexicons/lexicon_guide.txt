@@ -1,0 +1,39 @@
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-AffLexNegLex-v1.0/HS-AFFLEX-NEGLEX-unigrams.txt	4	0	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-Lexicon-v1.0/HS-unigrams.txt	4	0	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-Lexicon-v1.0/sentiment-hashtags.txt	2	0	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Emotion-Lexicon-v0.2/NRC-Hashtag-Emotion-Lexicon-v0.2.txt	3	1	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt	3	0	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emoticon-Lexicon-v1.0/Emoticon-unigrams.txt	4	0	'\t'	0
+
+lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emoticon-AffLexNegLex-v1.0/Emoticon-AFFLEX-NEGLEX-unigrams.txt	4	0	'\t'	0
+
+lexicon/AFINN-111.txt	2	0	'\t'	0
+
+lexicon/liwc/anger.liwc	1	0	'\t'	0
+
+lexicon/insults_scored.csv	3	1	','	1
+
+lexicon/liwc/negemo.liwc	1	0	'\t'	0
+
+lexicon/liwc/posemo.liwc	1	0	'\t'	0
+
+lexicon/liwc/sad.liwc	1	0	'\t'	0
+
+lexicon/lexicons_compiled.csv	6	0	'\t'	1
+
+lexicon/affect.txt	3	0	'\t'	0
+
+lexicon/liwc/negators.txt	1	0	'\t'	0
+
+lexicon/scl-nma.txt	2	0	'\t'	0
+
+lexicon/liwc/anx.liwc	1	0	'\t'	0
+
+lexicon/liwc/cogmech.liwc	1	0	'\t'	0
+
+lexicon/liwc/affect.liwc	1	0	'\t'	0
