@@ -11,7 +11,7 @@ featurefilename=""
 
 
 ########lex##############################
-print "Loading lexicons..."
+print ("Loading lexicons...")
 
 lex_files=pd.read_csv("wassa2018/lexicon/lexicon_guide.txt",sep='\t',header=0,names=['file','tot','word','sp','hd'])
 dict_df={}
