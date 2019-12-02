@@ -29,7 +29,7 @@ sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=
 #print (sparse_df)
 '''
 
-frequent_itemsets=apriori(df, min_support=0.02, use_colnames=True)
+frequent_itemsets=apriori(df, min_support=0.002, use_colnames=True)
 
 frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 print(frequent_itemsets)
