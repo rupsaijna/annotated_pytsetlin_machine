@@ -1,4 +1,6 @@
 import pandas as pd
+import types
+
 NumberTypes = (types.IntType, types.LongType, types.FloatType, types.ComplexType,np.float32)
 
 #generic
