@@ -16,23 +16,25 @@ for ind, row in data.iterrows():
     cl=row['Clause'].split(';')[:-1]
     cl=[c.strip() for c in cl]
     dataset.append(cl)
-print(dataset)
-##one hot encoding, sparse
+
+    
+'''##one hot encoding
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
-df = pd.DataFrame(te_ary, columns=te.columns_)
-print(df)
+df = pd.DataFrame(te_ary, columns=te.columns_)'''
 
-'''##sparse encoding
+
+##sparse encoding
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
 sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
 #print (sparse_df)
-'''
 
-frequent_itemsets=apriori(df, min_support=0.002, use_colnames=True)
+
+frequent_itemsets=apriori(sparse_df, min_support=0.002, use_colnames=True)
 
 frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 print(frequent_itemsets)
+sfrdaf
 frequent_itemsets['Word_clause']=''
 
 input_features=fp+'feature_details'+file_date+'.txt'
