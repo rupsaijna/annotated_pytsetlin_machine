@@ -35,7 +35,6 @@ frequent_itemsets=apriori(sparse_df, min_support=0.00002, use_colnames=True)
 
 frequent_itemsets = frequent_itemsets.sort_values(by='support', ascending=False)
 print(frequent_itemsets)
-sfrdaf
 frequent_itemsets['Word_clause']=''
 
 input_features=fp+'feature_details'+file_date+'.txt'
