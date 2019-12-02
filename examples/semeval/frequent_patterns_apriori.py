@@ -16,7 +16,7 @@ for ind, row in data.iterrows():
     cl=row['Clause'].split(';')[:-1]
     cl=[c.strip() for c in cl]
     dataset.append(cl)
-
+print(dataset)
 ##one hot encoding, sparse
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
