@@ -15,7 +15,9 @@ featurefilename=""
 ########lex##############################
 print ("Loading lexicons...")
 
-lex_files=pd.read_csv("lexicon/lexicon_guide.txt",sep='\t',header=0,names=['file','tot','word','sp','hd'])
+lex_files=pd.read_csv("lexicon/the_lexicon_guide.txt",sep='\t',header=0,names=['file','tot','word','sp','hd'])
+print(lex_files)
+
 dict_df={}
 t=0
 for ind,row in lex_files.iterrows():
