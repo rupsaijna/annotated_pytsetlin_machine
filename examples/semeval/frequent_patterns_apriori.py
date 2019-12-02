@@ -3,7 +3,7 @@ from mlxtend.preprocessing import TransactionEncoder
 from mlxtend.frequent_patterns import apriori
 
 #fp='data/productproducer/productproducer_'
-fp='../sentiment140_'
+fp='../sentiment140/sentiment140_'
 file_date='20191108-133244'
 
 input_clause=fp+'clause_details'+file_date+'.txt'
