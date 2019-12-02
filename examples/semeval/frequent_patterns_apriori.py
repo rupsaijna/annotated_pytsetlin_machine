@@ -25,6 +25,7 @@ df = pd.DataFrame(te_ary, columns=te.columns_)'''
 
 
 ##sparse encoding
+te = TransactionEncoder()
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
 sparse_df = pd.SparseDataFrame(oht_ary, columns=te.columns_, default_fill_value=False)
 #print (sparse_df)
