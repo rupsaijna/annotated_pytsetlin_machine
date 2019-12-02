@@ -19,6 +19,7 @@ lex_files=pd.read_csv("lexicon/lexicon_guide.txt",sep='\t',header=0,names=['file
 dict_df={}
 t=0
 for ind,row in lex_files.iterrows():
+	print (row)
 	t+=row['tot']-1
 	if row['hd']==1:
 		if row['sp']=="','":
