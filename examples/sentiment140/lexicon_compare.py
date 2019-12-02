@@ -1,7 +1,7 @@
 import pandas as pd
-import types
+#import types
 
-NumberTypes = (types.IntType, types.LongType, types.FloatType, types.ComplexType,np.float32)
+#NumberTypes = (types.IntType, types.LongType, types.FloatType, types.ComplexType,np.float32)
 
 #generic
 word_dict={'negative':100,'positive':100,'anger':100,'sadness':100,'happiness':100,'fear':100, 'anticipation':100, 'trust':100, 'surprise':100, 'sadness':100, 'joy':100,'disgust':100}
