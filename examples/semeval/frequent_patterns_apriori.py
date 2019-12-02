@@ -21,7 +21,7 @@ for ind, row in data.iterrows():
 te = TransactionEncoder()
 te_ary = te.fit(dataset).transform(dataset) ##one_hot encoding
 df = pd.DataFrame(te_ary, columns=te.columns_)
-
+print(df)
 
 '''##sparse encoding
 oht_ary = te.fit(dataset).transform(dataset, sparse=True)
