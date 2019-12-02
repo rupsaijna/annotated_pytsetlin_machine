@@ -19,6 +19,7 @@ lex_files=pd.read_csv("lexicon/the_lexicon_guide.txt",sep='\t',header=0,names=['
 print(lex_files)
 
 dict_df={}
+dict_counts={}
 t=0
 for ind,row in lex_files.iterrows():
 	print (row)
@@ -33,6 +34,8 @@ for ind,row in lex_files.iterrows():
 			dict_df[row['file']]=pd.read_csv(row['file'],header=None).fillna('')
 		else:
 			dict_df[row['file']]=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
+	dict_counts[row['file']]['in_text']=[]
+	dict_counts[row['file']]['in_features']=[]
       
 ########lex##############################
 
