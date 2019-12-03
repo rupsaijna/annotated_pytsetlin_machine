@@ -1,4 +1,5 @@
 import pandas as pd
+import string
 #import types
 #NumberTypes = (types.IntType, types.LongType, types.FloatType, types.ComplexType,np.float32)
 fp='../sentiment140/senti140_'
@@ -6,7 +7,7 @@ file_date='20191108-133244'
 input_features=fp+'feature_details'+file_date+'.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 input_clauses=fp+'clause_details'+file_date+'.txt'
-df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(1)
+df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(5)
 df_clause_positive=df_clauses.loc[df_clauses['p/n'] == 'positive'].copy()
 df_clause_negative=df_clauses.loc[df_clauses['p/n'] == 'negative'].copy()
 
@@ -48,7 +49,7 @@ covered=[]
 for idx, row in df_clause_positive.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
-	print(cl)
+	print('\n',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
