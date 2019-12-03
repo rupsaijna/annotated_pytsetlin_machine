@@ -60,6 +60,7 @@ for idx, row in df_clause_positive.iterrows():
 			except:
 				word_feature=word_feature
 			covered.append(this_feature)
+			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 			print('Feature',word_feature)
 			for l in dict_df:
 				df=dict_df[l]
