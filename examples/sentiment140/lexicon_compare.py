@@ -145,4 +145,4 @@ for idx, row in df_features.iterrows():
 					dict_counts[l]['in_text'].append(word_feature)
 '''
 for d in dict_counts:
-	print(d,dict_counts[d])
+	print('\n',d,dict_counts[d])
