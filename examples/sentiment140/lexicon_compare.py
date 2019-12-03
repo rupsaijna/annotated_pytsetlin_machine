@@ -30,14 +30,18 @@ for ind,row in lex_files.iterrows():
 	t+=row['tot']-1
 	if row['hd']==1:
 		if row['sp']=="','":
-			dict_df[row['file']]=pd.read_csv(row['file'],header=0).fillna('')
+			tempdf=pd.read_csv(row['file'],header=0).fillna('')
 		else:
-			dict_df[row['file']]=pd.read_csv(row['file'],sep='\t',header=0).fillna('')
+			tempdf=pd.read_csv(row['file'],sep='\t',header=0).fillna('')
 	else:
 		if row['sp']=="','":
-			dict_df[row['file']]=pd.read_csv(row['file'],header=None).fillna('')
+			tempdf=pd.read_csv(row['file'],header=None).fillna('')
 		else:
-			dict_df[row['file']]=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
+			tempdf=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
+	word_location=row['word'].values[0]
+	word_list=list(tempdf.iloc[:,word_location].values)
+	word_list=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list]
+	dict_df[row['file']]=word_list
 	dict_counts[row['file']]={}
 	dict_counts[row['file']]['in_text']=[]
 	dict_counts[row['file']]['in_positive_features']=[]
@@ -67,11 +71,7 @@ for idx, row in df_clause_positive.iterrows():
 			print('Feature:',word_feature)
 			added=0
 			for l in dict_df:
-				dff=dict_df[l]
-				det=lex_files[lex_files['file']==l]
-				word_location=det['word'].values[0]
-				words_in_det=list(dff.iloc[:,word_location].values)
-				words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+				words_in_det=dict_df[l]
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
 					print('added')
@@ -80,11 +80,7 @@ for idx, row in df_clause_positive.iterrows():
 				wf=word_feature.split(' ')
 				for eachword in wf:
 					for l in dict_df:
-						dff=dict_df[l]
-						det=lex_files[lex_files['file']==l]
-						word_location=det['word'].values[0]
-						words_in_det=list(dff.iloc[:,word_location].values)
-						words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+						words_in_det=dict_df[l]
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_positive_features'].append(eachword)
 
@@ -108,11 +104,7 @@ for idx, row in df_clause_negative.iterrows():
 			print('Feature:',word_feature)
 			added=0
 			for l in dict_df:
-				dff=dict_df[l]
-				det=lex_files[lex_files['file']==l]
-				word_location=det['word'].values[0]
-				words_in_det=list(dff.iloc[:,word_location].values)
-				words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+				words_in_det=dict_df[l]
 				if word_feature in words_in_det:
 					dict_counts[l]['in_negative_features'].append(word_feature)
 					added=1
@@ -120,11 +112,7 @@ for idx, row in df_clause_negative.iterrows():
 				wf=word_feature.split(' ')
 				for eachword in wf:
 					for l in dict_df:
-						dff=dict_df[l]
-						det=lex_files[lex_files['file']==l]
-						word_location=det['word'].values[0]
-						words_in_det=list(dff.iloc[:,word_location].values)
-						words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+						words_in_det=dict_df[l]
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_negative_features'].append(eachword)
 
@@ -143,11 +131,7 @@ for idx, row in df_features.iterrows():
 			word_feature=word_feature
 		word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 		for l in dict_df:
-			dff=dict_df[l]
-			det=lex_files[lex_files['file']==l]
-			word_location=det['word'].values[0]
-			words_in_det=list(dff.iloc[:,word_location].values)
-			words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+			words_in_det=dict_df[l]
 			if word_feature in words_in_det:
 				dict_counts[l]['in_text'].append(word_feature)
 
