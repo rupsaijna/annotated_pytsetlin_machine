@@ -71,6 +71,7 @@ for idx, row in df_clause_positive.iterrows():
 				det=lex_files[lex_files['file']==l]
 				word_location=det['word'].values[0]
 				words_in_det=list(dff.iloc[:,word_location].values)
+				words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
 					print('added')
@@ -83,6 +84,7 @@ for idx, row in df_clause_positive.iterrows():
 						det=lex_files[lex_files['file']==l]
 						word_location=det['word'].values[0]
 						words_in_det=list(dff.iloc[:,word_location].values)
+						words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_positive_features'].append(eachword)
 
@@ -90,7 +92,7 @@ covered=[]
 for idx, row in df_clause_negative.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
-	print('\nPos Clause:',cl)
+	print('\nNeg Clause:',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -110,6 +112,7 @@ for idx, row in df_clause_negative.iterrows():
 				det=lex_files[lex_files['file']==l]
 				word_location=det['word'].values[0]
 				words_in_det=list(dff.iloc[:,word_location].values)
+				words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
 				if word_feature in words_in_det:
 					dict_counts[l]['in_negative_features'].append(word_feature)
 					added=1
@@ -121,28 +124,32 @@ for idx, row in df_clause_negative.iterrows():
 						det=lex_files[lex_files['file']==l]
 						word_location=det['word'].values[0]
 						words_in_det=list(dff.iloc[:,word_location].values)
+						words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_negative_features'].append(eachword)
-'''covered=[]
+
+df_features=df_features.head(5)
+print(df_features)
 for idx, row in df_features.iterrows():
 	cl=row['feature']
 	if this_feature!='':
 		this_feature=this_feature.replace('#','')
-		if this_feature not in covered:
-			word_feature=str(df_features.loc[df_features['fnum'] == int(this_feature),'feature'].item())
-			try:
-				b=eval(word_feature)
-				if type(b) is tuple:
-					word_feature=' '.join(b)
-			except
-				word_feature=word_feature
-			covered.append(word_feature)
-			for l in dict_df:
-				df=dict_df[l]
-				det=lex_files[lex_files['file']==l]
-				words_in_det=list(det['word'].values)
-				if word_feature in words_in_det:
-					dict_counts[l]['in_text'].append(word_feature)
-'''
+		word_feature=this_feature
+		try:
+			b=eval(word_feature)
+			if type(b) is tuple:
+				word_feature=' '.join(b)
+		except:
+			word_feature=word_feature
+		word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
+		for l in dict_df:
+			dff=dict_df[l]
+			det=lex_files[lex_files['file']==l]
+			word_location=det['word'].values[0]
+			words_in_det=list(dff.iloc[:,word_location].values)
+			words_in_det=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in words_in_det]
+			if word_feature in words_in_det:
+				dict_counts[l]['in_text'].append(word_feature)
+
 for d in dict_counts:
 	print('\n',d,dict_counts[d])
