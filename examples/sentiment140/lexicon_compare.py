@@ -21,13 +21,11 @@ word_dict={'negative':100,'positive':100,'anger':100,'sadness':100,'happiness':1
 print ("Loading lexicons...")
 
 lex_files=pd.read_csv("lexicon/the_lexicon_guide.txt",sep='\t',header=0,names=['file','tot','word','sp','hd'])
-print(lex_files)
 
 dict_df={}
 dict_counts={}
 t=0
 for ind,row in lex_files.iterrows():
-	print (row)
 	t+=row['tot']-1
 	if row['hd']==1:
 		if row['sp']=="','":
@@ -44,12 +42,13 @@ for ind,row in lex_files.iterrows():
 	dict_counts[row['file']]['in_positive_features']=[]
 	dict_counts[row['file']]['in_negative_features']=[]
       
-########lex##############################
+########lex end##############################
 
 covered=[]
 for idx, row in df_clause_positive.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
+	print(cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -60,7 +59,8 @@ for idx, row in df_clause_positive.iterrows():
 					word_feature=' '.join(b)
 			except:
 				word_feature=word_feature
-			covered.append(word_feature)
+			covered.append(this_feature)
+			print(word_feature)
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
