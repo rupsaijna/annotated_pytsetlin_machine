@@ -129,6 +129,7 @@ for idx, row in df_features.iterrows():
 				word_feature=' '.join(b)
 		except:
 			word_feature=word_feature
+		print('Feature:',word_feature)
 		word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 		for l in dict_df:
 			words_in_det=dict_df[l]
