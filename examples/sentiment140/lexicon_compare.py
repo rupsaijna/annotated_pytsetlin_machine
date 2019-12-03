@@ -73,9 +73,11 @@ for idx, row in df_clause_positive.iterrows():
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
 					added=1
+			print('Was added?', added)
 			if added==0 and ' ' in word_feature:
 				wf=word_feature.split(' ')
 				for eachword in wf:
+					print('Now each:', eachword)
 					for l in dict_df:
 						df=dict_df[l]
 						det=lex_files[lex_files['file']==l]
