@@ -135,6 +135,7 @@ for idx, row in df_features.iterrows():
 			words_in_det=dict_df[l]
 			if word_feature in words_in_det:
 				dict_counts[l]['in_text'].append(word_feature)
+				print('added')
 
 for d in dict_counts:
 	print('\n',d,dict_counts[d])
