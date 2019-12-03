@@ -5,7 +5,7 @@ import string
 fp='../sentiment140/senti140_'
 file_date='20191108-133244'
 input_features=fp+'feature_details'+file_date+'.txt'
-df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
+df_features=pd.read_csv(input_features, sep='\t', na_filter = False).head(15)
 input_clauses=fp+'clause_details'+file_date+'.txt'
 df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(15)
 df_clause_positive=df_clauses.loc[df_clauses['p/n'] == 'positive'].copy()
@@ -42,6 +42,8 @@ for ind,row in lex_files.iterrows():
 	dict_counts[row['file']]['in_text']=[]
 	dict_counts[row['file']]['in_positive_features']=[]
 	dict_counts[row['file']]['in_negative_features']=[]
+	dict_counts[row['file']]['in_partial_positive_features']=[]
+	dict_counts[row['file']]['in_partial_negative_features']=[]
       
 ########lex end##############################
 
@@ -63,12 +65,23 @@ for idx, row in df_clause_positive.iterrows():
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 			print('Feature:',word_feature)
+			added=0
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
 				words_in_det=list(det['word'].values)
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
+					added=1
+			if added==0 and ' ' in word_feature:
+				wf=word_feature.split(' ')
+				for eachword in wf:
+					for l in dict_df:
+						df=dict_df[l]
+						det=lex_files[lex_files['file']==l]
+						words_in_det=list(det['word'].values)
+						if eachword in words_in_det:
+							dict_counts[l]['in_partial_positive_features'].append(eachword)
 
 covered=[]
 for idx, row in df_clause_negative.iterrows():
@@ -88,12 +101,23 @@ for idx, row in df_clause_negative.iterrows():
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 			print('Feature:',word_feature)
+			added=0
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
 				words_in_det=list(det['word'].values)
 				if word_feature in words_in_det:
 					dict_counts[l]['in_negative_features'].append(word_feature)
+					added=1
+			if added==0 and ' ' in word_feature:
+				wf=word_feature.split(' ')
+				for eachword in wf:
+					for l in dict_df:
+						df=dict_df[l]
+						det=lex_files[lex_files['file']==l]
+						words_in_det=list(det['word'].values)
+						if eachword in words_in_det:
+							dict_counts[l]['in_partial_negative_features'].append(eachword)
 '''covered=[]
 for idx, row in df_features.iterrows():
 	cl=row['feature']
