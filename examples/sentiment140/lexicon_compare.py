@@ -67,9 +67,10 @@ for idx, row in df_clause_positive.iterrows():
 			print('Feature:',word_feature)
 			added=0
 			for l in dict_df:
-				df=dict_df[l]
+				dff=dict_df[l]
 				det=lex_files[lex_files['file']==l]
-				words_in_det=list(det['word'].values)
+				word_location=det['word'].values[0]
+				words_in_det=list(dff.iloc[:,word_location].values)
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
 					print('added')
@@ -84,8 +85,7 @@ for idx, row in df_clause_positive.iterrows():
 						dff=dict_df[l]
 						det=lex_files[lex_files['file']==l]
 						word_location=det['word'].values[0]
-						words_in_det=list(dff.iloc[word_location].values)
-						print(words_in_det)
+						words_in_det=list(dff.iloc[:,word_location].values)
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_positive_features'].append(eachword)
 							print('added')
