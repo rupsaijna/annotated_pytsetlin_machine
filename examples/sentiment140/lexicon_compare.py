@@ -48,7 +48,7 @@ for ind,row in lex_files.iterrows():
 covered=[]
 for idx, row in df_clause_positive.iterrows():
 	cl=row['Clause'].split(';')[:-1]
-    cl=[c.strip() for c in cl]
+	cl=[c.strip() for c in cl]
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
