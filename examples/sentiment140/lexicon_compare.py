@@ -60,7 +60,7 @@ for idx, row in df_clause_positive.iterrows():
 			except:
 				word_feature=word_feature
 			covered.append(this_feature)
-			print(word_feature)
+			print('Feature',word_feature)
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
@@ -82,7 +82,8 @@ for idx, row in df_clause_negative.iterrows():
 					word_feature=' '.join(b)
 			except:
 				word_feature=word_feature
-			covered.append(word_feature)
+			covered.append(this_feature)
+			print('Feature',word_feature)
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
