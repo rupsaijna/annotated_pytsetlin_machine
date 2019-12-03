@@ -49,7 +49,7 @@ covered=[]
 for idx, row in df_clause_positive.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
-	print('\n',cl)
+	print('\nPos Clause:',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -62,7 +62,7 @@ for idx, row in df_clause_positive.iterrows():
 				word_feature=word_feature
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
-			print('Feature',word_feature)
+			print('Feature:',word_feature)
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
@@ -74,6 +74,7 @@ covered=[]
 for idx, row in df_clause_negative.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
+	print('\nNeg Clause:',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -86,7 +87,7 @@ for idx, row in df_clause_negative.iterrows():
 				word_feature=word_feature
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
-			print('Feature',word_feature)
+			print('Feature:',word_feature)
 			for l in dict_df:
 				df=dict_df[l]
 				det=lex_files[lex_files['file']==l]
