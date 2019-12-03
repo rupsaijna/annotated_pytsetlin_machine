@@ -38,7 +38,7 @@ for ind,row in lex_files.iterrows():
 			tempdf=pd.read_csv(row['file'],header=None).fillna('')
 		else:
 			tempdf=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
-	word_location=row['word'].values[0]
+	word_location=row['word']
 	word_list=list(tempdf.iloc[:,word_location].values)
 	word_list=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list]
 	dict_df[row['file']]=word_list
