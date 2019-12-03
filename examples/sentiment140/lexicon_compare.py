@@ -87,8 +87,8 @@ for idx, row in df_clause_negative.iterrows():
 				det=lex_files[lex_files['file']==l]
 				words_in_det=list(det['word'].values)
 				if word_feature in words_in_det:
-'''					dict_counts[l]['in_negative_features'].append(word_feature)
-covered=[]
+					dict_counts[l]['in_negative_features'].append(word_feature)
+'''covered=[]
 for idx, row in df_features.iterrows():
 	cl=row['feature']
 	if this_feature!='':
