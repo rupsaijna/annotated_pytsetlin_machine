@@ -39,6 +39,7 @@ for ind,row in lex_files.iterrows():
 			dict_df[row['file']]=pd.read_csv(row['file'],header=None).fillna('')
 		else:
 			dict_df[row['file']]=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
+	dict_counts[row['file']]={}
 	dict_counts[row['file']]['in_text']=[]
 	dict_counts[row['file']]['in_positive_features']=[]
 	dict_counts[row['file']]['in_negative_features']=[]
