@@ -10,7 +10,7 @@ df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(1)
 df_clause_positive=df_clauses.loc[df_clauses['p/n'] == 'positive'].copy()
 df_clause_negative=df_clauses.loc[df_clauses['p/n'] == 'negative'].copy()
 
-
+print(df_clauses)
 #generic
 word_dict={'negative':100,'positive':100,'anger':100,'sadness':100,'happiness':100,'fear':100, 'anticipation':100, 'trust':100, 'surprise':100, 'sadness':100, 'joy':100,'disgust':100}
 
@@ -57,7 +57,7 @@ for idx, row in df_clause_positive.iterrows():
 				b=eval(word_feature)
 				if type(b) is tuple:
 					word_feature=' '.join(b)
-			except
+			except:
 				word_feature=word_feature
 			covered.append(word_feature)
 			for l in dict_df:
@@ -79,7 +79,7 @@ for idx, row in df_clause_negative.iterrows():
 				b=eval(word_feature)
 				if type(b) is tuple:
 					word_feature=' '.join(b)
-			except
+			except:
 				word_feature=word_feature
 			covered.append(word_feature)
 			for l in dict_df:
