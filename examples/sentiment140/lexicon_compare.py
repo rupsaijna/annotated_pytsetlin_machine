@@ -119,8 +119,7 @@ for idx, row in df_clause_negative.iterrows():
 df_features=df_features.head(5)
 print(df_features)
 for idx, row in df_features.iterrows():
-	cl=row['feature']
-	print(cl)
+	this_feature=row['feature']
 	if this_feature!='':
 		this_feature=this_feature.replace('#','')
 		word_feature=this_feature
