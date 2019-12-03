@@ -8,11 +8,10 @@ file_date='20191108-133244'
 input_features=fp+'feature_details'+file_date+'.txt'
 df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 input_clauses=fp+'clause_details'+file_date+'.txt'
-df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(5)
+df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False)
 df_clause_positive=df_clauses.loc[df_clauses['p/n'] == 'positive'].copy()
 df_clause_negative=df_clauses.loc[df_clauses['p/n'] == 'negative'].copy()
 
-print(df_clauses)
 #generic
 word_dict={'negative':100,'positive':100,'anger':100,'sadness':100,'happiness':100,'fear':100, 'anticipation':100, 'trust':100, 'surprise':100, 'sadness':100, 'joy':100,'disgust':100}
 
@@ -56,7 +55,6 @@ covered=[]
 for idx, row in df_clause_positive.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
-	print('\nPos Clause:',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -69,13 +67,11 @@ for idx, row in df_clause_positive.iterrows():
 				word_feature=word_feature
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
-			print('Feature:',word_feature)
 			added=0
 			for l in dict_df:
 				words_in_det=dict_df[l]
 				if word_feature in words_in_det:
 					dict_counts[l]['in_positive_features'].append(word_feature)
-					print('added')
 					added=1
 			if added==0 and ' ' in word_feature:
 				wf=word_feature.split(' ')
@@ -89,7 +85,6 @@ covered=[]
 for idx, row in df_clause_negative.iterrows():
 	cl=row['Clause'].split(';')[:-1]
 	cl=[c.strip() for c in cl]
-	print('\nNeg Clause:',cl)
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
@@ -102,7 +97,6 @@ for idx, row in df_clause_negative.iterrows():
 				word_feature=word_feature
 			covered.append(this_feature)
 			word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
-			print('Feature:',word_feature)
 			added=0
 			for l in dict_df:
 				words_in_det=dict_df[l]
@@ -117,8 +111,7 @@ for idx, row in df_clause_negative.iterrows():
 						if eachword in words_in_det:
 							dict_counts[l]['in_partial_negative_features'].append(eachword)
 
-df_features=df_features.head(5)
-print(df_features)
+
 for idx, row in df_features.iterrows():
 	this_feature=row['feature']
 	if this_feature!='':
@@ -130,21 +123,17 @@ for idx, row in df_features.iterrows():
 				word_feature=' '.join(b)
 		except:
 			word_feature=word_feature
-		print('Feature:',word_feature)
 		word_feature=word_feature.translate(str.maketrans('','',string.punctuation)).strip()
 		for l in dict_df:
 			words_in_det=dict_df[l]
 			if word_feature in words_in_det:
 				dict_counts[l]['in_text'].append(word_feature)
 
-for d in dict_counts:
-	print('\n',d,dict_counts[d])
-print('\n\n')
 f = open("dict_cnts.pkl","wb")
 pickle.dump(dict_counts,f)
 f.close()
 
-f = open("dict_cnts.pkl","rb")
+'''f = open("dict_cnts.pkl","rb")
 newdict=pickle.load(f)
 for d in newdict:
-	print('\n',d,newdict[d])
+	print('\n',d,newdict[d])'''
