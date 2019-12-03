@@ -58,6 +58,7 @@ for idx, row in df_clause_positive.iterrows():
 	for this_feature in cl:
 		this_feature=this_feature.replace('#','')
 		if this_feature not in covered:
+			print(this_feature)
 			word_feature=str(df_features.loc[df_features['fnum'] == int(this_feature),'feature'].item())
 			try:
 				b=eval(word_feature)
