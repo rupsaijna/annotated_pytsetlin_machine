@@ -144,7 +144,7 @@ f = open("dict_cnts.pkl","wb")
 pickle.dump(dict_counts,f)
 f.close()
 
-f = open("dict_cnts.pkl","r")
+f = open("dict_cnts.pkl","rb")
 newdict=pickle.load(f)
 for d in newdict:
 	print('\n',d,newdict[d])
