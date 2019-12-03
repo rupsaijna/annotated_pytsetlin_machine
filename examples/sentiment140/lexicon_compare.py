@@ -1,5 +1,6 @@
 import pandas as pd
 import string
+import pickle
 #import types
 #NumberTypes = (types.IntType, types.LongType, types.FloatType, types.ComplexType,np.float32)
 fp='../sentiment140/senti140_'
@@ -135,7 +136,15 @@ for idx, row in df_features.iterrows():
 			words_in_det=dict_df[l]
 			if word_feature in words_in_det:
 				dict_counts[l]['in_text'].append(word_feature)
-				print('added')
 
 for d in dict_counts:
 	print('\n',d,dict_counts[d])
+print('\n\n')
+f = open("dict_cnts.pkl","wb")
+pickle.dump(dict_counts,f)
+f.close()
+
+f = open("dict_cnts.pkl","r")
+newdict=pickle.load(f)
+for d in newdict:
+	print('\n',d,newdict[d])
