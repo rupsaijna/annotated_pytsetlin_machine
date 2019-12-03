@@ -5,7 +5,7 @@ import string
 fp='../sentiment140/senti140_'
 file_date='20191108-133244'
 input_features=fp+'feature_details'+file_date+'.txt'
-df_features=pd.read_csv(input_features, sep='\t', na_filter = False).head(15)
+df_features=pd.read_csv(input_features, sep='\t', na_filter = False)
 input_clauses=fp+'clause_details'+file_date+'.txt'
 df_clauses=pd.read_csv(input_clauses, sep='\t', na_filter = False).head(15)
 df_clause_positive=df_clauses.loc[df_clauses['p/n'] == 'positive'].copy()
