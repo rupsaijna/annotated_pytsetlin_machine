@@ -18,5 +18,7 @@ for d in newdict:
 	
 	#print('\n',d,newdict[d])
 
+
+for d in cntdict:
+	print('\n',d,cntdict[d])
 	
-print(cntdict)
