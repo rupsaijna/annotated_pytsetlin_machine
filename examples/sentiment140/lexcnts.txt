@@ -1,0 +1,38 @@
+
+ lexicon/AFINN-111.txt {'text_negative_features_cnt': 1081, 'pos_neg_features_cnt': 1199, 'pos_neg_intersection_cnt': 675, 'in_positive_features_cnt': 793, 'in_text_cnt': 1363, 'in_negative_features_cnt': 1081, 'text_positive_features_cnt': 793}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emotion-Lexicon-v0.92/NRC-Emotion-Lexicon-Wordlevel-v0.92.txt {'text_negative_features_cnt': 4763, 'pos_neg_features_cnt': 5352, 'pos_neg_intersection_cnt': 2788, 'in_positive_features_cnt': 3377, 'in_text_cnt': 6272, 'in_negative_features_cnt': 4763, 'text_positive_features_cnt': 3377}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emoticon-AffLexNegLex-v1.0/Emoticon-AFFLEX-NEGLEX-unigrams.txt {'text_negative_features_cnt': 13825, 'pos_neg_features_cnt': 15640, 'pos_neg_intersection_cnt': 7793, 'in_positive_features_cnt': 9608, 'in_text_cnt': 18719, 'in_negative_features_cnt': 13825, 'text_positive_features_cnt': 9608}
+
+ lexicon/lexicons_compiled.csv {'text_negative_features_cnt': 0, 'pos_neg_features_cnt': 0, 'pos_neg_intersection_cnt': 0, 'in_positive_features_cnt': 0, 'in_text_cnt': 0, 'in_negative_features_cnt': 0, 'text_positive_features_cnt': 0}
+
+ lexicon/scl-nma.txt {'text_negative_features_cnt': 1004, 'pos_neg_features_cnt': 1127, 'pos_neg_intersection_cnt': 616, 'in_positive_features_cnt': 739, 'in_text_cnt': 1339, 'in_negative_features_cnt': 1004, 'text_positive_features_cnt': 739}
+
+ lexicon/affect.txt {'text_negative_features_cnt': 1578, 'pos_neg_features_cnt': 1755, 'pos_neg_intersection_cnt': 975, 'in_positive_features_cnt': 1152, 'in_text_cnt': 2044, 'in_negative_features_cnt': 1578, 'text_positive_features_cnt': 1152}
+
+ lexicon/insults_scored.csv {'text_negative_features_cnt': 262, 'pos_neg_features_cnt': 287, 'pos_neg_intersection_cnt': 172, 'in_positive_features_cnt': 197, 'in_text_cnt': 328, 'in_negative_features_cnt': 262, 'text_positive_features_cnt': 197}
+
+ lexicon/liwc/negators.txt {'text_negative_features_cnt': 20, 'pos_neg_features_cnt': 22, 'pos_neg_intersection_cnt': 16, 'in_positive_features_cnt': 18, 'in_text_cnt': 25, 'in_negative_features_cnt': 20, 'text_positive_features_cnt': 18}
+
+ lexicon/liwc/anx.liwc {'text_negative_features_cnt': 32, 'pos_neg_features_cnt': 37, 'pos_neg_intersection_cnt': 21, 'in_positive_features_cnt': 26, 'in_text_cnt': 42, 'in_negative_features_cnt': 32, 'text_positive_features_cnt': 26}
+
+ lexicon/liwc/negemo.liwc {'text_negative_features_cnt': 242, 'pos_neg_features_cnt': 265, 'pos_neg_intersection_cnt': 164, 'in_positive_features_cnt': 187, 'in_text_cnt': 296, 'in_negative_features_cnt': 242, 'text_positive_features_cnt': 187}
+
+ lexicon/liwc/cogmech.liwc {'text_negative_features_cnt': 380, 'pos_neg_features_cnt': 410, 'pos_neg_intersection_cnt': 268, 'in_positive_features_cnt': 298, 'in_text_cnt': 436, 'in_negative_features_cnt': 380, 'text_positive_features_cnt': 298}
+
+ lexicon/liwc/sad.liwc {'text_negative_features_cnt': 54, 'pos_neg_features_cnt': 59, 'pos_neg_intersection_cnt': 34, 'in_positive_features_cnt': 39, 'in_text_cnt': 65, 'in_negative_features_cnt': 54, 'text_positive_features_cnt': 39}
+
+ lexicon/liwc/affect.liwc {'text_negative_features_cnt': 476, 'pos_neg_features_cnt': 506, 'pos_neg_intersection_cnt': 337, 'in_positive_features_cnt': 367, 'in_text_cnt': 550, 'in_negative_features_cnt': 476, 'text_positive_features_cnt': 367}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Emotion-Lexicon-v0.2/NRC-Hashtag-Emotion-Lexicon-v0.2.txt {'text_negative_features_cnt': 8725, 'pos_neg_features_cnt': 9613, 'pos_neg_intersection_cnt': 5556, 'in_positive_features_cnt': 6444, 'in_text_cnt': 10924, 'in_negative_features_cnt': 8725, 'text_positive_features_cnt': 6444}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Emoticon-Lexicon-v1.0/Emoticon-unigrams.txt {'text_negative_features_cnt': 9341, 'pos_neg_features_cnt': 10599, 'pos_neg_intersection_cnt': 5240, 'in_positive_features_cnt': 6498, 'in_text_cnt': 12729, 'in_negative_features_cnt': 9341, 'text_positive_features_cnt': 6498}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-Lexicon-v1.0/HS-unigrams.txt {'text_negative_features_cnt': 13652, 'pos_neg_features_cnt': 15403, 'pos_neg_intersection_cnt': 7859, 'in_positive_features_cnt': 9610, 'in_text_cnt': 18274, 'in_negative_features_cnt': 13652, 'text_positive_features_cnt': 9610}
+
+ lexicon/liwc/anger.liwc {'text_negative_features_cnt': 93, 'pos_neg_features_cnt': 102, 'pos_neg_intersection_cnt': 65, 'in_positive_features_cnt': 74, 'in_text_cnt': 112, 'in_negative_features_cnt': 93, 'text_positive_features_cnt': 74}
+
+ lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-Lexicon-v1.0/sentiment-hashtags.txt {'text_negative_features_cnt': 45, 'pos_neg_features_cnt': 47, 'pos_neg_intersection_cnt': 32, 'in_positive_features_cnt': 34, 'in_text_cnt': 51, 'in_negative_features_cnt': 45, 'text_positive_features_cnt': 34}
+
+ lexicon/liwc/posemo.liwc {'text_negative_features_cnt': 225, 'pos_neg_features_cnt': 232, 'pos_neg_intersection_cnt': 166, 'in_positive_features_cnt': 173, 'in_text_cnt': 245, 'in_negative_features_cnt': 225, 'text_positive_features_cnt': 173}
