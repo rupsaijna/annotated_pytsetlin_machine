@@ -8,4 +8,7 @@ cntdict={}
 for d in newdict:
 	cntdict[d]={}
 	cntdict[d]['in_text_cnt']=len(set(newdict[d]['in_text']))
-	print('\n',d,newdict[d])
+	#print('\n',d,newdict[d])
+
+	
+print(cntdict)
