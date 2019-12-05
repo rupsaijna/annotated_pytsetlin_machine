@@ -25,30 +25,34 @@ lex_files=pd.read_csv("lexicon/the_lexicon_guide.txt",sep='\t',header=0,names=['
 
 dict_df={}
 dict_counts={}
-t=0
-for ind,row in lex_files.iterrows():
-	t+=row['tot']-1
-	if row['hd']==1:
-		if row['sp']=="','":
-			tempdf=pd.read_csv(row['file'],header=0).fillna('')
-		else:
-			tempdf=pd.read_csv(row['file'],sep='\t',header=0).fillna('')
-	else:
-		if row['sp']=="','":
-			tempdf=pd.read_csv(row['file'],header=None).fillna('')
-		else:
-			tempdf=pd.read_csv(row['file'],sep='\t',header=None).fillna('')
-	word_location=row['word']
-	word_list=list(tempdf.iloc[:,word_location].values)
-	word_list=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list]
-	dict_df[row['file']]=word_list
-	dict_counts[row['file']]={}
-	dict_counts[row['file']]['in_text']=[]
-	dict_counts[row['file']]['in_positive_features']=[]
-	dict_counts[row['file']]['in_negative_features']=[]
-	dict_counts[row['file']]['in_partial_positive_features']=[]
-	dict_counts[row['file']]['in_partial_negative_features']=[]
-      
+
+tempdf=pd.read_csv('lexicon/lexicons_compiled.csv',sep='\t').fillna('')
+word_location=0
+
+df_mpqa=tempdf.loc[tempdf['source']=='mpqa'].copy()
+word_list_mpqa=list(df_mpqa.iloc[:,word_location].values)
+word_list_mpqa=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list_mpqa]
+dict_df['mpqa']=word_list
+dict_counts['mpqa']={}
+dict_counts['mpqa']['in_text']=[]
+dict_counts['mpqa']['in_positive_features']=[]
+dict_counts['mpqa']['in_negative_features']=[]
+dict_counts['mpqa']['in_partial_positive_features']=[]
+dict_counts['mpqa']['in_partial_negative_features']=[]
+
+
+df_opinion=tempdf.loc[tempdf['source']=='opinion'].copy()
+word_list_opinion=list(df_opinion.iloc[:,word_location].values)
+word_list_opinion=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list_opinion]
+dict_df['opinion']=word_list
+dict_counts['opinion']={}
+dict_counts['opinion']['in_text']=[]
+dict_counts['opinion']['in_positive_features']=[]
+dict_counts['opinion']['in_negative_features']=[]
+dict_counts['opinion']['in_partial_positive_features']=[]
+dict_counts['opinion']['in_partial_negative_features']=[]
+
+
 ########lex end##############################
 
 covered=[]
@@ -131,6 +135,11 @@ for idx, row in df_features.iterrows():
 			if word_feature in words_in_det:
 				dict_counts[l]['in_text'].append(word_feature)
 
-f = open("dict_cnts.pkl","wb")
+				
+for d in dict_counts:
+	print(d, dict_counts[d])
+				
+'''f = open("dict_cnts2.pkl","wb")
 pickle.dump(dict_counts,f)
 f.close()
+'''
