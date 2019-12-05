@@ -32,7 +32,7 @@ word_location=0
 df_mpqa=tempdf.loc[tempdf['source']=='mpqa'].copy()
 word_list_mpqa=list(df_mpqa.iloc[:,word_location].values)
 word_list_mpqa=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list_mpqa]
-dict_df['mpqa']=word_list
+dict_df['mpqa']=word_list_mpqa
 dict_counts['mpqa']={}
 dict_counts['mpqa']['in_text']=[]
 dict_counts['mpqa']['in_positive_features']=[]
@@ -44,7 +44,7 @@ dict_counts['mpqa']['in_partial_negative_features']=[]
 df_opinion=tempdf.loc[tempdf['source']=='opinion'].copy()
 word_list_opinion=list(df_opinion.iloc[:,word_location].values)
 word_list_opinion=[e.translate(str.maketrans('','',string.punctuation)).strip() for e in word_list_opinion]
-dict_df['opinion']=word_list
+dict_df['opinion']=word_list_opinion
 dict_counts['opinion']={}
 dict_counts['opinion']['in_text']=[]
 dict_counts['opinion']['in_positive_features']=[]
