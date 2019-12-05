@@ -26,7 +26,7 @@ lex_files=pd.read_csv("lexicon/the_lexicon_guide.txt",sep='\t',header=0,names=['
 dict_df={}
 dict_counts={}
 
-tempdf=pd.read_csv('lexicon/lexicons_compiled.csv',sep='\t').fillna('')
+tempdf=pd.read_csv('lexicon/lexicons_compiled.csv',sep=',').fillna('')
 word_location=0
 
 df_mpqa=tempdf.loc[tempdf['source']=='mpqa'].copy()
