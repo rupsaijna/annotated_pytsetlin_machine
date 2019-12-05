@@ -65,8 +65,8 @@ _lib.mc_tm_initialize.argtypes = [mc_ctm_pointer]
 _lib.mc_tm_predict.restype = None                    
 _lib.mc_tm_predict.argtypes = [mc_ctm_pointer, array_1d_uint, array_1d_uint, C.c_int]
 
-_lib.mc_tm_predict_and_print.restype = None                    
-_lib.mc_tm_predict_and_print.argtypes = [mc_ctm_pointer, array_1d_uint, array_1d_uint, C.c_int]
+#_lib.mc_tm_predict_and_print.restype = None                    
+#_lib.mc_tm_predict_and_print.argtypes = [mc_ctm_pointer, array_1d_uint, array_1d_uint, C.c_int]
 
 _lib.mc_tm_ta_state.restype = C.c_int                    
 _lib.mc_tm_ta_state.argtypes = [mc_ctm_pointer, C.c_int, C.c_int, C.c_int]
@@ -297,7 +297,7 @@ class MultiClassTsetlinMachine():
 
 		return Y
 	
-	def predict_and_print(self, X):
+	'''def predict_and_print(self, X):
 		number_of_examples = X.shape[0]
 		
 		self.encoded_X = np.empty(int(number_of_examples * self.number_of_patches * self.number_of_ta_chunks), dtype=np.uint32)
@@ -306,7 +306,7 @@ class MultiClassTsetlinMachine():
 		Y = np.zeros(number_of_examples, dtype=np.uint32)
 		_lib.mc_tm_predict_and_print(self.mc_tm, self.encoded_X, Y, number_of_examples)
 
-		return Y
+		return Y'''
 	
 	def ta_state(self, mc_tm_class, clause, ta):
 		return _lib.mc_tm_ta_state(self.mc_tm, mc_tm_class, clause, ta)
