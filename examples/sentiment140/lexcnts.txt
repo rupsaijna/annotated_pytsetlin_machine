@@ -36,3 +36,8 @@
  lexicon/NRC-Sentiment-Emotion-Lexicons/Lexicons/NRC-Hashtag-Sentiment-Lexicon-v1.0/sentiment-hashtags.txt {'text_negative_features_cnt': 45, 'pos_neg_features_cnt': 47, 'pos_neg_intersection_cnt': 32, 'in_positive_features_cnt': 34, 'in_text_cnt': 51, 'in_negative_features_cnt': 45, 'text_positive_features_cnt': 34}
 
  lexicon/liwc/posemo.liwc {'text_negative_features_cnt': 225, 'pos_neg_features_cnt': 232, 'pos_neg_intersection_cnt': 166, 'in_positive_features_cnt': 173, 'in_text_cnt': 245, 'in_negative_features_cnt': 225, 'text_positive_features_cnt': 173}
+
+mpqa {'in_positive_features_cnt': 278, 'text_positive_features_cnt': 278, 'in_negative_features_cnt': 379, 'pos_neg_features_cnt': 414, 'text_negative_features_cnt': 379, 'in_text_cnt': 473, 'pos_neg_intersection_cnt': 243}
+
+opinion {'in_positive_features_cnt': 520, 'text_positive_features_cnt': 520, 'in_negative_features_cnt': 766, 'pos_neg_features_cnt': 872, 'text_negative_features_cnt': 766, 'in_text_cnt': 1048, 'pos_neg_intersection_cnt': 414}
+
